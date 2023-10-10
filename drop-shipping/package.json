@@ -1,0 +1,36 @@
+{
+  "name": "drop-shipping",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "format": "prettier --write \"{components,app,service,api-generator}/**/*.{js,ts,tsx,d.ts}\""
+  },
+  "dependencies": {
+    "axios": "^1.5.1",
+    "chart.js": "4.2.1",
+    "next": "13.5.4",
+    "next-auth": "^4.23.2",
+    "primeflex": "^3.3.1",
+    "primeicons": "^6.0.1",
+    "primereact": "^9.6.2",
+    "react": "^18",
+    "react-dom": "^18",
+    "sass": "^1.69.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "autoprefixer": "^10",
+    "eslint": "^8",
+    "eslint-config-next": "13.5.4",
+    "postcss": "^8",
+    "prettier": "^2.8.8",
+    "tailwindcss": "^3",
+    "typescript": "^5"
+  }
+}
