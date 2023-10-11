@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
 'use client';
-import { useRouter } from 'next/navigation';
 import React, { useContext, useState } from 'react';
 import { Checkbox } from 'primereact/checkbox';
 import { Button } from 'primereact/button';
@@ -8,18 +7,19 @@ import { Password } from 'primereact/password';
 import { LayoutContext } from '../../../../layout/context/layoutcontext';
 import { InputText } from 'primereact/inputtext';
 import { classNames } from 'primereact/utils';
-import {  signIn } from 'next-auth/react';
+import {  getSession, signIn } from 'next-auth/react';
 import Link from 'next/link';
-import { useSession } from "next-auth/react"
+// import { useSession } from "next-auth/react"
+import { useRouter } from 'next/navigation'
 
 const LoginPage = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [checked, setChecked] = useState(false);
+    const [validateLogin, setvalidateLogin] = useState(false);
     const { layoutConfig } = useContext(LayoutContext);
+    const containerClassName = classNames('surface-ground flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden', { 'p-input-filled': layoutConfig?.inputStyle === 'filled' });
+    // const { data: session, status } = useSession();
     const router = useRouter();
-    const containerClassName = classNames('surface-ground flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden', { 'p-input-filled': layoutConfig.inputStyle === 'filled' });
-    const { data: session, status } = useSession()
 
 
     return (
@@ -39,8 +39,10 @@ const LoginPage = () => {
                             <div className="flex align-items-center justify-content-between mb-5 gap-5">
                                 <Button
                                     label="Login"
+                                    loading={validateLogin}
                                     className="p-3 text-xl w-5"
                                     onClick={async (event) => {
+                                        setvalidateLogin(true);
                                         event.preventDefault();
                                         const credentials = {
                                             email: email,
@@ -49,7 +51,9 @@ const LoginPage = () => {
                                         //callbackUrl:"/",
                                         const response  = await signIn('credentials', { ...credentials, redirect: false });
                                         // const session = await getServerSession();
-                                        if(session?.user?.email){
+                                        const currentSession = await getSession();
+                                        console.log(currentSession);
+                                        if(currentSession?.user?.email){
                                             router.push('/dashboard');
                                         }
                                         //  console.log(response);

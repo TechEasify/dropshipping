@@ -1,12 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
-
-import { useRouter } from "next/navigation";
-import {
-  useEventListener,
-  useMountEffect,
-  useUnmountEffect,
-} from "primereact/hooks";
+import { useRouter } from "next/router";
+import { useEventListener, useMountEffect, useUnmountEffect } from "primereact/hooks";
 import React, { useContext, useEffect, useRef } from "react";
 import { classNames } from "primereact/utils";
 import AppFooter from "./AppFooter";
@@ -15,11 +10,10 @@ import AppTopbar from "./AppTopbar";
 import AppConfig from "./AppConfig";
 import { LayoutContext } from "./context/layoutcontext";
 import { PrimeReactContext } from "primereact/api";
-import { ChildContainerProps, LayoutState, AppTopbarRef } from "../types/types";
 import { usePathname, useSearchParams } from "next/navigation";
+import { SessionProvider, useSession } from "next-auth/react"; // Import SessionProvider and useSession
 
-
-const Layout = ({ children }: ChildContainerProps) => {
+const Layout = ({ children }) => {
   const { layoutConfig, layoutState, setLayoutState } = useContext(LayoutContext);
   const { setRipple } = useContext(PrimeReactContext);
   const topbarRef = useRef<AppTopbarRef>(null);
@@ -143,8 +137,10 @@ const Layout = ({ children }: ChildContainerProps) => {
     "p-ripple-disabled": !layoutConfig.ripple,
   });
 
+  const { data: session } = useSession(); // Access session data
+
   return (
-    <React.Fragment>
+    <SessionProvider session={session}> {/* Wrap your app with SessionProvider */}
       <div className={containerClass}>
         <AppTopbar ref={topbarRef} />
         <div ref={sidebarRef} className="layout-sidebar">
@@ -157,7 +153,7 @@ const Layout = ({ children }: ChildContainerProps) => {
         <AppConfig />
         <div className="layout-mask"></div>
       </div>
-    </React.Fragment>
+    </SessionProvider>
   );
 };
 
