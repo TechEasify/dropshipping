@@ -16,7 +16,7 @@ import { SessionProvider } from "next-auth/react"; // Import SessionProvider and
 const Layout = ({ children }) => {
   const { layoutConfig, layoutState, setLayoutState } = useContext(LayoutContext);
   const { setRipple } = useContext(PrimeReactContext);
-  const topbarRef = useRef<AppTopbarRef>(null);
+  const topbarRef = useRef(null);
   const sidebarRef = useRef<HTMLDivElement>(null);
   const [bindMenuOutsideClickListener, unbindMenuOutsideClickListener] =
     useEventListener({
