@@ -36,12 +36,11 @@ const AppMenuitem = (props: AppMenuItemProps) => {
             event.preventDefault();
             return;
         }
-
+    
         //execute command
         if (item!.command) {
             item!.command({ originalEvent: event, item: item });
         }
-
         // toggle active state
         if (item!.items) setActiveMenu(active ? (props.parentKey as string) : key);
         else setActiveMenu(key);

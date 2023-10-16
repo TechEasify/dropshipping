@@ -5,6 +5,7 @@ import AppMenuitem from './AppMenuitem';
 import { LayoutContext } from './context/layoutcontext';
 import { MenuProvider } from './context/menucontext';
 import Link from 'next/link';
+import {   signOut } from 'next-auth/react';
 
 const AppMenu = () => {
     const { layoutConfig } = useContext(LayoutContext);
@@ -116,7 +117,7 @@ const AppMenu = () => {
                     {
                         label: 'Sign Out',
                         icon: 'pi pi-fw pi-briefcase',
-                        to: '/auth/signout'
+                        command:()=>{ signOut({ callbackUrl: '/auth/login' });}
                     }
                 ]
             }

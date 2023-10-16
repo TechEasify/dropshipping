@@ -50,12 +50,19 @@ const LoginPage = () => {
                                         };
                                         //callbackUrl:"/",
                                         const response  = await signIn('credentials', { ...credentials, redirect: false });
-                                        // const session = await getServerSession();
-                                        const currentSession = await getSession();
-                                        console.log(currentSession);
-                                        if(currentSession?.user?.email){
+                                        console.log(response);
+                                        if(response?.error){
+                                            setvalidateLogin(false);
+
+                                        }else{
                                             router.push('/dashboard');
                                         }
+                                        // const session = await getServerSession();
+                                        // const currentSession = await getSession();
+                                        // console.log(currentSession);
+                                        // if(currentSession?.user?.email){
+                                        //     router.push('/dashboard');
+                                        // }
                                         //  console.log(response);
                                     }}
                                 ></Button>

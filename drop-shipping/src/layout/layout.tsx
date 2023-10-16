@@ -11,7 +11,7 @@ import AppConfig from "./AppConfig";
 import { LayoutContext } from "./context/layoutcontext";
 import { PrimeReactContext } from "primereact/api";
 import { usePathname, useSearchParams } from "next/navigation";
-import { SessionProvider, useSession } from "next-auth/react"; // Import SessionProvider and useSession
+import { SessionProvider } from "next-auth/react"; // Import SessionProvider and useSession
 
 const Layout = ({ children }) => {
   const { layoutConfig, layoutState, setLayoutState } = useContext(LayoutContext);
@@ -137,10 +137,9 @@ const Layout = ({ children }) => {
     "p-ripple-disabled": !layoutConfig.ripple,
   });
 
-  const { data: session } = useSession(); // Access session data
 
   return (
-    <SessionProvider session={session}> {/* Wrap your app with SessionProvider */}
+    <SessionProvider> {/* Wrap your app with SessionProvider */}
       <div className={containerClass}>
         <AppTopbar ref={topbarRef} />
         <div ref={sidebarRef} className="layout-sidebar">

@@ -21,11 +21,11 @@ export default function RootLayout({ children, pageProps}: RootLayoutProps) {
                 <link id="theme-css" href={`/themes/lara-light-indigo/theme.css`} rel="stylesheet"></link>
             </head>
             <body>
-                <SessionProvider session={(pageProps as any)?.session}>
-                    <PrimeReactProvider>
-                        <LayoutProvider>{children}</LayoutProvider>
-                    </PrimeReactProvider>
-                </SessionProvider>
+                    <SessionProvider>                        
+                        <PrimeReactProvider>
+                            <LayoutProvider>{children}</LayoutProvider>
+                        </PrimeReactProvider>
+                    </SessionProvider>
             </body>
         </html>
     );

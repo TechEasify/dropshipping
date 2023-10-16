@@ -9,6 +9,7 @@ import React, { useContext, useEffect, useRef, useState } from 'react';
 import { ProductService } from '../../../demo/service/ProductService';
 import { LayoutContext } from '../../../layout/context/layoutcontext';
 import Link from 'next/link';
+import { getSession, useSession } from 'next-auth/react';
 const lineData = {
     labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
     datasets: [

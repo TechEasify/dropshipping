@@ -7,7 +7,7 @@ export const options: NextAuthOptions = {
     CredentialsProvider({
       name: "Credentials",
       credentials: {
-        username: {
+        email: {
           label: "Username:",
           type: "text",
           placeholder: "your-cool-username",
@@ -19,12 +19,15 @@ export const options: NextAuthOptions = {
         },
       },
       async authorize(credentials) {
-        if (credentials?.username === "" || credentials?.password === "") {
+        if (credentials?.email === "" || credentials?.password === "") {
           return null;
         }
         const response = await new LoginService().validateLogin(credentials);
         const user = await response.data.user;
-        return user;
+        if(user?.user_id){
+          return user;
+        }
+        return null;
       },
     }),
   ],
