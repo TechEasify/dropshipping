@@ -31,43 +31,42 @@ const lineData = {
         }
     ]
 };
+const newlineOptions = {
+    plugins: {
+        legend: {
+            labels: {
+                color: '#495057'
+            }
+        }
+    },
+    scales: {
+        x: {
+            ticks: {
+                color: '#495057'
+            },
+            grid: {
+                color: '#ebedef'
+            }
+        },
+        y: {
+            ticks: {
+                color: '#495057'
+            },
+            grid: {
+                color: '#ebedef'
+            }
+        }
+    }
+};
 
 const Dashboard = () => {
-    const [products, setProducts] = useState(null);
+    const [products, setProducts] = useState(undefined);
     const menu1 = useRef(null);
     const menu2 = useRef(null);
-    const [lineOptions, setLineOptions] = useState(null);
+    const [lineOptions, setLineOptions] = useState(newlineOptions);
     const { layoutConfig } = useContext(LayoutContext);
 
     const applyLightTheme = () => {
-        const lineOptions = {
-            plugins: {
-                legend: {
-                    labels: {
-                        color: '#495057'
-                    }
-                }
-            },
-            scales: {
-                x: {
-                    ticks: {
-                        color: '#495057'
-                    },
-                    grid: {
-                        color: '#ebedef'
-                    }
-                },
-                y: {
-                    ticks: {
-                        color: '#495057'
-                    },
-                    grid: {
-                        color: '#ebedef'
-                    }
-                }
-            }
-        };
-
         setLineOptions(lineOptions);
     };
 
@@ -119,7 +118,7 @@ const Dashboard = () => {
         }
     }, [layoutConfig.colorScheme]);
 
-    const formatCurrency = (value) => {
+    const formatCurrency = (value : any) => {
         return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
     };
 
