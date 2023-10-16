@@ -11,7 +11,7 @@ export class CollectionService {
         return res.data;
     }
 
-    async saveCollection(collection : any) {
+    async saveCollection(collection) {
         var res = null;
         if (collection.collection_id != null) {
             res = await axios.post(this.contextPath + 'update/' + collection.collection_id, collection, {
