@@ -1,7 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
-import { useRouter } from "next/router";
-import { useEventListener, useMountEffect, useUnmountEffect } from "primereact/hooks";
+
+import { useRouter } from "next/navigation";
+import {
+  useEventListener,
+  useMountEffect,
+  useUnmountEffect,
+} from "primereact/hooks";
 import React, { useContext, useEffect, useRef } from "react";
 import { classNames } from "primereact/utils";
 import AppFooter from "./AppFooter";
@@ -10,13 +15,15 @@ import AppTopbar from "./AppTopbar";
 import AppConfig from "./AppConfig";
 import { LayoutContext } from "./context/layoutcontext";
 import { PrimeReactContext } from "primereact/api";
+import { ChildContainerProps, LayoutState, AppTopbarRef } from "../types/types";
 import { usePathname, useSearchParams } from "next/navigation";
-import { SessionProvider } from "next-auth/react"; // Import SessionProvider and useSession
+import { SessionProvider } from "next-auth/react";
 
-const Layout = ({ children }) => {
+
+const Layout = ({ children }: ChildContainerProps) => {
   const { layoutConfig, layoutState, setLayoutState } = useContext(LayoutContext);
   const { setRipple } = useContext(PrimeReactContext);
-  const topbarRef = useRef(null);
+  const topbarRef = useRef<AppTopbarRef>(null);
   const sidebarRef = useRef<HTMLDivElement>(null);
   const [bindMenuOutsideClickListener, unbindMenuOutsideClickListener] =
     useEventListener({
@@ -137,21 +144,22 @@ const Layout = ({ children }) => {
     "p-ripple-disabled": !layoutConfig.ripple,
   });
 
-
   return (
-    <SessionProvider> {/* Wrap your app with SessionProvider */}
-      <div className={containerClass}>
-        <AppTopbar ref={topbarRef} />
-        <div ref={sidebarRef} className="layout-sidebar">
-          <AppSidebar />
+    <SessionProvider>
+      <React.Fragment>
+        <div className={containerClass}>
+          <AppTopbar ref={topbarRef} />
+          <div ref={sidebarRef} className="layout-sidebar">
+            <AppSidebar />
+          </div>
+          <div className="layout-main-container">
+            <div className="layout-main">{children}</div>
+            <AppFooter />
+          </div>
+          <AppConfig />
+          <div className="layout-mask"></div>
         </div>
-        <div className="layout-main-container">
-          <div className="layout-main">{children}</div>
-          <AppFooter />
-        </div>
-        <AppConfig />
-        <div className="layout-mask"></div>
-      </div>
+      </React.Fragment>
     </SessionProvider>
   );
 };

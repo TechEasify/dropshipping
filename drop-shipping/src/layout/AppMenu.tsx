@@ -6,11 +6,12 @@ import { LayoutContext } from './context/layoutcontext';
 import { MenuProvider } from './context/menucontext';
 import Link from 'next/link';
 import {   signOut } from 'next-auth/react';
+import { AppMenuItem } from '../types/types';
 
 const AppMenu = () => {
     const { layoutConfig } = useContext(LayoutContext);
 
-    const model = [
+    const model : AppMenuItem[] = [
             {
                 label: 'Home',
                 items: [{ label: 'Dashboard', icon: 'pi pi-fw pi-home', to: '/dashboard' }]
@@ -127,8 +128,8 @@ const AppMenu = () => {
         <MenuProvider>
             <ul className="layout-menu">
                 {model.map((item, i) => {
-                    // return !item?.seperator ? <AppMenuitem item={item} root={true} index={i} key={item.label} /> : <li className="menu-separator"></li>;
-                    return <AppMenuitem item={item} root={true} index={i} key={item.label} />;
+                    return !item?.seperator ? <AppMenuitem item={item} root={true} index={i} key={item.label} /> : <li className="menu-separator"></li>;
+                    // return <AppMenuitem item={item} root={true} index={i} key={item.label} />;
                 })}
             </ul>
         </MenuProvider>
