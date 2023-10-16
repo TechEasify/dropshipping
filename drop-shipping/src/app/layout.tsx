@@ -10,11 +10,10 @@ import { SessionProvider } from "next-auth/react"
 import { PageProps } from '../../.next/types/app/layout';
 
 interface RootLayoutProps {
-    children: React.ReactNode;
-    pageProps: PageProps
+    children: React.ReactNode
 }
 
-export default function RootLayout({ children, pageProps}: RootLayoutProps) {
+export default function RootLayout({ children}: RootLayoutProps) {
     return (
         <html lang="en" suppressHydrationWarning>
             <head>
