@@ -7,7 +7,6 @@ import 'primeicons/primeicons.css';
 import '../styles/layout/layout.scss';
 import '../styles/demo/Demos.scss';
 import { SessionProvider } from "next-auth/react"
-import { PageProps } from '../../.next/types/app/layout';
 
 interface RootLayoutProps {
     children: React.ReactNode
