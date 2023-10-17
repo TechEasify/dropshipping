@@ -12,7 +12,7 @@ const AppMenu = () => {
     const { layoutConfig } = useContext(LayoutContext);
     const {data:session} = useSession();
     let model : AppMenuItem[] = [];
-    if(session?.user?.roll){
+    if(session?.user?.name == 'Admin'){
         model  = [
             {
                 label: 'Home',
