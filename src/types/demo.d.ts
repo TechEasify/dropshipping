@@ -117,6 +117,26 @@ declare namespace Demo {
         createdAt: number;
     }
 
+    type Plan = {
+        package_id?: number;
+        package_name?: string;
+        description: string;
+        duration: string;
+        trial_period_days?: number | 0;
+        is_popular?: string;
+        is_default?: string;
+        max_products?: number | 0;
+        has_personalized_branding?: string;
+        has_branded_invoicing?: string;
+        can_customize_product_images?: string;
+        amount?: number | 0;
+    };
+
+    type Duration = {
+        name?: string;
+        code?: string;
+    };
+
     //ProductService
     type Product = {
         id?: string;

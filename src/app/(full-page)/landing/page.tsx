@@ -1,6 +1,6 @@
 'use client';
 /* eslint-disable @next/next/no-img-element */
-import React, { useContext, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { Button } from 'primereact/button';
 import { Ripple } from 'primereact/ripple';
@@ -8,16 +8,70 @@ import { Divider } from 'primereact/divider';
 import { LayoutContext } from '../../../layout/context/layoutcontext';
 import { classNames } from 'primereact/utils';
 import { useRouter } from 'next/navigation'
+import { PlanService } from '../../../demo/service/PlanService';
+import { InputSwitch } from 'primereact/inputswitch';
+import { Demo } from '../../../types/types';
+import { SelectButton } from 'primereact/selectbutton';
 
 const LandingPage = () => {
+    let empltyPlan : Demo.Plan = {
+        package_id: 0,
+        package_name: "",
+        description: "",
+        duration: "",
+        trial_period_days: 0,
+        is_popular: "0",
+        max_products: 0,
+        has_personalized_branding: "0",
+        has_branded_invoicing: "0",
+        can_customize_product_images: "0",
+        amount: 0
+    }
+
+    let duration : Demo.Duration = { name: 'Monthly', code: 'Month' }
     const [isHidden, setIsHidden] = useState(false);
+    const [plans, setPlans] = useState([]);
+    const [filteredPlans, setFilteredPlans] = useState([]);
+    const [selectDurationButtonValue, setSelectDurationButtonValue] = useState(duration);
     const { layoutConfig } = useContext(LayoutContext);
     const menuRef = useRef<HTMLElement | null>(null);
     const router = useRouter();
+    
     const toggleMenuItemClick = () => {
         setIsHidden((prevState) => !prevState);
     };
 
+    
+    useEffect(() => {
+        const planService = new PlanService();
+        planService.getPlans().then((data) => {
+            console.log(data.data);
+            setPlans(data.data);
+        });
+    }, []);
+
+    useEffect(() => {
+        if(plans?.length > 0){
+            let _plans = [...(plans as any)];
+            _plans = _plans.filter((plan : Demo.Plan) => plan.duration == 'Month');
+            setSelectDurationButtonValue(duration);
+            _plans && setFilteredPlans((_plans as any));
+        }
+    }, [plans]);
+
+    useEffect(() => {
+        let _plans = (plans as any)?.filter((plan : Demo.Plan) => plan.duration == selectDurationButtonValue.code);
+        _plans && setFilteredPlans(_plans);
+    }, [selectDurationButtonValue]);
+
+    const durationChangeHandler = (e : any) => {
+        setSelectDurationButtonValue(e.value);
+    };
+
+    const selectDurationButtonOptions = [
+        { name: 'Monthly', code: 'Month' },
+        { name: 'Yearly', code: 'Year' }
+    ];
     return (
         <div className="surface-0 flex justify-content-center">
             <div id="home" className="landing-wrapper overflow-hidden">
@@ -395,105 +449,100 @@ const LandingPage = () => {
                 </div>
 
                 <div id="pricing" className="py-4 px-4 lg:px-8 my-2 md:my-4">
-                    <div className="text-center">
-                        <h2 className="text-900 font-normal mb-2">Matchless Pricing</h2>
-                        <span className="text-600 text-2xl">Amet consectetur adipiscing elit...</span>
+                     {filteredPlans && (
+                <>
+                    <div className="text-900 font-bold text-6xl mb-4">Set up your store, pick a plan later</div>
+                    <div className="text-700 text-xl mb-6 line-height-3">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Velit numquam eligendi quos.</div>
+                    <div className="text-center my-3">
+                        <h5>Choose Your Plan</h5>
+                        <SelectButton value={selectDurationButtonValue} onChange={(e) => durationChangeHandler(e)} options={selectDurationButtonOptions} optionLabel="name" />
                     </div>
-
                     <div className="grid justify-content-between mt-8 md:mt-0">
-                        <div className="col-12 lg:col-4 p-0 md:p-3">
-                            <div className="p-3 flex flex-column border-200 pricing-card cursor-pointer border-2 hover:border-primary transition-duration-300 transition-all">
-                                <h3 className="text-900 text-center my-5">Free</h3>
-                                <img src="/demo/images/landing/free.svg" className="w-10 h-10 mx-auto" alt="free" />
-                                <div className="my-5 text-center">
-                                    <span className="text-5xl font-bold mr-2 text-900">$0</span>
-                                    <span className="text-600">per month</span>
-                                    <Button label="Get Started" rounded className="block mx-auto mt-4 border-none ml-3 font-light line-height-2 bg-blue-500 text-white"></Button>
+                        {filteredPlans.map((plan : Demo.Plan, planIndex: number) => {
+                            return (
+                            <div key={planIndex} className="col-12 lg:col-4 p-0 md:p-3" onClick={()=> { router.push('/auth/login');}}>
+                                <div className="p-3 flex flex-column border-200 pricing-card cursor-pointer border-2 hover:border-primary transition-duration-300 transition-all">
+                                    <h3 className="text-900 text-center my-5">{plan.package_name}</h3>
+                                    <img src="/demo/images/landing/free.svg" className="w-10 h-10 mx-auto" alt="free" />
+                                    <div className="my-5 text-center">
+                                        <span className="text-5xl font-bold mr-2 text-900">${plan.amount}</span>
+                                        <span className="text-600"> / per {selectDurationButtonValue.name}</span>
+                                        {plan.trial_period_days && plan.trial_period_days > 0 && <p>{plan.trial_period_days} Days Trial Period</p> }
+                                        <Button label="Get Started" rounded className="block mx-auto mt-4 border-none ml-3 font-light line-height-2 bg-blue-500 text-white" onClick={()=> { router.push('/auth/login');}}></Button>
+                                    </div>
+                                    <Divider className="w-full bg-surface-200"></Divider>
+                                    <ul className="my-5 list-none p-0 flex text-900 flex-column">
+                                        <li className="py-2">
+                                            <i className="pi pi-fw pi-check text-xl text-cyan-500 mr-2"></i>
+                                            <span className="text-xl line-height-3">{plan.max_products && plan.max_products == 0 ? 'Unlimited':plan.max_products} Unique Products</span>
+                                        </li>
+                                        {plan.has_personalized_branding === '1' && (
+                                        <li className="py-2">
+                                            <i className="pi pi-fw pi-check text-xl text-cyan-500 mr-2"></i>
+                                            <span className="text-xl line-height-3">Personalized Branding</span>
+                                        </li>
+                                        )}
+                                         {plan.has_branded_invoicing === '1' && (
+                                        <li className="py-2">
+                                            <i className="pi pi-fw pi-check text-xl text-cyan-500 mr-2"></i>
+                                            <span className="text-xl line-height-3">Branded Invoicing</span>
+                                        </li>
+                                         )}
+                                         {plan.can_customize_product_images === '1' && (
+                                        <li className="py-2">
+                                            <i className="pi pi-fw pi-check text-xl text-cyan-500 mr-2"></i>
+                                            <span className="text-xl line-height-3">Customize Product Image Background</span>
+                                        </li>
+                                         )}
+                                    </ul>
                                 </div>
-                                <Divider className="w-full bg-surface-200"></Divider>
-                                <ul className="my-5 list-none p-0 flex text-900 flex-column">
-                                    <li className="py-2">
-                                        <i className="pi pi-fw pi-check text-xl text-cyan-500 mr-2"></i>
-                                        <span className="text-xl line-height-3">Responsive Layout</span>
-                                    </li>
-                                    <li className="py-2">
-                                        <i className="pi pi-fw pi-check text-xl text-cyan-500 mr-2"></i>
-                                        <span className="text-xl line-height-3">Unlimited Push Messages</span>
-                                    </li>
-                                    <li className="py-2">
-                                        <i className="pi pi-fw pi-check text-xl text-cyan-500 mr-2"></i>
-                                        <span className="text-xl line-height-3">50 Support Ticket</span>
-                                    </li>
-                                    <li className="py-2">
-                                        <i className="pi pi-fw pi-check text-xl text-cyan-500 mr-2"></i>
-                                        <span className="text-xl line-height-3">Free Shipping</span>
-                                    </li>
-                                </ul>
                             </div>
-                        </div>
 
-                        <div className="col-12 lg:col-4 p-0 md:p-3 mt-4 md:mt-0">
-                            <div className="p-3 flex flex-column border-200 pricing-card cursor-pointer border-2 hover:border-primary transition-duration-300 transition-all">
-                                <h3 className="text-900 text-center my-5">Startup</h3>
-                                <img src="/demo/images/landing/startup.svg" className="w-10 h-10 mx-auto" alt="startup" />
-                                <div className="my-5 text-center">
-                                    <span className="text-5xl font-bold mr-2 text-900">$1</span>
-                                    <span className="text-600">per month</span>
-                                    <Button label="Try Free" rounded className="block mx-auto mt-4 border-none ml-3 font-light line-height-2 bg-blue-500 text-white"></Button>
-                                </div>
-                                <Divider className="w-full bg-surface-200"></Divider>
-                                <ul className="my-5 list-none p-0 flex text-900 flex-column">
-                                    <li className="py-2">
-                                        <i className="pi pi-fw pi-check text-xl text-cyan-500 mr-2"></i>
-                                        <span className="text-xl line-height-3">Responsive Layout</span>
-                                    </li>
-                                    <li className="py-2">
-                                        <i className="pi pi-fw pi-check text-xl text-cyan-500 mr-2"></i>
-                                        <span className="text-xl line-height-3">Unlimited Push Messages</span>
-                                    </li>
-                                    <li className="py-2">
-                                        <i className="pi pi-fw pi-check text-xl text-cyan-500 mr-2"></i>
-                                        <span className="text-xl line-height-3">50 Support Ticket</span>
-                                    </li>
-                                    <li className="py-2">
-                                        <i className="pi pi-fw pi-check text-xl text-cyan-500 mr-2"></i>
-                                        <span className="text-xl line-height-3">Free Shipping</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div className="col-12 lg:col-4 p-0 md:p-3 mt-4 md:mt-0">
-                            <div className="p-3 flex flex-column border-200 pricing-card cursor-pointer border-2 hover:border-primary transition-duration-300 transition-all">
-                                <h3 className="text-900 text-center my-5">Enterprise</h3>
-                                <img src="/demo/images/landing/enterprise.svg" className="w-10 h-10 mx-auto" alt="enterprise" />
-                                <div className="my-5 text-center">
-                                    <span className="text-5xl font-bold mr-2 text-900">$999</span>
-                                    <span className="text-600">per month</span>
-                                    <Button label="Get a Quote" rounded className="block mx-auto mt-4 border-none ml-3 font-light line-height-2 bg-blue-500 text-white"></Button>
-                                </div>
-                                <Divider className="w-full bg-surface-200"></Divider>
-                                <ul className="my-5 list-none p-0 flex text-900 flex-column">
-                                    <li className="py-2">
-                                        <i className="pi pi-fw pi-check text-xl text-cyan-500 mr-2"></i>
-                                        <span className="text-xl line-height-3">Responsive Layout</span>
-                                    </li>
-                                    <li className="py-2">
-                                        <i className="pi pi-fw pi-check text-xl text-cyan-500 mr-2"></i>
-                                        <span className="text-xl line-height-3">Unlimited Push Messages</span>
-                                    </li>
-                                    <li className="py-2">
-                                        <i className="pi pi-fw pi-check text-xl text-cyan-500 mr-2"></i>
-                                        <span className="text-xl line-height-3">50 Support Ticket</span>
-                                    </li>
-                                    <li className="py-2">
-                                        <i className="pi pi-fw pi-check text-xl text-cyan-500 mr-2"></i>
-                                        <span className="text-xl line-height-3">Free Shipping</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
+                                // <div key={planIndex} className="col-12 lg:col">
+                                //     <div className="p-1 h-full">
+                                //         <div className={`shadow-2 p-3 h-full flex flex-column ${plan?.is_popular === '1' ? 'text-white bg-indigo-500' : 'bg-white'}`} style={{ borderRadius: '6px' }}>
+                                //             <div className={`text-900 font-medium text-4xl mb-2 ${plan.is_popular === '1' ? 'text-white' : 'text-black'}`}>{plan.package_name}</div>
+                                //             <div className={`text-600 ${plan.is_popular === '1' ? 'text-white' : 'text-black'}`}>{plan.description}</div>
+                                //             <hr className="my-3 mx-0 border-top-1 border-none surface-border" />
+                                //             <div className="flex align-items-center">
+                                //                 <span className={`font-bold text-2xl text-900  ${plan.is_popular === '1' ? 'text-white' : 'text-black'}`}>{plan.amount}</span>
+                                //                 <span className={`ml-2 font-medium text-600  ${plan.is_popular === '1' ? 'text-white' : 'text-black'}`}>/ month</span>
+                                //             </div>
+                                //             <hr className="my-3 mx-0 border-top-1 border-none surface-border" />
+                                //             <ul className="list-none p-0 m-0 flex-grow-1">
+                                //                 <li className="flex align-items-center mb-3">
+                                //                     <i className={`pi pi-check-circle mr-2  ${plan.is_popular === '1' ? 'text-green-200' : 'text-green-500'}`}></i>
+                                //                     <span>{plan.trial_period_days} Days Trial Period</span>
+                                //                 </li>
+                                //                 <li className="flex align-items-center mb-3">
+                                //                     <i className={`pi pi-check-circle mr-2  ${plan.is_popular === '1' ? 'text-green-200' : 'text-green-500'}`}></i> <span>{plan.max_products} Unique Products</span>
+                                //                 </li>
+                                //                 {plan.has_personalized_branding === '1' && (
+                                //                     <li className="flex align-items-center mb-3">
+                                //                         <i className={`pi pi-check-circle mr-2  ${plan.is_popular === '1' ? 'text-green-200' : 'text-green-500'}`}></i> <span>Personalized Branding</span>
+                                //                     </li>
+                                //                 )}
+                                //                 {plan.has_branded_invoicing === '1' && (
+                                //                     <li className="flex align-items-center mb-3">
+                                //                         <i className={`pi pi-check-circle mr-2  ${plan.is_popular === '1' ? 'text-green-200' : 'text-green-500'}`}></i> <span>Branded Invoicing</span>
+                                //                     </li>
+                                //                 )}
+                                //                 {plan.can_customize_product_images === '1' && (
+                                //                     <li className="flex align-items-center mb-3">
+                                //                         <i className={`pi pi-check-circle mr-2  ${plan.is_popular === '1' ? 'text-green-200' : 'text-green-500'}`}></i> <span>Customize Product Image Background</span>
+                                //                     </li>
+                                //                 )}
+                                //             </ul>
+                                //             <hr className="mb-3 mx-0 border-top-1 border-none surface-border mt-auto" />
+                                //             <Button label={`${plan.trial_period_days && plan.trial_period_days  > 0? 'Try for free': 'Activate'}`} className={`p-3 w-full mt-auto ${plan.is_popular === '1' ? 'text-indigo-500 bg-white' : 'text-white bg-indigo-500'}`}></Button>
+                                //         </div>
+                                //     </div>
+                                // </div>
+                            );
+                        })}
                     </div>
+                </>
+            )}
                 </div>
 
                 <div className="py-4 px-4 mx-0 mt-8 lg:mx-8">
@@ -501,7 +550,7 @@ const LandingPage = () => {
                         <div className="col-12 md:col-2" style={{ marginTop: '-1.5rem' }}>
                             <Link href="/" className="flex flex-wrap align-items-center justify-content-center md:justify-content-start md:mb-0 mb-3 cursor-pointer">
                                 <img src={`/layout/images/${layoutConfig.colorScheme === 'light' ? 'logo-dark' : 'logo-white'}.svg`} alt="footer sections" width="50" height="50" className="mr-2" />
-                                <span className="font-medium text-3xl text-900">SAKAI</span>
+                                <span className="font-medium text-3xl text-900">DropShippy</span>
                             </Link>
                         </div>
 
