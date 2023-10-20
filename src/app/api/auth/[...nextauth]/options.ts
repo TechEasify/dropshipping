@@ -1,4 +1,4 @@
-import type { NextAuthOptions } from "next-auth";
+import type { NextAuthOptions, Session, User } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { LoginService } from "../../../../demo/service/LoginService";
 
@@ -24,6 +24,7 @@ export const options: NextAuthOptions = {
         }
         const response = await new LoginService().validateLogin(credentials);
         const user = await response.data.user;
+
         if(user?.user_id){
           return user;
         }
@@ -44,7 +45,7 @@ export const options: NextAuthOptions = {
     },
     async session({ session, token }) {
       if (token.user) {
-        session.user = token.user;
+        session.user  = token.user;
       }
       return session;
     },

@@ -5,14 +5,14 @@ import AppMenuitem from './AppMenuitem';
 import { LayoutContext } from './context/layoutcontext';
 import { MenuProvider } from './context/menucontext';
 import Link from 'next/link';
-import {   signOut, useSession } from 'next-auth/react';
+import {   getSession, signOut, useSession } from 'next-auth/react';
 import { AppMenuItem } from '../types/types';
 
-const AppMenu = () => {
+const AppMenu = async () => {
     const { layoutConfig } = useContext(LayoutContext);
-    const {data:session} = useSession();
+    const session = await getSession();
     let model : AppMenuItem[] = [];
-    if(session?.user?.name == 'Admin'){
+    if(session?.user?.role == 'admin'){
         model  = [
             {
                 label: 'Home',
