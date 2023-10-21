@@ -1,19 +1,17 @@
 /* eslint-disable @next/next/no-img-element */
-'use client';
+
 import React, { useContext } from 'react';
 import AppMenuitem from './AppMenuitem';
 import { LayoutContext } from './context/layoutcontext';
 import { MenuProvider } from './context/menucontext';
 import Link from 'next/link';
-import {   getSession, signOut, useSession } from 'next-auth/react';
+import {   signOut } from 'next-auth/react';
 import { AppMenuItem } from '../types/types';
 
-const AppMenu = async () => {
+const AppMenu = () => {
     const { layoutConfig } = useContext(LayoutContext);
-    const session = await getSession();
-    let model : AppMenuItem[] = [];
-    if(session?.user?.role == 'admin'){
-        model  = [
+
+    const model : AppMenuItem[] = [
             {
                 label: 'Home',
                 items: [{ label: 'Dashboard', icon: 'pi pi-fw pi-home', to: '/dashboard' }]
@@ -56,12 +54,12 @@ const AppMenu = async () => {
                             {
                                 label: 'Add Plan',
                                 icon: 'pi pi-fw pi-plus',
-                                to: '/admin/plan-manage'
+                                to: '/planCrud'
                             },
                             {
                                 label: 'View Plan',
                                 icon: 'pi pi-fw pi-eye',
-                                to: '/admin/plans'
+                                to: '/plans'
                             }
                         ]
                     },
@@ -125,67 +123,6 @@ const AppMenu = async () => {
                 ]
             }
     ];
-    }else{
-        model  = [
-            {
-                label: 'Home',
-                items: [{ label: 'Dashboard', icon: 'pi pi-fw pi-home', to: '/dashboard' }]
-            },
-            {
-                label: 'Manage',
-                icon: 'pi pi-fw pi-briefcase',
-                items: [
-                    {
-                        label: 'Update Product Image',
-                        icon: 'pi pi-fw pi-briefcase',
-                        to: '/updateProductImage'
-                    },
-                    {
-                        label: 'View Plan',
-                        icon: 'pi pi-fw pi-briefcase',
-                        to: '/admin/plans'
-                    },
-                    {
-                        label: 'Update Product Label',
-                        icon: 'pi pi-fw pi-briefcase',
-                        to: '/updateProductLabel'
-                    },
-                    {
-                        label: 'Select Products',
-                        icon: 'pi pi-fw pi-briefcase',
-                        to: '/selectProducts'
-                    },
-                    {
-                        label: 'Branding',
-                        icon: 'pi pi-fw pi-briefcase',
-                        to: '/branding'
-                    },
-                    {
-                        label: 'Push To Store',
-                        icon: 'pi pi-fw pi-briefcase',
-                        to: '/pushToStore'
-                    },
-                    {
-                        label: 'Live On Store',
-                        icon: 'pi pi-fw pi-briefcase',
-                        to: '/liveOnStore'
-                    }
-                ]
-            },
-            {
-                label: 'Profile',
-                icon: 'pi pi-fw pi-lock',
-                items: [
-                    {
-                        label: 'Sign Out',
-                        icon: 'pi pi-fw pi-briefcase',
-                        command:()=>{ signOut({ callbackUrl: '/auth/login' });}
-                    }
-                ]
-            }
-    ];
-    }
-
 
     return (
         <MenuProvider>

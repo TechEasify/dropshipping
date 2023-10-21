@@ -116,7 +116,6 @@ declare namespace Demo {
         ownerId: number;
         createdAt: number;
     }
-
     type Plan = {
         package_id?: number;
         package_name?: string;

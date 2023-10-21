@@ -78,7 +78,7 @@ const LandingPage = () => {
                 <div className="py-4 px-4 mx-0 md:mx-6 lg:mx-8 lg:px-8 flex align-items-center justify-content-between relative lg:static">
                     <Link href="/" className="flex align-items-center">
                         <img src={`/layout/images/${layoutConfig.colorScheme === 'light' ? 'logo-dark' : 'logo-white'}.svg`} alt="Sakai Logo" height="50" className="mr-0 lg:mr-2" />
-                        <span className="text-900 font-medium text-2xl line-height-3 mr-8">DropShippy</span>
+                        <span className="text-900 font-medium text-2xl line-height-3 mr-8">SAKAI</span>
                     </Link>
                     <div className={classNames('align-items-center surface-0 flex-grow-1 justify-content-between hidden lg:flex absolute lg:static w-full left-0 px-6 lg:px-0 z-2', { hidden: isHidden })} style={{ top: '100%' }}>
                         <ul className="list-none p-0 m-0 flex lg:align-items-center select-none flex-column lg:flex-row cursor-pointer">
@@ -451,8 +451,11 @@ const LandingPage = () => {
                 <div id="pricing" className="py-4 px-4 lg:px-8 my-2 md:my-4">
                      {filteredPlans && (
                 <>
+                <div className='text-center'>
                     <div className="text-900 font-bold text-6xl mb-4">Set up your store, pick a plan later</div>
                     <div className="text-700 text-xl mb-6 line-height-3">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Velit numquam eligendi quos.</div>
+
+                </div>
                     <div className="text-center my-3">
                         <h5>Choose Your Plan</h5>
                         <SelectButton value={selectDurationButtonValue} onChange={(e) => durationChangeHandler(e)} options={selectDurationButtonOptions} optionLabel="name" />
@@ -460,7 +463,7 @@ const LandingPage = () => {
                     <div className="grid justify-content-between mt-8 md:mt-0">
                         {filteredPlans.map((plan : Demo.Plan, planIndex: number) => {
                             return (
-                            <div key={planIndex} className="col-12 lg:col-4 p-0 md:p-3" onClick={()=> { router.push('/auth/login');}}>
+                            <div key={planIndex} className="col-12 lg:col-3 p-0 md:p-3 h-full" onClick={()=> { router.push('/auth/login');}}>
                                 <div className="p-3 flex flex-column border-200 pricing-card cursor-pointer border-2 hover:border-primary transition-duration-300 transition-all">
                                     <h3 className="text-900 text-center my-5">{plan.package_name}</h3>
                                     <img src="/demo/images/landing/free.svg" className="w-10 h-10 mx-auto" alt="free" />
@@ -497,47 +500,6 @@ const LandingPage = () => {
                                     </ul>
                                 </div>
                             </div>
-
-                                // <div key={planIndex} className="col-12 lg:col">
-                                //     <div className="p-1 h-full">
-                                //         <div className={`shadow-2 p-3 h-full flex flex-column ${plan?.is_popular === '1' ? 'text-white bg-indigo-500' : 'bg-white'}`} style={{ borderRadius: '6px' }}>
-                                //             <div className={`text-900 font-medium text-4xl mb-2 ${plan.is_popular === '1' ? 'text-white' : 'text-black'}`}>{plan.package_name}</div>
-                                //             <div className={`text-600 ${plan.is_popular === '1' ? 'text-white' : 'text-black'}`}>{plan.description}</div>
-                                //             <hr className="my-3 mx-0 border-top-1 border-none surface-border" />
-                                //             <div className="flex align-items-center">
-                                //                 <span className={`font-bold text-2xl text-900  ${plan.is_popular === '1' ? 'text-white' : 'text-black'}`}>{plan.amount}</span>
-                                //                 <span className={`ml-2 font-medium text-600  ${plan.is_popular === '1' ? 'text-white' : 'text-black'}`}>/ month</span>
-                                //             </div>
-                                //             <hr className="my-3 mx-0 border-top-1 border-none surface-border" />
-                                //             <ul className="list-none p-0 m-0 flex-grow-1">
-                                //                 <li className="flex align-items-center mb-3">
-                                //                     <i className={`pi pi-check-circle mr-2  ${plan.is_popular === '1' ? 'text-green-200' : 'text-green-500'}`}></i>
-                                //                     <span>{plan.trial_period_days} Days Trial Period</span>
-                                //                 </li>
-                                //                 <li className="flex align-items-center mb-3">
-                                //                     <i className={`pi pi-check-circle mr-2  ${plan.is_popular === '1' ? 'text-green-200' : 'text-green-500'}`}></i> <span>{plan.max_products} Unique Products</span>
-                                //                 </li>
-                                //                 {plan.has_personalized_branding === '1' && (
-                                //                     <li className="flex align-items-center mb-3">
-                                //                         <i className={`pi pi-check-circle mr-2  ${plan.is_popular === '1' ? 'text-green-200' : 'text-green-500'}`}></i> <span>Personalized Branding</span>
-                                //                     </li>
-                                //                 )}
-                                //                 {plan.has_branded_invoicing === '1' && (
-                                //                     <li className="flex align-items-center mb-3">
-                                //                         <i className={`pi pi-check-circle mr-2  ${plan.is_popular === '1' ? 'text-green-200' : 'text-green-500'}`}></i> <span>Branded Invoicing</span>
-                                //                     </li>
-                                //                 )}
-                                //                 {plan.can_customize_product_images === '1' && (
-                                //                     <li className="flex align-items-center mb-3">
-                                //                         <i className={`pi pi-check-circle mr-2  ${plan.is_popular === '1' ? 'text-green-200' : 'text-green-500'}`}></i> <span>Customize Product Image Background</span>
-                                //                     </li>
-                                //                 )}
-                                //             </ul>
-                                //             <hr className="mb-3 mx-0 border-top-1 border-none surface-border mt-auto" />
-                                //             <Button label={`${plan.trial_period_days && plan.trial_period_days  > 0? 'Try for free': 'Activate'}`} className={`p-3 w-full mt-auto ${plan.is_popular === '1' ? 'text-indigo-500 bg-white' : 'text-white bg-indigo-500'}`}></Button>
-                                //         </div>
-                                //     </div>
-                                // </div>
                             );
                         })}
                     </div>
