@@ -192,8 +192,8 @@ const SelectProducts = () => {
 
   const dataviewGridItem = (data) => {
     return (
-      <div className='col-12 md:col-6 xl:col-4'>
-        <div className='card m-3 border-1 surface-border shadow-2'>
+      <div className='col-12 md:col-6 xl:col-4 p-3'>
+        <div className='card border-1 surface-border shadow-2 h-full flex flex-column'>
           <div className='flex flex-wrap gap-2 align-items-center justify-content-between mb-2'>
             <div className='flex align-items-center'>
               <i className='pi pi-tag mr-2' />
@@ -229,7 +229,13 @@ const SelectProducts = () => {
                 ${data.retail_price - data.price}
               </div>
             </div>
-            {/* <Button icon="pi pi-shopping-cart" disabled={data.inventoryStatus === 'OUTOFSTOCK'} /> */}
+          </div>
+          <div className='flex flex-grow-1'>
+            <Button
+              icon='pi pi-shopping-cart'
+              label='Select'
+              className='w-full mt-3 align-self-end'
+            />
           </div>
         </div>
       </div>
