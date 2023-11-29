@@ -24,7 +24,7 @@ export const options: NextAuthOptions = {
         }
         const response = await new LoginService().validateLogin(credentials);
         const user = await response.data.user;
-        if(user?.user_id){
+        if (user?.user_id) {
           return user;
         }
         return null;
