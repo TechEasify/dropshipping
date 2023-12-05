@@ -197,7 +197,7 @@ const SelectProducts = () => {
           <div className='flex flex-wrap gap-2 align-items-center justify-content-between mb-2'>
             <div className='flex align-items-center'>
               <i className='pi pi-tag mr-2' />
-              <span className='font-semibold'>{data.tags}</span>
+              <span className='font-semibold'>{data.tags.join(", ")}</span>
             </div>
             {/* <span className={`product-badge status-${data.inventoryStatus.toLowerCase()}`}>{data.inventoryStatus}</span> */}
           </div>
@@ -210,7 +210,9 @@ const SelectProducts = () => {
             {/* <Rating value={data.rating} readOnly cancel={false} /> */}
           </div>
           <div>
-            <div className='text-2xl font-bold'>{data.product_title}</div>
+            <div className='text-2xl font-bold white-space-nowrap overflow-hidden text-overflow-ellipsis'>
+              {data.product_title}
+            </div>
             <div className='mb-3'>{data.description}</div>
           </div>
           <hr />

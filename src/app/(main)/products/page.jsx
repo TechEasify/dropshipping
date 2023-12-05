@@ -210,7 +210,9 @@ const Products = () => {
             {/* <Rating value={data.rating} readOnly cancel={false} /> */}
           </div>
           <div>
-            <div className='text-2xl font-bold'>{data.product_title}</div>
+            <div className='text-2xl font-bold white-space-nowrap overflow-hidden text-overflow-ellipsis'>
+              {data.product_title}
+            </div>
             <div className='mb-3'>{data.description}</div>
           </div>
           <hr />
