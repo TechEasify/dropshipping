@@ -1,14 +1,13 @@
 /* eslint-disable react/no-unescaped-entities */
 import React, { useState, useEffect } from 'react';
 import {
-  
   FormControl,
   Select,
   Button,
   FormHelperText,
   NativeSelect,
 } from '@mui/material';
-import {makeStyles} from '@mui/styles';
+import { makeStyles } from '@mui/styles';
 import { Email, Password } from '../../../components';
 import { UserProfile, UserPutProfile } from '../actions';
 import { Users } from './Users';
@@ -85,7 +84,7 @@ export function MyAccount() {
         <div>
           <div className="store-settings container__wrapper">
             <h2 className="pf-h2 pf-my-40">Settings: My Account</h2>{' '}
-            <Security />
+            {/* <Security /> */}
             {!clickedEmail && !clickedPassword && (
               <>
                 <form
