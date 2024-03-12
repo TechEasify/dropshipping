@@ -16,6 +16,7 @@ const useStyles = makeStyles({
 });
 
 export default (props) => {
+  console.log(props, "props Billing");
   const classes = useStyles();
 
   return (

@@ -1,4 +1,4 @@
-import Api from 'config/axious';
+import Api from '../../config/axious';
 
 import {
   USER_REGISTER_ENDPOINT,

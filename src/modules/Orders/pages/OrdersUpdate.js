@@ -16,6 +16,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Update(props) {
+  console.log(props, "props OrderUpdate");
   return (
     <div
       className="modal-dialog"
@@ -67,7 +68,7 @@ export function OrdersUpdate() {
   const history = useHistory();
   const dispatch = useDispatch();
   const products = useSelector((state) => state.Orders.product);
-  console.log(products);
+  console.log(products, "products");
   const [open, setOpen] = useState(false);
   const handleClose = () => setOpen(false);
   const handleOpen = () => setOpen(true);
@@ -87,7 +88,7 @@ export function OrdersUpdate() {
   useEffect(() => {
     GetCategories()
       .then((res) => {
-        console.log(res);
+        console.log(res, "response");
         setData(res.data);
       })
       .catch((err) => console.log(err));

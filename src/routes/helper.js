@@ -1,15 +1,16 @@
 import React from 'react';
-import Api from 'config/axious';
+import Api from '@config/axious';
 import { Route, Switch } from 'react-router-dom';
 import { localStorageConstant } from '../constant';
 
-const RouteWithSubRoutes = (route) => (
+const RouteWithSubRoutes = (route) => {
+return (
   <Route
     path={route.path}
     exact={route.exact}
     render={(props) => <route.component {...props} routes={route.routes} />}
   />
-);
+)};
 
 export const RenderRoutes = ({ routes }) => (
   <Switch>

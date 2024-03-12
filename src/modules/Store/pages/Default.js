@@ -72,7 +72,7 @@ export default () => (
                             src="https://files.cdn.dropshippy.com/upload/integration-comp/cb/cb14c4ed89b4523a1f8affb6ed7f3fa3_t?v=1590473065"
                             alt="Shopify"
                             height="36px"
-                            className="pf-m-2"
+                            className="pf-m-2 shopify-img"
                           />
                         </div>
                       </div>

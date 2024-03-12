@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import * as _ from 'lodash';
 
-import { Layer } from 'components/index';
+import { Layer } from '@components/index';
 
 export default function ListLayer({
   objects,

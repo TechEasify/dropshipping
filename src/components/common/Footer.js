@@ -5,10 +5,12 @@ export default () => (
     <div className="row">
       <div className="col-12 col-sm-5 col-md-4 col-lg-3 order-2 order-sm-1">
         <div className="pf-mt-48 pf-mt-sm-0">
-          <h5 className="pf-h5 pf-text-dark pf-mt-16 pf-mb-0"></h5>
+          <h5 className="pf-h5 pf-text-dark pf-mt-16 pf-mb-0">
+            So much more than printing
+          </h5>
           <p className="pf-ui-body pf-text-muted pf-mt-2 pf-mb-16">
             Trusted to deliver 19.5M items <br /> since 2023
-          </p>{' '}
+          </p>
           <div className="social-links">
             <a href="https://www.instagram.com/dropshippy/" rel="me noopener">
               <svg
@@ -217,7 +219,7 @@ export default () => (
                 </g>
               </svg>
             </a>
-          </div>{' '}
+          </div>
           <ul
             className="pf-d-flex pf-mb-0 pf-mr-16 pf-p-0 pf-mt-16"
             id="footer-settings"

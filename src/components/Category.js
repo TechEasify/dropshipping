@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import * as _ from 'lodash';
 
 import {
-  ExpansionPanel,
-  ExpansionPanelSummary,
-  ExpansionPanelDetails,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
 
   
 } from '@mui/material';
@@ -16,13 +16,13 @@ import {
 const useStyle = makeStyles({
   categories: {
     boxShadow: 'none',
-    '& .MuiExpansionPanelDetails-root': {
+    '& .MuiAccordionDetails-root': {
       padding: 0,
     },
-    '& .MuiExpansionPanelSummary-root': {
+    '& .MuiAccordionSummary-root': {
       padding: 0,
     },
-    '& .MuiExpansionPanelSummary-root a': {
+    '& .MuiAccordionSummary-root a': {
       display: 'block',
       borderBottom: '1px solid #d8d8d8',
       padding: '0 0 5px',
@@ -62,19 +62,19 @@ export default function Category({
   return (
     <>
       <li className="catalog__sidebar-menu__item pf-py-4 mb-0">
-        <ExpansionPanel className={classes.categories} expanded={expanded} onChange={() => setExpanded(!expanded)}>
-          <ExpansionPanelSummary expandIcon={<ChevronDown />}>
+        <Accordion className={classes.categories} expanded={expanded} onChange={() => setExpanded(!expanded)}>
+          <AccordionSummary expandIcon={<ChevronDown />}>
             <a href="#">
               {name}
             </a>
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails>
+          </AccordionSummary>
+          <AccordionDetails>
             <ul className="catalog__sidebar-menu" style={{ height: 'auto' }}>
               {ChildrenComponents}
             </ul>
             <div className="catalog__sidebar-menu__current-item" />
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
+          </AccordionDetails>
+        </Accordion>
       </li>
     </>
   );

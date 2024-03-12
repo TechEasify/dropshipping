@@ -28,7 +28,12 @@ const labelName = {
 };
 
 export default function Design({ template, type, onReview, onSaveDesign }) {
+  console.log(template, "template");
   const templateImage = "https://shopifyapp.iihtsrt.com/public/assets/uploads/collection/lavender.-without-logo.png";//data[type][template];
+
+  const backTemplateImage = data.label;
+
+  console.log(backTemplateImage, "backTemplateImage");
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -55,121 +60,152 @@ export default function Design({ template, type, onReview, onSaveDesign }) {
   useEffect(() => {
     if (canvas) {
       const clipRectangle = new fabric.Rect({
-        originX: 'left',
-        originY: 'top',
+        width: 150,
+        height: 120,
+        top: 480,
+        left: 420,
         fill: 'transparent',
         strokeDashArray: [5, 5],
         stroke: '#222',
-        selectable: true,
+        selectable: false,
         name: 'clip',
         visible: true,
+        strokeWidth: 4,
       });
 
+      // canvas.add(clipRectangle);
       fabric.Image.fromURL(
-        templateImage,
+        template === 'front' ? templateImage : backTemplateImage,
         (iomg) => {
-          fabric.Image.fromURL(
-            'https://static.cdn.printful.com/static/v767/generator/drop-your-design-here.svg',
-            (dropImage) => {
-              clipRectangle.set({ top: iomg.height / 2 });
-
-              canvas.centerObjectH(iomg);
-              canvas.add(iomg);
-
-              switch (template) {
-                case 'front':
-                case 'back':
-                  clipRectangle.set({
-                    left: iomg.width / 4.5,
-                    top: iomg.height / 2,
-                    width: iomg.width / 2,
-                    height: iomg.height / 5,
-                  });
-                  dropImage.set({
-                    left: iomg.width /2.8,
-                    top: iomg.height / 2,
-                    width: iomg.width / 2,
-                    height: iomg.height / 2,
-                  });
-                  break;
-                // case 'left':
-                //   clipRectangle.set({
-                //     left: iomg.width / 2,
-                //     top: iomg.height / 3,
-                //     width: iomg.width / 3,
-                //     height: iomg.height / 3,
-                //   });
-                //   dropImage.set({
-                //     left: iomg.width / 2,
-                //     top: iomg.height / 3,
-                //     width: iomg.width / 3,
-                //     height: iomg.height / 3,
-                //   });
-                //   break;
-                // case 'right':
-                //   clipRectangle.set({
-                //     left: iomg.width / 4,
-                //     top: iomg.height / 3,
-                //     width: iomg.width / 3,
-                //     height: iomg.height / 3,
-                //   });
-                //   dropImage.set({
-                //     left: iomg.width / 4,
-                //     top: iomg.height / 3,
-                //     width: iomg.width / 3,
-                //     height: iomg.height / 3,
-                //   });
-                //   break;
-                // case 'in':
-                //   clipRectangle.set({
-                //     height: iomg.height / 5,
-                //     width: iomg.width / 2,
-                //     top: iomg.height / 3,
-                //     left: iomg.width / 4,
-                //   });
-                //   dropImage.set({
-                //     height: iomg.height / 5,
-                //     width: iomg.width / 2,
-                //     top: iomg.height / 3,
-                //     left: iomg.width / 4,
-                //   });
-                //   break;
-                // case 'out':
-                //   clipRectangle.set({
-                //     height: iomg.height / 2,
-                //     width: iomg.width / 2,
-                //     top: iomg.height / 3,
-                //     left: iomg.width / 4,
-                //   });
-                //   dropImage.set({
-                //     height: iomg.height / 2,
-                //     width: iomg.width / 2,
-                //     top: iomg.height / 3,
-                //     left: iomg.width / 4,
-                //   });
-                //   break;
-                default:
-              }
-
-              canvas.add(clipRectangle);
-              canvas.add(dropImage);
-
-              setIsReady(true);
-            },
+          canvas.setBackgroundImage(
+            iomg,
+            canvas.renderAll.bind(canvas),
             {
-              top: iomg.height / 2,
-              name: 'drop',
-              crossOrigin: 'Anonymous',
-              selectable: false
-            },
+              // scaleX: canvas.width / iomg.width,
+              // scaleY: canvas.height / iomg.height,
+            }
           );
+
         },
-        { selectable: false, name: 'bg', width: canvas.width,crossOrigin: 'Anonymous' }
+        { selectable: false, name: 'bg', width: canvas.width, crossOrigin: 'Anonymous' }
+      );
+
+      fabric.Image.fromURL(
+        data.drop,
+        (dropImage) => {
+          // canvas.centerObjectH(iomg);
+          // canvas.add(iomg);
+
+          switch (template) {
+            case 'front':
+              clipRectangle.set({
+                width: 150,
+                height: 120,
+                top: 480,
+                left: 420,
+              });
+              dropImage.set({
+                strokeDashArray: [5, 5],
+                stroke: '#222',
+                top: 480,
+                left: 420,
+                width: 150,
+                height: 120,
+                fill: 'yellow',
+              });
+              dropImage.scaleToWidth(clipRectangle.width);
+              break;
+            case 'back':
+              clipRectangle.set({
+                width: 760,
+                height: 350,
+                top: 400,
+                left: 65,
+              });
+              dropImage.set({
+                strokeDashArray: [5, 5],
+                stroke: '#222',
+                top: 400,
+                left: 70,
+                width: 300,
+                height: 250,
+                fill: 'yellow',
+              });
+              dropImage.scaleToWidth(clipRectangle.width);
+              break;
+
+            default:
+          }
+
+
+          // fabric.Image.fromURL(
+          //   data.drop,
+          //   (dropImage) => {
+          //     // canvas.centerObjectH(iomg);
+          //     // canvas.add(iomg);
+    
+          //     switch (template) {
+          //       case 'front':
+          //         clipRectangle.set({
+          //           width: 150,
+          //           height: 120,
+          //           top: 480,
+          //           left: 420,
+          //         });
+          //         dropImage.set({
+          //           strokeDashArray: [5, 5],
+          //           stroke: '#222',
+          //           top: 480,
+          //           left: 420,
+          //           width: 150,
+          //           height: 120,
+          //           fill: 'yellow',
+          //         });
+          //         dropImage.scaleToWidth(clipRectangle.width);
+          //         break;
+          //       case 'back':
+          //         clipRectangle.set({
+          //           width: 550,
+          //           height: 305,
+          //           top: 480,
+          //           left: 200,
+          //         });
+          //         dropImage.set({
+          //           strokeDashArray: [5, 5],
+          //           stroke: '#222',
+          //           top: 485,
+          //           left: 353,
+          //           width: 244,
+          //           height: 320,
+          //           fill: 'yellow',
+          //         });
+          //         dropImage.scaleToWidth(clipRectangle.width);
+          //         break;
+    
+          //       default:
+          //     }
+
+          canvas.add(clipRectangle);
+          canvas.add(dropImage);
+
+          setIsReady(true);
+        },
+        {
+          // width: dropImage.width / 2, 
+          // height: dropImage.height / 2, 
+          top: 519,
+          left: 397,
+          fill: 'yellow',
+          name: 'drop',
+          crossOrigin: 'Anonymous',
+          selectable: false
+        },
       );
     }
 
     return () => {
       if (canvas) {
+        // canvas.dispose();
         canvas.clear();
       }
       setIsReady(false);
@@ -220,9 +256,10 @@ export default function Design({ template, type, onReview, onSaveDesign }) {
     if (canvas && isReady && !_.isEmpty(canvas.getObjects())) {
       const clipPath = _.find(canvas.getObjects(), (o) => o.name === 'clip');
       const dropImage = _.find(canvas.getObjects(), (o) => o.name === 'drop');
-      if (canvas.getObjects().length > 3) {
+      // console.log(dropImage)
+      if (canvas.getObjects().length > 2) {
         clipPath.set({ visible: true });
-        dropImage.set({ visible: false });
+        dropImage.set({ visible: false });  
       } else {
         clipPath.set({ visible: false });
         dropImage.set({ visible: true });
@@ -256,9 +293,9 @@ export default function Design({ template, type, onReview, onSaveDesign }) {
       ...objects,
       [template]: !_.isEmpty(newObjects)
         ? newObjects.map((obj) => {
-            delete obj.isRender;
-            return obj;
-          })
+          delete obj.isRender;
+          return obj;
+        })
         : [],
     });
   };
@@ -291,8 +328,10 @@ export default function Design({ template, type, onReview, onSaveDesign }) {
         },
         {
           name: shortId.generate(),
-          top: (clipPath.top + clipPath.height) / 2,
+          top: clipPath.top,
           left: clipPath.left,
+          // top: (clipPath.top + clipPath.height) / 2,
+          // left: clipPath.left,
           crossOrigin: 'anonymous',
         }
       );
@@ -338,7 +377,7 @@ export default function Design({ template, type, onReview, onSaveDesign }) {
   return (
     <>
       <div
-        className="product-push pf-mb-48   dropzone dropzone-1"
+        className="product-push pf-mb-48  dropzone dropzone-1"
         id="js--product-push-designer"
       >
         <div className="row">
@@ -472,21 +511,21 @@ export default function Design({ template, type, onReview, onSaveDesign }) {
                       >
                         Back
                       </a>
-                    
+
                       <a
                         href="#"
                         className="pf-btn pf-btn-primary pf-w-75 pf-w-md-auto"
                         onClick={() => {
-                         
-                            // console.log(fabric.util.toDataURL(canvas, 'png'));
+
+                          // console.log(fabric.util.toDataURL(canvas, 'png'));
+                          onSaveDesign(templateImage, canvas);
+                          // console.log('x')
+
+                          if (objects[template].length > 0) {
                             onSaveDesign(templateImage, canvas);
-                            // console.log('x')
-                          
-                          // if (objects[template].length > 0) {
-                          //   onSaveDesign(templateImage, canvas);
-                          //   console.log('x')
-                          // }
-                          // onReview(objects, colors.hexs);
+                            console.log('x')
+                          }
+                          onReview(objects, colors.hexs);
                         }}
                       >
                         Continue

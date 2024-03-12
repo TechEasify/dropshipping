@@ -57,6 +57,7 @@ export function Orders() {
             <div className="col-sm-10 offset-sm-1 text-center">
               <div className="pf-d-none pf-d-sm-block">
                 <img
+                  className='order-example'
                   alt="example"
                   style={{ maxWidth: '50%' }}
                   src="https://www.printful.com/static/images/layout/zero-state-illustration.svg"

@@ -8,6 +8,7 @@ import { Snackbar } from '@mui/material';
 import { Alert as MuiAlert } from '@mui/lab';
 
 import Design from './Design';
+import { SaveDesign } from '../action';
 
 // import { SaveDesign, SaveColors } from '../action';
 
@@ -34,13 +35,14 @@ export default function CreateStepTwo() {
     clipPath.set({ visible: false });
     const imagePreview = cloneCanvas.toDataURL();
     console.log(imagePreview);
-    const [bg] = cObjects.filter((object) => object.name === 'bg');
-    bg.set({ visible: false });
+    // const [bg] = cObjects.filter((object) => object.name === 'bg');
+    // bg.set({ visible: false });
     const designImage = cloneCanvas.toDataURL();
-    console.log(designImage);
-    // dispatch(
-    //   SaveDesign(design, { preview: imagePreview, design: designImage })
-    // );
+    console.log(designImage, "designImage");
+    
+    dispatch(
+      SaveDesign(design, { preview: imagePreview, design: designImage })
+    );
   };
 
   const onReview = (objects, colors) => {

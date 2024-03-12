@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import Api from 'config/axious';
+import Api from '../../config/axious';
 import { localStorageConstant } from '../../constant';
 
 import { USER_PROFILE } from './constant';
@@ -17,7 +17,7 @@ export const UserProfile = async () => {
 };
 
 export const UserPutProfile = async (user) => {
-  return;
+  return {success : true};
   const URL = `https://api-kingify.tvtprod.com${USER_PROFILE}`;
   const token = localStorage.getItem(localStorageConstant.ACCESS_TOKEN);
   const formData = new FormData();

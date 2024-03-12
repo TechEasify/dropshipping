@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 // import { makeStyles } from '@mui/material/styles';
 import { Modal, Backdrop, Fade } from '@mui/material';
-import Form from '../../../components/Affiliate/Form';
+import Form from '@components/Affiliate/Form';
 import {makeStyles} from '@mui/styles';
 const useStyles = makeStyles((theme) => ({
   modal: {

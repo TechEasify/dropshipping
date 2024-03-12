@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 export function Methods() {
+  const [collapse, setCollapse] = useState(false)
   return (
     <div className="container-fluid dashboard__container clearfix">
       <div>
@@ -14,8 +15,8 @@ export function Methods() {
               to="methods/add"
             >
               Add new billing method
-            </Link>{' '}
-          </h2>{' '}
+            </Link>
+          </h2>
           <div className="row">
             <div className="pf-d-none">
               <div
@@ -40,7 +41,6 @@ export function Methods() {
               </div>
             </div>{' '}
             <div className="col-sm-12">
-              {/**/} {/**/} {/**/}{' '}
               <div className="row" style={{}}>
                 <div className="col-xs-12">
                   <h4 className="pf-h4 pf-mb-16 pf-mt-0">
@@ -52,15 +52,13 @@ export function Methods() {
                       account. It'll be the default we use to charge you for
                       future transactions.
                     </span>
-                  </div>{' '}
-                  {/**/}{' '}
+                  </div>
                   <div className="billing__default-billing-method padding-25 margin-bottom-15">
                     Please
-                    <Link to="methods/add" className="link">
-                      Add Billing Method{' '}
+                    <Link to="/billing/legal-info" className="link">
+                      Add Billing Method
                     </Link>
-                  </div>{' '}
-                  {/**/} {/**/}{' '}
+                  </div>
                   <div id="stores">
                     <h4 className="pf-h4 pf-mb-16 billing__store-billing_methods__heading--main pf-pt-24 pf-mt-32">
                       Store billing settings
@@ -83,12 +81,12 @@ export function Methods() {
                       </div>{' '}
                     </div>
                   </div>{' '}
-                  <div className="billing-history__toggle pf-py-24 pf-mt-32">
+                  <div className="billing-history__toggle pf-py-24 pf-mt-32" onClick={() => setCollapse(!collapse)}>
                     <a
                       data-toggle="collapse"
                       data-target="#billing-history"
                       role="button"
-                      aria-expanded="false"
+                      aria-expanded={collapse}
                       className="pf-p-0"
                     >
                       <span className="arrow" />{' '}
@@ -96,367 +94,385 @@ export function Methods() {
                         Billing method changes
                       </h4>
                     </a>
-                  </div>{' '}
-                  <div id="billing-history" className="collapse">
-                    <div className="billing-history pf-mb-24">
-                      <div className="row">
-                        <div className="col-xs-12 table-container">
-                          <div
-                            id="js--history-table-container"
-                            className="history"
-                          >
+                  </div>
+                  {
+                    collapse &&
+                    <div id="billing-history">
+                      <div className="billing-history pf-mb-24">
+                        <div className="row">
+                          <div className="col-xs-12 table-container">
                             <div
-                              id="DataTables_Table_0_wrapper"
-                              className="dataTables_wrapper no-footer"
+                              id="js--history-table-container"
+                              className="history"
                             >
                               <div
-                                className="DTFC_ScrollWrapper"
-                                style={{
-                                  position: 'relative',
-                                  clear: 'both',
-                                  height: 0,
-                                }}
+                                id="DataTables_Table_0_wrapper"
+                                className="dataTables_wrapper no-footer"
                               >
                                 <div
-                                  className="DTFC_LeftWrapper"
+                                  className="DTFC_ScrollWrapper"
                                   style={{
-                                    position: 'absolute',
-                                    top: 0,
-                                    left: 0,
+                                    position: 'relative',
+                                    clear: 'both',
+                                    height: 0,
                                   }}
-                                  aria-hidden="true"
                                 >
                                   <div
-                                    className="DTFC_LeftHeadWrapper"
+                                    className="DTFC_LeftWrapper"
                                     style={{
-                                      position: 'relative',
+                                      position: 'absolute',
                                       top: 0,
                                       left: 0,
-                                      overflow: 'hidden',
                                     }}
-                                  />
-                                  <div
-                                    className="DTFC_LeftBodyWrapper"
-                                    style={{
-                                      position: 'relative',
-                                      top: 0,
-                                      left: 0,
-                                      overflow: 'hidden',
-                                    }}
+                                    aria-hidden="true"
                                   >
                                     <div
-                                      className="DTFC_LeftBodyLiner"
+                                      className="DTFC_LeftHeadWrapper"
                                       style={{
                                         position: 'relative',
                                         top: 0,
                                         left: 0,
-                                        overflowY: 'scroll',
+                                        overflow: 'hidden',
                                       }}
                                     />
-                                  </div>
-                                  <div
-                                    className="DTFC_LeftFootWrapper"
-                                    style={{
-                                      position: 'relative',
-                                      top: 0,
-                                      left: 0,
-                                      overflow: 'hidden',
-                                    }}
-                                  />
-                                </div>
-                                <div
-                                  className="DTFC_RightWrapper"
-                                  style={{
-                                    position: 'absolute',
-                                    top: 0,
-                                    right: 0,
-                                  }}
-                                  aria-hidden="true"
-                                >
-                                  <div
-                                    className="DTFC_RightHeadWrapper"
-                                    style={{
-                                      position: 'relative',
-                                      top: 0,
-                                      left: 0,
-                                    }}
-                                  >
                                     <div
-                                      className="DTFC_RightHeadBlocker DTFC_Blocker"
-                                      style={{
-                                        position: 'absolute',
-                                        top: 0,
-                                        bottom: 0,
-                                      }}
-                                    />
-                                  </div>
-                                  <div
-                                    className="DTFC_RightBodyWrapper"
-                                    style={{
-                                      position: 'relative',
-                                      top: 0,
-                                      left: 0,
-                                      overflow: 'hidden',
-                                    }}
-                                  >
-                                    <div
-                                      className="DTFC_RightBodyLiner"
+                                      className="DTFC_LeftBodyWrapper"
                                       style={{
                                         position: 'relative',
                                         top: 0,
                                         left: 0,
-                                        overflowY: 'scroll',
+                                        overflow: 'hidden',
                                       }}
-                                    />
-                                  </div>
-                                  <div
-                                    className="DTFC_RightFootWrapper"
-                                    style={{
-                                      position: 'relative',
-                                      top: 0,
-                                      left: 0,
-                                    }}
-                                  >
+                                    >
+                                      <div
+                                        className="DTFC_LeftBodyLiner"
+                                        style={{
+                                          position: 'relative',
+                                          top: 0,
+                                          left: 0,
+                                          overflowY: 'scroll',
+                                        }}
+                                      />
+                                    </div>
                                     <div
-                                      className="DTFC_RightFootBlocker DTFC_Blocker"
+                                      className="DTFC_LeftFootWrapper"
                                       style={{
-                                        position: 'absolute',
+                                        position: 'relative',
                                         top: 0,
-                                        bottom: 0,
+                                        left: 0,
+                                        overflow: 'hidden',
                                       }}
                                     />
                                   </div>
-                                </div>
-                                <div className="dataTables_scroll">
                                   <div
-                                    className="dataTables_scrollHead"
+                                    className="DTFC_RightWrapper"
                                     style={{
-                                      overflow: 'hidden',
-                                      position: 'relative',
-                                      border: 0,
-                                      width: '100%',
+                                      position: 'absolute',
+                                      top: 0,
+                                      right: 0,
                                     }}
+                                    aria-hidden="true"
                                   >
                                     <div
-                                      className="dataTables_scrollHeadInner"
+                                      className="DTFC_RightHeadWrapper"
                                       style={{
-                                        boxSizing: 'content-box',
-                                        width: 100,
-                                        paddingRight: 0,
+                                        position: 'relative',
+                                        top: 0,
+                                        left: 0,
+                                      }}
+                                    >
+                                      <div
+                                        className="DTFC_RightHeadBlocker DTFC_Blocker"
+                                        style={{
+                                          position: 'absolute',
+                                          top: 0,
+                                          bottom: 0,
+                                        }}
+                                      />
+                                    </div>
+                                    <div
+                                      className="DTFC_RightBodyWrapper"
+                                      style={{
+                                        position: 'relative',
+                                        top: 0,
+                                        left: 0,
+                                        overflow: 'hidden',
+                                      }}
+                                    >
+                                      <div
+                                        className="DTFC_RightBodyLiner"
+                                        style={{
+                                          position: 'relative',
+                                          top: 0,
+                                          left: 0,
+                                          overflowY: 'scroll',
+                                        }}
+                                      />
+                                    </div>
+                                    <div
+                                      className="DTFC_RightFootWrapper"
+                                      style={{
+                                        position: 'relative',
+                                        top: 0,
+                                        left: 0,
+                                      }}
+                                    >
+                                      <div
+                                        className="DTFC_RightFootBlocker DTFC_Blocker"
+                                        style={{
+                                          position: 'absolute',
+                                          top: 0,
+                                          bottom: 0,
+                                        }}
+                                      />
+                                    </div>
+                                  </div>
+                                  <div className="dataTables_scroll">
+                                    <div
+                                      className="dataTables_scrollHead"
+                                      style={{
+                                        overflow: 'hidden',
+                                        position: 'relative',
+                                        border: 0,
+                                        width: '100%',
+                                      }}
+                                    >
+                                      <div
+                                        className="dataTables_scrollHeadInner"
+                                        style={{
+                                          boxSizing: 'content-box',
+                                          width: 100,
+                                          paddingRight: 0,
+                                        }}
+                                      >
+                                        <table
+                                          className="row-border nowrap dataTable no-footer"
+                                          style={{ width: 100, marginLeft: 0 }}
+                                          role="grid"
+                                        >
+                                          <thead>
+                                            <tr role="row">
+                                              <th
+                                                className="sorting_disabled"
+                                                rowSpan={1}
+                                                colSpan={1}
+                                                style={{ width: 0 }}
+                                              >
+                                                Account/Store
+                                              </th>
+                                              <th
+                                                className="sorting_disabled"
+                                                rowSpan={1}
+                                                colSpan={1}
+                                                style={{ width: 0 }}
+                                              >
+                                                Old Method
+                                              </th>
+                                              <th
+                                                className="sorting_disabled"
+                                                rowSpan={1}
+                                                colSpan={1}
+                                                style={{ width: 0 }}
+                                              >
+                                                New Method
+                                              </th>
+                                              <th
+                                                className="sorting_disabled"
+                                                rowSpan={1}
+                                                colSpan={1}
+                                                style={{ width: 0 }}
+                                              >
+                                                Changed by
+                                              </th>
+                                              <th
+                                                className="sorting_disabled"
+                                                rowSpan={1}
+                                                colSpan={1}
+                                                style={{ width: 0 }}
+                                              >
+                                                Date
+                                              </th>
+                                            </tr>
+                                          </thead>
+                                          <tbody>
+                                            <td>
+                                              Store
+                                            </td>
+                                            <td>
+                                              Store
+                                            </td>
+                                            <td>
+                                              Store
+                                            </td>
+                                            <td>
+                                              Store
+                                            </td>
+                                            <td>
+                                              Store
+                                            </td>
+                                          </tbody>
+                                        </table>
+                                      </div>
+                                    </div>
+                                    {/* <div
+                                      className="dataTables_scrollBody"
+                                      style={{
+                                        position: 'relative',
+                                        overflow: 'auto',
+                                        width: '100%',
                                       }}
                                     >
                                       <table
                                         className="row-border nowrap dataTable no-footer"
-                                        style={{ width: 100, marginLeft: 0 }}
+                                        style={{ width: '100%' }}
+                                        id="DataTables_Table_0"
                                         role="grid"
                                       >
                                         <thead>
-                                          <tr role="row">
+                                          <tr role="row" style={{ height: 0 }}>
                                             <th
                                               className="sorting_disabled"
                                               rowSpan={1}
                                               colSpan={1}
-                                              style={{ width: 0 }}
+                                              style={{
+                                                width: 0,
+                                                paddingTop: 0,
+                                                paddingBottom: 0,
+                                                borderTopWidth: 0,
+                                                borderBottomWidth: 0,
+                                                height: 0,
+                                              }}
                                             >
-                                              Account/Store
+                                              <div
+                                                className="dataTables_sizing"
+                                                style={{
+                                                  height: 0,
+                                                  overflow: 'hidden',
+                                                }}
+                                              >
+                                                Account/Store
+                                              </div>
                                             </th>
                                             <th
                                               className="sorting_disabled"
                                               rowSpan={1}
                                               colSpan={1}
-                                              style={{ width: 0 }}
+                                              style={{
+                                                width: 0,
+                                                paddingTop: 0,
+                                                paddingBottom: 0,
+                                                borderTopWidth: 0,
+                                                borderBottomWidth: 0,
+                                                height: 0,
+                                              }}
                                             >
-                                              Old Method
+                                              <div
+                                                className="dataTables_sizing"
+                                                style={{
+                                                  height: 0,
+                                                  overflow: 'hidden',
+                                                }}
+                                              >
+                                                Old Method
+                                              </div>
                                             </th>
                                             <th
                                               className="sorting_disabled"
                                               rowSpan={1}
                                               colSpan={1}
-                                              style={{ width: 0 }}
+                                              style={{
+                                                width: 0,
+                                                paddingTop: 0,
+                                                paddingBottom: 0,
+                                                borderTopWidth: 0,
+                                                borderBottomWidth: 0,
+                                                height: 0,
+                                              }}
                                             >
-                                              New Method
+                                              <div
+                                                className="dataTables_sizing"
+                                                style={{
+                                                  height: 0,
+                                                  overflow: 'hidden',
+                                                }}
+                                              >
+                                                New Method
+                                              </div>
                                             </th>
                                             <th
                                               className="sorting_disabled"
                                               rowSpan={1}
                                               colSpan={1}
-                                              style={{ width: 0 }}
+                                              style={{
+                                                width: 0,
+                                                paddingTop: 0,
+                                                paddingBottom: 0,
+                                                borderTopWidth: 0,
+                                                borderBottomWidth: 0,
+                                                height: 0,
+                                              }}
                                             >
-                                              Changed by
+                                              <div
+                                                className="dataTables_sizing"
+                                                style={{
+                                                  height: 0,
+                                                  overflow: 'hidden',
+                                                }}
+                                              >
+                                                Changed by
+                                              </div>
                                             </th>
                                             <th
                                               className="sorting_disabled"
                                               rowSpan={1}
                                               colSpan={1}
-                                              style={{ width: 0 }}
+                                              style={{
+                                                width: 0,
+                                                paddingTop: 0,
+                                                paddingBottom: 0,
+                                                borderTopWidth: 0,
+                                                borderBottomWidth: 0,
+                                                height: 0,
+                                              }}
                                             >
-                                              Date
+                                              <div
+                                                className="dataTables_sizing"
+                                                style={{
+                                                  height: 0,
+                                                  overflow: 'hidden',
+                                                }}
+                                              >
+                                                Date
+                                              </div>
                                             </th>
                                           </tr>
-                                        </thead>
+                                        </thead>{' '}
+                                        <tbody>
+                                          <tr className="odd">
+                                            <td
+                                              valign="top"
+                                              colSpan={5}
+                                              className="dataTables_empty"
+                                            >
+                                              No billing method changes yet.
+                                            </td>
+                                          </tr>
+                                        </tbody>
                                       </table>
-                                    </div>
-                                  </div>
-                                  <div
-                                    className="dataTables_scrollBody"
-                                    style={{
-                                      position: 'relative',
-                                      overflow: 'auto',
-                                      width: '100%',
-                                    }}
-                                  >
-                                    <table
-                                      className="row-border nowrap dataTable no-footer"
-                                      style={{ width: '100%' }}
-                                      id="DataTables_Table_0"
-                                      role="grid"
-                                    >
-                                      <thead>
-                                        <tr role="row" style={{ height: 0 }}>
-                                          <th
-                                            className="sorting_disabled"
-                                            rowSpan={1}
-                                            colSpan={1}
-                                            style={{
-                                              width: 0,
-                                              paddingTop: 0,
-                                              paddingBottom: 0,
-                                              borderTopWidth: 0,
-                                              borderBottomWidth: 0,
-                                              height: 0,
-                                            }}
-                                          >
-                                            <div
-                                              className="dataTables_sizing"
-                                              style={{
-                                                height: 0,
-                                                overflow: 'hidden',
-                                              }}
-                                            >
-                                              Account/Store
-                                            </div>
-                                          </th>
-                                          <th
-                                            className="sorting_disabled"
-                                            rowSpan={1}
-                                            colSpan={1}
-                                            style={{
-                                              width: 0,
-                                              paddingTop: 0,
-                                              paddingBottom: 0,
-                                              borderTopWidth: 0,
-                                              borderBottomWidth: 0,
-                                              height: 0,
-                                            }}
-                                          >
-                                            <div
-                                              className="dataTables_sizing"
-                                              style={{
-                                                height: 0,
-                                                overflow: 'hidden',
-                                              }}
-                                            >
-                                              Old Method
-                                            </div>
-                                          </th>
-                                          <th
-                                            className="sorting_disabled"
-                                            rowSpan={1}
-                                            colSpan={1}
-                                            style={{
-                                              width: 0,
-                                              paddingTop: 0,
-                                              paddingBottom: 0,
-                                              borderTopWidth: 0,
-                                              borderBottomWidth: 0,
-                                              height: 0,
-                                            }}
-                                          >
-                                            <div
-                                              className="dataTables_sizing"
-                                              style={{
-                                                height: 0,
-                                                overflow: 'hidden',
-                                              }}
-                                            >
-                                              New Method
-                                            </div>
-                                          </th>
-                                          <th
-                                            className="sorting_disabled"
-                                            rowSpan={1}
-                                            colSpan={1}
-                                            style={{
-                                              width: 0,
-                                              paddingTop: 0,
-                                              paddingBottom: 0,
-                                              borderTopWidth: 0,
-                                              borderBottomWidth: 0,
-                                              height: 0,
-                                            }}
-                                          >
-                                            <div
-                                              className="dataTables_sizing"
-                                              style={{
-                                                height: 0,
-                                                overflow: 'hidden',
-                                              }}
-                                            >
-                                              Changed by
-                                            </div>
-                                          </th>
-                                          <th
-                                            className="sorting_disabled"
-                                            rowSpan={1}
-                                            colSpan={1}
-                                            style={{
-                                              width: 0,
-                                              paddingTop: 0,
-                                              paddingBottom: 0,
-                                              borderTopWidth: 0,
-                                              borderBottomWidth: 0,
-                                              height: 0,
-                                            }}
-                                          >
-                                            <div
-                                              className="dataTables_sizing"
-                                              style={{
-                                                height: 0,
-                                                overflow: 'hidden',
-                                              }}
-                                            >
-                                              Date
-                                            </div>
-                                          </th>
-                                        </tr>
-                                      </thead>{' '}
-                                      <tbody>
-                                        <tr className="odd">
-                                          <td
-                                            valign="top"
-                                            colSpan={5}
-                                            className="dataTables_empty"
-                                          >
-                                            No billing method changes yet.
-                                          </td>
-                                        </tr>
-                                      </tbody>
-                                    </table>
+                                    </div> */}
                                   </div>
                                 </div>
                               </div>
                             </div>
-                          </div>{' '}
-                          {/**/}
+                            {/**/}
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>{' '}
+                  }
                   <div className="pf-border-bottom pf-mb-64" />
-                </div>{' '}
-                {/**/}
-              </div>{' '}
-              {/**/} {/**/} {/**/} {/**/} {/**/} {/**/} {/**/}
+                </div>
+              </div>
             </div>
           </div>
         </div>

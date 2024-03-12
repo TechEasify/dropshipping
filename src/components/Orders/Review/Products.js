@@ -24,7 +24,6 @@ export default () => (
             <div className="price hidden-sm hidden-md hidden-lg">
               <span className="discount-container pf-bold">
                 <span className="current-price">
-                  {' '}
                   $12.27
                 </span>
               </span>
@@ -34,8 +33,7 @@ export default () => (
             <div className="product-detail-widget">
               <div>Brand: Bella + Canvas</div>
               <div>
-                Color:
-                {' '}
+                Color
                 <span className="swatches">
                   <span className="swatches__item">
                     <span
@@ -304,8 +302,7 @@ export default () => (
               className="printfile-thumb__img"
               style={{
                 backgroundColor: 'transparent',
-                backgroundImage:
-                                            'url("https://files.cdn.dropshippy.com/files/bdf/bdff83a5adc0eb26a259dfbcdd74d519_thumb.png")',
+                backgroundImage: 'url("https://files.cdn.dropshippy.com/files/bdf/bdff83a5adc0eb26a259dfbcdd74d519_thumb.png")',
               }}
             />
             <div className="printfile-thumb__title">
@@ -317,8 +314,8 @@ export default () => (
       <td className="product-quantity hidden-xs pf-px-0">
         <input
           type="text"
-          readOnly="readonly"
-          disabled="disabled"
+          readOnly
+          placeholder='1'
         />
       </td>
       <td className="product-price price pf-pt-40 hidden-xs pf-px-0">

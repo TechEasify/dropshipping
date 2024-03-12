@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import clsx from 'clsx';
 import * as _ from 'lodash';
 
-import { ColorPicker, ProductInfo } from 'components/ProductTemplate';
+import { ColorPicker, ProductInfo } from '@components/ProductTemplate';
 
 import { SaveName, SaveTechnique } from '../action';
 

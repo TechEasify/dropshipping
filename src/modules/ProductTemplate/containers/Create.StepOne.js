@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
-import { Category } from 'components/index';
+import { Category } from '@components/index';
 import { GetCategories } from '../action';
 const useQuery = () => new URLSearchParams(useLocation().search);
 
@@ -182,6 +182,7 @@ export default function CreateStepOne() {
 
   return (
     <>
+    <div className='stepone-main'>
       <div className="row pf-mr-8">
         <div className="col-md-9 pf-md-mb-0 pf-mb-16">
           <div className="col-12 text-left col-sm-6 col-md-9">
@@ -243,7 +244,8 @@ export default function CreateStepOne() {
             </span>
           </div>
         </div>
-      </div>
+      </div>      
+    </div>
 
       <div>
         <div className="container-fluid">

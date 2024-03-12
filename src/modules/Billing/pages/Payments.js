@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Table, ExportButton, DatePicker } from '../../../components';
+import { Button } from '@mui/material';
 
 export function Payments() {
   const trash = {
@@ -44,7 +45,8 @@ export function Payments() {
           <div className="col-sm-12">
             <div className="payments">
               <div>
-                <h2 className="pf-h2 pf-my-40">Billing: Payments</h2>{' '}
+                <h2 className="pf-h2 pf-my-40">Billing: Payments</h2>
+                <hr />
                 <div className="unconfirmed-payments" style={{}}>
                   <div
                     tabIndex={-1}
@@ -230,6 +232,17 @@ export function Payments() {
                         <Table data={data} />
                       </div>
                     </div>
+                  </div>
+                </div>
+
+                <div className='payment-mathod'>
+                  <div className='payment-head'>
+                    <h2>No payments made yet</h2>
+                    <p style={{ fontSize: "12px" }}>You'll see all your transactions here once you make an order</p>
+                    <Button variant="contained" className='order-now'>Order now</Button>
+                  </div>
+                  <div className='payment-img'>
+                    <img src='https://files.cdn.printful.com/upload/illustrate-item-svg/c9/c999e9bfe9d0cecb396ef565cbc21650' className='payment' />
                   </div>
                 </div>
               </div>

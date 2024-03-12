@@ -95,7 +95,7 @@ export default function Image(props) {
             </div>
           </div>
         </div>
-      )}{' '}
+      )}
       <Dialog
         open={showModal}
         onClose={() => handleShowModal()}

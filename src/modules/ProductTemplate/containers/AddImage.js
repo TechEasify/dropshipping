@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { Dialog } from '@mui/material';
 
-import { UploadFile } from 'modules/FileLibrary/pages';
+import { UploadFile } from '../../../modules/FileLibrary/pages';
 
 export default function AddImage({ onChooseImage }) {
   const [open, setOpen] = useState(false);

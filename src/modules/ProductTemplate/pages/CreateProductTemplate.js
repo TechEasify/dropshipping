@@ -10,7 +10,7 @@ import {
   
 } from '@mui/material';
 import {makeStyles} from '@mui/styles';
-import { Step } from 'components/index';
+import { Step } from '@components/index';
 
 import {
   CreateStepOne,
@@ -77,12 +77,12 @@ export default function CreateProductTemplate() {
 
   const onCloseDialog = () => {
     dispatch(ResetDesign());
-    history.push('/template');
+    history.push('/catalog');
   };
 
   return (
     <>
-      <Dialog
+      <div
         className={classes.root}
         fullWidth
         maxWidth="xl"
@@ -93,7 +93,7 @@ export default function CreateProductTemplate() {
         <AppBar className={classes.appBar}>
           <Toolbar className="pf-d-flex pf-flex-wrap pf-justify-content-between pf-align-items-center">
             <div>
-              <h4 className="pf-h3 pf-m-0">Create a product template</h4>
+              <h4 className="pf-h3 pf-m-0 product-create">Create a product template</h4>
             </div>
             <div className="order-4 order-md-2 pf-width-max pf-width-md-auto pf-mt-16 pf-mt-md-0">
               <ul className="pf-steps pf-py-0 pf-border-0">
@@ -112,7 +112,7 @@ export default function CreateProductTemplate() {
         <main className="modal-body mt-4" style={{ paddingBottom: 0 }}>
           {StepComponent}
         </main>
-      </Dialog>
+      </div>
     </>
   );
 }

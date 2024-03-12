@@ -1,4 +1,4 @@
-import Api from 'config/axious';
+import Api from '../../config/axious';
 import {
   GET_CATEGORIES,
   USER_PROFILE,
@@ -11,6 +11,7 @@ import {
 export const GetCategories = async () => {
   try {
     const { data } = await Api.get(`${GET_CATEGORIES}`);
+    console.log(data, "data");
 
     return data;
   } catch (error) {
@@ -34,6 +35,7 @@ export const SetInfoShipping = (info) => async (dispatch) => {
 };
 
 export const addProduct = (product) => async (dispatch) => {
+  console.log(product, "product");
   dispatch({ type: USER_ADD_PRODUCT, payload: product });
 };
 export const removeProduct = (product) => async (dispatch) => {

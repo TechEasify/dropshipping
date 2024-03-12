@@ -6,16 +6,16 @@ import {
   AppBar,
   Toolbar,
   CssBaseline,
-  
+
 } from '@mui/material';
-import {makeStyles} from '@mui/styles';
+import { makeStyles } from '@mui/styles';
 import {
   Template,
   CreateProductTemplate,
   ProductTemplateDetail,
-} from 'modules/ProductTemplate/pages';
+} from '../modules/ProductTemplate/pages';
 
-import { Register, Login, ForgotPwd } from 'modules/Authentication/pages';
+import { Register, Login, ForgotPwd } from '../modules/Authentication/pages';
 
 import {
   User,
@@ -23,21 +23,42 @@ import {
   Language,
   Notification,
   Footer,
-} from 'components/index';
+  Catalog,
+} from '../components/index';
 
-import { Dashboard } from 'modules/Dashboard/pages';
-import { UploadFile } from 'modules/FileLibrary/pages';
+import { Dashboard } from '../modules/Dashboard/pages';
+import { UploadFile } from '../modules/FileLibrary/pages';
 import {
   Orders,
   OrdersUpdate,
   OrdersShipping,
   OrdersReview,
-} from 'modules/Orders/pages';
-import { Payments, Methods, Legal, AddMethods } from 'modules/Billing/pages';
-import { MyAccount, Notifications } from 'modules/Settings/pages';
-import { Default, Connect } from 'modules/Store/pages';
+} from '../modules/Orders/pages';
+import { Payments, Methods, Legal, AddMethods } from '../modules/Billing/pages';
+import { MyAccount, Notifications } from '../modules/Settings/pages';
+import { Default, Connect } from '../modules/Store/pages';
 import { RenderRoutes, isLoggedIn } from './helper';
 import { localStorageConstant } from '../constant';
+import Memberships from '../components/Memberships/Memberships';
+import Wallet from '../modules/Billing/pages/Wallet';
+import Productview from '../components/Productview';
+import Warehouse from '../components/Warehouse/Warehouse';
+import Venders from '../components/Venders/Venders';
+import VenderDetail from '../components/Venders/VenderDetail';
+import ManageableProduct from '../components/ManageableProduct/Products';
+import EditableProduct from '../components/ManageableProduct/Category';
+import Category from '../components/ManageableProduct/Category';
+import Products from '../components/ManageableProduct/Products';
+import Editproduct from '../components/ManageableProduct/Editproduct';
+import Editdesign from '../components/ManageableProduct/Editdesign';
+import ManageMembership from '../components/ManageMemberships/ManageMembership';
+import ManageTiers from '../components/ManageTiers/ManageTiers';
+import ManageDigitalService from '../components/ManageDigitalService/ManageDigitalService';
+import AdminDegitalService from '../components/AdminDegitalService/AdminDegitalService';
+import ViewDigitalService from '../components/ViewDegitalService/ViewDigitalService';
+import SettingDigitalService from '../components/ViewDegitalService/SettingDigitalService';
+import TestOrder from '../modules/Orders/pages/TestOrder';
+import TestMultiShipping from '../modules/Orders/pages/TestMultiShipping';
 
 const drawerWidth = 230;
 
@@ -50,6 +71,13 @@ const nav = [
     link: '',
   },
   {
+    text: 'Product catalog',
+    icon: 'pf-i pf-i-24 pf-i-cloud-upload',
+    isTree: false,
+    treeItem: [],
+    link: '/catalog',
+  },
+  {
     text: 'Orders',
     icon: 'pf-i pf-i-24 pf-i-format-list-bulleted',
     isTree: false,
@@ -57,11 +85,25 @@ const nav = [
     link: '/orders',
   },
   {
-    text: 'Product templates',
+    text: 'Selected Product',
     icon: 'pf-i pf-i-24 pf-i-drawing-box',
     isTree: false,
     treeItem: [],
     link: '/template',
+  },
+  {
+    text: 'Warehouse',
+    icon: 'pf-i pf-i-24 pf-mb-2 pf-mr-8 pf-i-package-variant-closed pf-text-gray-400',
+    isTree: false,
+    treeItem: [],
+    link: '/warehouse',
+  },
+  {
+    text: 'Venders',
+    icon: 'pf-i pf-i-24 pf-mb-2 pf-mr-8 pf-i-package-variant-closed pf-text-gray-400',
+    isTree: false,
+    treeItem: [],
+    link: '/venders',
   },
   {
     text: 'File library',
@@ -71,11 +113,69 @@ const nav = [
     link: '/library',
   },
   {
+    text: 'Manage Products',
+    icon: 'pf-i pf-i-24 pf-i-credit-card-outline',
+    isTree: true,
+    treeItem: [
+      {
+        text: 'Products',
+        link: '/manageable/products',
+      },
+      {
+        text: 'Category',
+        link: '/manageable/category',
+      },
+    ],
+    link: '/manageable',
+  },
+  {
     text: 'Stores',
     icon: 'pf-i pf-i-24 pf-i-store',
     isTree: false,
     treeItem: [],
     link: '/store',
+  },
+  {
+    text: 'Memberships',
+    icon: 'pf-i pf-i-24 pf-mb-2 pf-mr-8 pf-i-cards pf-text-red-700',
+    isTree: false,
+    treeItem: [],
+    link: '/memberships',
+  },
+  {
+    text: 'Manage Memberships',
+    icon: 'pf-i pf-i-24 pf-mb-2 pf-mr-8 pf-i-cards pf-text-red-700',
+    isTree: false,
+    treeItem: [],
+    link: '/managememberships',
+  },
+  {
+    text: 'Manage Tiers',
+    icon: 'pf-i pf-i-24 pf-mb-2 pf-mr-8 pf-i-cards pf-text-red-700',
+    isTree: false,
+    treeItem: [],
+    link: '/managetiers',
+  },
+  {
+    text: 'Manage Digital Service',
+    icon: 'pf-i pf-i-24 pf-mb-2 pf-mr-8 pf-i-cards pf-text-red-700',
+    isTree: false,
+    treeItem: [],
+    link: '/managedigitalservice',
+  },
+  {
+    text: 'Admin Digital Service',
+    icon: 'pf-i pf-i-24 pf-mb-2 pf-mr-8 pf-i-cards pf-text-red-700',
+    isTree: false,
+    treeItem: [],
+    link: '/admindigitalservice',
+  },
+  {
+    text: 'View Digital Service',
+    icon: 'pf-i pf-i-24 pf-mb-2 pf-mr-8 pf-i-cards pf-text-red-700',
+    isTree: false,
+    treeItem: [],
+    link: '/viewdigitalservice',
   },
   {
     text: 'Billing',
@@ -89,6 +189,10 @@ const nav = [
       {
         text: 'Billing methods',
         link: '/billing/methods',
+      },
+      {
+        text: 'Wallet',
+        link: '/billing/wallet',
       },
       {
         text: 'Legal Info',
@@ -170,10 +274,12 @@ const Layout = ({ children }) => {
   const path = location.pathname.split('/')[2];
   const [expandBill, setExpandBill] = useState(false);
   const [expandSetting, setExpandSetting] = useState(false);
+  const [expandproduct, setExpandProduct] = useState(false);
 
   useEffect(() => {
     setExpandBill(prefix === 'billing');
     setExpandSetting(prefix === 'settings');
+    setExpandProduct(prefix === 'manageable')
   }, [prefix]);
   const drawer = (
     <div
@@ -184,11 +290,11 @@ const Layout = ({ children }) => {
       <ul
         className="pf-m-0 pf-px-0 pf-py-8"
         id="sidebar-ul"
-        style={{ maxHeight: 400 }}
+      // style={{ maxHeight: 430 }}
       >
         {nav.map((item) => (
           <div key={item.text}>
-            {item.text !== 'Billing' && item.text !== 'Settings' && (
+            {item.text !== 'Billing' && item.text !== 'Manage Products' && item.text !== 'Settings' && (
               <li className="panel" key={item.text}>
                 <Link
                   className={clsx(
@@ -241,23 +347,81 @@ const Layout = ({ children }) => {
                           <i className="pf-i pf-i-18 pf-i-chevron-up" />
                         </span>
                       )}
+                    </div>
+                  </a>
+                </li>
+                <ul
+                  className={`pf-pl-24 pf-bg-white collapse ${expandBill && 'in'
+                    }`}
+                  id="sidebar-ul-9"
+                >
+                  {item.treeItem.map((treeItem) => (
+                    <li key={treeItem.text}>
+                      <Link
+                        className={`pf-link-block pf-px-24 pf-py-8 ${treeItem.link === `/${prefix}/${path}` ? 'active' : ''
+                          }`}
+                        to={treeItem.link}
+                        style={{ cursor: 'pointer' }}
+                      >
+                        <span>{treeItem.text}</span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </>
+            )}
+            {item.text === 'Manage Products' && (
+              <>
+                <li className="panel" key={item.text}>
+                  <a
+                    className={clsx(
+                      'pf-link-block pf-px-24 pf-py-8',
+                      item.link === `/${prefix}` ? 'active' : ''
+                    )}
+                    style={{ cursor: 'pointer' }}
+                    onClick={() => setExpandProduct(!expandproduct)}
+                  >
+                    <span className={item.icon} style={{ paddingRight: 5 }} />
+                    <span className="pf-ml-8">{item.text}</span>
+                    <div>
+                      {!expandproduct ? (
+                        <span
+                          className="float-right pf-px-24 pf-py-8 collapsed"
+                          role="button"
+                          data-toggle="collapse"
+                          data-parent="#sidebar-ul"
+                          data-target="#sidebar-ul-5"
+                          aria-expanded="false"
+                        >
+                          <i className="pf-i pf-i-18 pf-i-chevron-up" />
+                        </span>
+                      ) : (
+                        <span
+                          className="float-right pf-px-24 pf-py-8"
+                          role="button"
+                          data-toggle="collapse"
+                          data-parent="#sidebar-ul"
+                          data-target="#sidebar-ul-5"
+                          aria-expanded="true"
+                        >
+                          <i className="pf-i pf-i-18 pf-i-chevron-up" />
+                        </span>
+                      )}
 
                       {/*  */}
                     </div>
                   </a>
                 </li>
                 <ul
-                  className={`pf-pl-24 pf-bg-white collapse ${
-                    expandBill && 'in'
-                  }`}
+                  className={`pf-pl-24 pf-bg-white collapse ${expandproduct && 'in'
+                    }`}
                   id="sidebar-ul-9"
                 >
                   {item.treeItem.map((treeItem) => (
                     <li key={treeItem.text}>
                       <Link
-                        className={`pf-link-block pf-px-24 pf-py-8 ${
-                          treeItem.link === `/${prefix}/${path}` ? 'active' : ''
-                        }`}
+                        className={`pf-link-block pf-px-24 pf-py-8 ${treeItem.link === `/${prefix}/${path}` ? 'active' : ''
+                          }`}
                         to={treeItem.link}
                         style={{ cursor: 'pointer' }}
                       >
@@ -311,17 +475,15 @@ const Layout = ({ children }) => {
                   </a>
                 </li>
                 <ul
-                  className={`pf-pl-24 pf-bg-white collapse ${
-                    expandSetting && 'in'
-                  }`}
+                  className={`pf-pl-24 pf-bg-white collapse ${expandSetting && 'in'
+                    }`}
                   id="sidebar-ul-9"
                 >
                   {item.treeItem.map((treeItem) => (
                     <li key={treeItem.text}>
                       <Link
-                        className={`pf-link-block pf-px-24 pf-py-8 ${
-                          treeItem.link === `/${prefix}/${path}` ? 'active' : ''
-                        }`}
+                        className={`pf-link-block pf-px-24 pf-py-8 ${treeItem.link === `/${prefix}/${path}` ? 'active' : ''
+                          }`}
                         to={treeItem.link}
                         style={{ cursor: 'pointer' }}
                       >
@@ -335,7 +497,7 @@ const Layout = ({ children }) => {
           </div>
         ))}
       </ul>
-      <ul className="pf-m-0 pf-px-0 pf-py-8">
+      {/* <ul className="pf-m-0 pf-px-0 pf-py-8">
         <li className="panel">
           <a
             className="pf-link-block pf-px-24 pf-py-8  dashed-separator start-selling"
@@ -349,7 +511,7 @@ const Layout = ({ children }) => {
       </ul>
       <br />
       <br />
-      <hr className="pf-d-none" />
+      <hr className="pf-d-none" /> */}
       {/* <ul className="pf-m-0 pf-px-0 pf-py-8 pf-border-top">
         <li>
           <a
@@ -413,7 +575,7 @@ const Layout = ({ children }) => {
                             <div className="pf-i pf-i-24 pf-i-close pf-position-absolute pf-px-12 pf-py-8" />
                           </div>
                         </div>
-                      </div>{' '}
+                      </div>
                     </div>
 
                     <div className="col-auto text-right">
@@ -559,9 +721,7 @@ const ROUTES = [
         key: 'TEMPLATE_CREATE',
         exact: true,
         component: () => (
-          <Layout>
-            <CreateProductTemplate />
-          </Layout>
+          <CreateProductTemplate />
         ),
       },
       {
@@ -572,6 +732,14 @@ const ROUTES = [
           <Layout>
             <ProductTemplateDetail />
           </Layout>
+        ),
+      },
+      {
+        path: '/template/view',
+        key: 'TEMPLATE_DETAIL',
+        exact: true,
+        component: () => (
+          <Productview />
         ),
       },
     ],
@@ -590,6 +758,87 @@ const ROUTES = [
           return userLogInSuccess ? (
             <Layout>
               <UploadFile />
+            </Layout>
+          ) : (
+            <Login />
+          );
+        },
+      },
+    ],
+  },
+  {
+    path: '/catalog',
+    key: 'CATALOG',
+    component: RenderRoutes,
+    routes: [
+      {
+        path: '/catalog',
+        key: 'CATALOG_ROOT',
+        exact: true,
+        component: () => {
+          const userLogInSuccess = isLoggedIn();
+          return userLogInSuccess ? (
+            <Layout>
+              <Catalog />
+            </Layout>
+          ) : (
+            <Login />
+          );
+        },
+      },
+    ],
+  },
+  {
+    path: '/warehouse',
+    key: 'WAREHOUSE',
+    component: RenderRoutes,
+    routes: [
+      {
+        path: '/warehouse',
+        key: 'WAREHOUSE_ROOT',
+        exact: true,
+        component: () => {
+          const userLogInSuccess = isLoggedIn();
+          return userLogInSuccess ? (
+            <Layout>
+              <Warehouse />
+            </Layout>
+          ) : (
+            <Login />
+          );
+        },
+      },
+    ],
+  },
+  {
+    path: '/venders',
+    key: 'VENDERS',
+    component: RenderRoutes,
+    routes: [
+      {
+        path: '/venders',
+        key: 'VENDERS_ROOT',
+        exact: true,
+        component: () => {
+          const userLogInSuccess = isLoggedIn();
+          return userLogInSuccess ? (
+            <Layout>
+              <Venders />
+            </Layout>
+          ) : (
+            <Login />
+          );
+        },
+      },
+      {
+        path: '/venders/detail',
+        key: 'VENDERS_ROOT',
+        exact: true,
+        component: () => {
+          const userLogInSuccess = isLoggedIn();
+          return userLogInSuccess ? (
+            <Layout>
+              <VenderDetail />
             </Layout>
           ) : (
             <Login />
@@ -627,12 +876,32 @@ const ROUTES = [
         ),
       },
       {
+        path: '/orders/testorder',
+        key: 'ORDERS_TESTORDER',
+        exact: true,
+        component: () => (
+          <Layout>
+            <TestOrder />
+          </Layout>
+        ),
+      },
+      {
         path: '/orders/shipping',
         key: 'ORDERS_SHIPPING',
         exact: true,
         component: () => (
           <Layout>
             <OrdersShipping />
+          </Layout>
+        ),
+      },
+      {
+        path: '/orders/shippingmultiple',
+        key: 'ORDERS_SHIPPINGMULTIPLE',
+        exact: true,
+        component: () => (
+          <Layout>
+            <TestMultiShipping />
           </Layout>
         ),
       },
@@ -683,6 +952,16 @@ const ROUTES = [
         ),
       },
       {
+        path: '/billing/wallet',
+        key: 'BILLING_METHODS',
+        exact: true,
+        component: () => (
+          <Layout>
+            <Wallet />
+          </Layout>
+        ),
+      },
+      {
         path: '/billing/legal-info',
         key: 'BILLING_LEGAL',
         exact: true,
@@ -700,6 +979,58 @@ const ROUTES = [
           <Layout>
             <AddMethods />
           </Layout>
+        ),
+      },
+    ],
+  },
+  {
+    path: '/manageable',
+    key: 'MANAGEABLE',
+    component: (props) => {
+      const isUserLogin = isLoggedIn();
+      return isUserLogin ? <RenderRoutes {...props} /> : <Redirect to="/" />;
+    },
+    routes: [
+      {
+        path: '/manageable',
+        key: 'MANAGEABLE_ROOT',
+        exact: true,
+        component: () => <Redirect to="/manageable/products" />,
+      },
+      {
+        path: '/manageable/products',
+        key: 'MANAGEABLE_PRODUCT',
+        exact: true,
+        component: () => (
+          <Layout>
+            <Products />
+          </Layout>
+        ),
+      },
+      {
+        path: '/manageable/category',
+        key: 'MANAGEABLE_EDIT',
+        exact: true,
+        component: () => (
+          <Layout>
+            <Category />
+          </Layout>
+        ),
+      },
+      {
+        path: '/manageable/editproduct',
+        key: 'MANAGEABLE_EDIT',
+        exact: true,
+        component: () => (
+            <Editproduct />
+        ),
+      },
+      {
+        path: '/manageable/editproduct',
+        key: 'MANAGEABLE_EDIT',
+        exact: true,
+        component: () => (
+            <Editdesign />
         ),
       },
     ],
@@ -764,11 +1095,150 @@ const ROUTES = [
         exact: true,
         component: () => (
           <Layout>
-            {' '}
             <Connect />
           </Layout>
         ),
       },
+    ],
+  },
+  {
+    path: '/memberships',
+    key: 'MEMBERSHIPS',
+    component: (props) => {
+      const isUserLogin = isLoggedIn();
+      return isUserLogin ? <RenderRoutes {...props} /> : <Redirect to="/" />;
+    },
+    routes: [
+      {
+        path: '/memberships',
+        key: 'MEMBERSHIPS_ROOT',
+        exact: true,
+        component: () => (
+          <Layout>
+            <Memberships />
+          </Layout>
+        ),
+      }
+    ],
+  },
+  {
+    path: '/managememberships',
+    key: 'MANAGEMEMBERSHIPS',
+    component: (props) => {
+      const isUserLogin = isLoggedIn();
+      return isUserLogin ? <RenderRoutes {...props} /> : <Redirect to="/" />;
+    },
+    routes: [
+      {
+        path: '/managememberships',
+        key: 'MANAGEMEMBERSHIPS_ROOT',
+        exact: true,
+        component: () => (
+          <Layout>
+            <ManageMembership />
+          </Layout>
+        ),
+      }
+    ],
+  },
+  {
+    path: '/managetiers',
+    key: 'MANAGETIERS',
+    component: (props) => {
+      const isUserLogin = isLoggedIn();
+      return isUserLogin ? <RenderRoutes {...props} /> : <Redirect to="/" />;
+    },
+    routes: [
+      {
+        path: '/managetiers',
+        key: 'MANAGETIERS_ROOT',
+        exact: true,
+        component: () => (
+          <Layout>
+            <ManageTiers />
+          </Layout>
+        ),
+      }
+    ],
+  },
+  {
+    path: '/managedigitalservice',
+    key: 'MANAGEDIGITALSERVICE',
+    component: (props) => {
+      const isUserLogin = isLoggedIn();
+      return isUserLogin ? <RenderRoutes {...props} /> : <Redirect to="/" />;
+    },
+    routes: [
+      {
+        path: '/managedigitalservice',
+        key: 'MANAGEDIGITALSERVICE_ROOT',
+        exact: true,
+        component: () => (
+          <Layout>
+            <ManageDigitalService />
+          </Layout>
+        ),
+      },
+    ],
+  },
+  {
+    path: '/admindigitalservice',
+    key: 'ADMINDIGITALSERVICE',
+    component: (props) => {
+      const isUserLogin = isLoggedIn();
+      return isUserLogin ? <RenderRoutes {...props} /> : <Redirect to="/" />;
+    },
+    routes: [
+      {
+        path: '/admindigitalservice',
+        key: 'ADMINDIGITALSERVICE_ROOT',
+        exact: true,
+        component: () => (
+          <Layout>
+            <AdminDegitalService />
+          </Layout>
+        ),
+      }
+    ],
+  },
+  {
+    path: '/viewdigitalservice',
+    key: 'VIEWDIGITALSERVICE',
+    component: (props) => {
+      const isUserLogin = isLoggedIn();
+      return isUserLogin ? <RenderRoutes {...props} /> : <Redirect to="/" />;
+    },
+    routes: [
+      {
+        path: '/viewdigitalservice',
+        key: 'VIEWDIGITALSERVICE_ROOT',
+        exact: true,
+        component: () => (
+          <Layout>
+            <ViewDigitalService />
+          </Layout>
+        ),
+      }
+    ],
+  },
+  {
+    path: '/settingdigitalservice',
+    key: 'SETTINGDIGITALSERVICE',
+    component: (props) => {
+      const isUserLogin = isLoggedIn();
+      return isUserLogin ? <RenderRoutes {...props} /> : <Redirect to="/" />;
+    },
+    routes: [
+      {
+        path: '/settingdigitalservice',
+        key: 'SETTINGDIGITALSERVICE_ROOT',
+        exact: true,
+        component: () => (
+          <Layout>
+            <SettingDigitalService />
+          </Layout>
+        ),
+      }
     ],
   },
 ];

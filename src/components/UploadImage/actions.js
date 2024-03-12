@@ -1,5 +1,5 @@
 import axios from 'axios';
-import Api from 'config/axious';
+import Api from '../../config/axious';
 import { localStorageConstant } from '../../constant';
 import { USER_UPLOAD_IMG } from './constant';
 

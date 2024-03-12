@@ -11,4 +11,6 @@ export default {
     front: require('./jackets/front.png'),
     back: require('./jackets/back.png'),
   },
+  drop:require('./main.png'),
+  label:require('./label.jpeg')
 };

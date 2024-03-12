@@ -24,14 +24,14 @@ export function NewOrders(props) {
                 <div className="col-md-6">
                   <div className="row no-gutters pf-px-16 pf-border pf-d-flex pf-flex-wrap text-center order-type-picker-panel order-type-picker-panel--basic pf-py-24">
                     <div className="col-12">
-                      <img src="https://www.printful.com/static/images/layout/orders/box.svg?v=2" />
+                      <img className='img-basic' src="https://www.printful.com/static/images/layout/orders/box.svg?v=2" />
                     </div>
                     <div className="col-12">
                       <h3 className="pf-m-0 pf-h3">Basic order</h3>
                     </div>
                     <div className="col-12 pf-mt-12 ">
                       <span>
-                        <span>Customize any of our 234 products</span>
+                        <span style={{ fontSize: 12 }}>Customize any of our 234 products</span>
                       </span>
                     </div>
                     <div onClick={() => { history.push('/orders/update'); }}>
@@ -45,24 +45,28 @@ export function NewOrders(props) {
                   </div>
                 </div>
                 <div className="pf-mt-24 pf-mt-md-0 col-md-6">
-                  <div className="row no-gutters pf-px-16 pf-border pf-d-flex pf-flex-wrap text-center pf-py-16 order-type-picker-panel--sample order-type-picker-panel--disabled pf-bg-lighter pf-border-0 ">
+                  <div className="row no-gutters pf-px-16 pf-border pf-d-flex pf-flex-wrap text-center order-type-picker-panel order-type-picker-panel--basic pf-py-24">
                     <div className="col-12">
-                      <img src="https://www.printful.com/static/images/layout/orders/price-tag-disabled.svg" />
+                      <img src="https://www.printful.com/static/images/layout/orders/sample-order-black.svg" className='img-basic' />
                     </div>
                     <div className="col-12">
-                      <h3 className="pf-m-0 pf-h4 pf-text-muted">Sample order</h3>
+                      <h3 className="pf-m-0 pf-h4 pf-text-muted">Test your designs</h3>
                     </div>
                     <div className="col-12 pf-mt-12 pf-text-muted">
                       <div>
-                        <h3 className="pf-h3 text-muted pf-mt-0">
-                          Temporarily disabled
-                        </h3>
-                        <div>
-                          We're temporarily disabling discounts on sample orders.
-                          This is to help our fulfillment teams prioritize regular
-                          orders and keep up with increased demand.
-                        </div>
+                        <p style={{ fontSize: 12 }}>
+                        Save 20% on 3 sample products of your choice
+                        </p>
+                        <a href='#'>Learn how to get more</a>
                       </div>
+                      <div onClick={() => { history.push('/orders/testorder'); }}>
+                      <a
+                        href="#"
+                        className="pf-mt-24 pf-btn pf-btn-block pf-btn-primary pf-align-self-end"
+                      >
+                        Create your order
+                      </a>
+                    </div>
                     </div>
                   </div>
                 </div>

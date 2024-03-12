@@ -1,4 +1,4 @@
-import Api from 'config/axious';
+import Api from '../../config/axious';
 
 import {
   SAVE_BACK_DESIGN,

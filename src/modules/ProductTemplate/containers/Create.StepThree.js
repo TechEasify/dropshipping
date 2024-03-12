@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Carousel } from 'react-bootstrap';
+// import { Carousel } from 'react-bootstrap';
 import { CirclePicker } from 'react-color';
 import JSZip from 'jszip';
 import FileSaver from 'file-saver';
@@ -52,7 +52,7 @@ export default function CreateStepThree() {
       <div className="pf-ui-body product-templates-review-step pf-mb-96">
         <div className="row">
           <div className="col-12 col-md-4 text-center">
-            <Carousel indicators={false}>
+            {/* <Carousel indicators={false}>
               {Object.values(ProductTemplateFront.designs).map(
                 (value, index) => {
                   if (value.preview) {
@@ -70,7 +70,7 @@ export default function CreateStepThree() {
                   return null;
                 }
               )}
-            </Carousel>
+            </Carousel> */}
           </div>
           <div className="col-12 col-md-8">
             <div className="row">
