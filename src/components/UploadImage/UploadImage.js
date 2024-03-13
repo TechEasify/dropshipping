@@ -45,7 +45,6 @@ export default function UploadImage() {
       {_error && _error.message && (
         <div className="alert alert-danger" style={{ fontSize: '1rem' }}>
           <strong>Error!</strong>
-          {' '}
           {_error.message}
         </div>
       )}

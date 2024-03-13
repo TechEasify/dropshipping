@@ -35,17 +35,17 @@ export function Methods() {
                         Payments
                         <span className="arrow" />
                       </button>
-                    </div>{' '}
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>{' '}
+            </div>
             <div className="col-sm-12">
               <div className="row" style={{}}>
                 <div className="col-xs-12">
                   <h4 className="pf-h4 pf-mb-16 pf-mt-0">
                     Primary account billing method
-                  </h4>{' '}
+                  </h4>
                   <div className="billing__description pf-mb-24 ">
                     <span>
                       This is the primary billing method for your dropshippy
@@ -62,25 +62,25 @@ export function Methods() {
                   <div id="stores">
                     <h4 className="pf-h4 pf-mb-16 billing__store-billing_methods__heading--main pf-pt-24 pf-mt-32">
                       Store billing settings
-                    </h4>{' '}
+                    </h4>
                     <div className="billing__description margin-bottom-20 ">
                       <span>
                         Set a different billing method for each store. We'll
                         automatically use your account's primary billing method
                         unless otherwise specified.
                       </span>
-                    </div>{' '}
+                    </div>
                     <div className="col-xs-12 billing__store-billing_methods pf-mb-24">
                       <div className="row billing__store-billing_methods__heading pf-d-none pf-d-sm-flex">
-                        <div className="col-xs-12 pf-p-12 col-sm-6">Store</div>{' '}
-                        {/**/}{' '}
+                        <div className="col-xs-12 pf-p-12 col-sm-6">Store</div>
+                        {/**/}
                         <div className="col-xs-12 pf-p-12 col-sm-6">
                           Store currency
                           <i className="pf-i pf-i-information pf-i-18 pf-text-gray" />
                         </div>
-                      </div>{' '}
+                      </div>
                     </div>
-                  </div>{' '}
+                  </div>
                   <div className="billing-history__toggle pf-py-24 pf-mt-32" onClick={() => setCollapse(!collapse)}>
                     <a
                       data-toggle="collapse"
@@ -89,7 +89,7 @@ export function Methods() {
                       aria-expanded={collapse}
                       className="pf-p-0"
                     >
-                      <span className="arrow" />{' '}
+                      <span className="arrow" />
                       <h4 className="pf-h4 pf-my-0 pf-d-inline-block">
                         Billing method changes
                       </h4>
@@ -446,7 +446,7 @@ export function Methods() {
                                               </div>
                                             </th>
                                           </tr>
-                                        </thead>{' '}
+                                        </thead>
                                         <tbody>
                                           <tr className="odd">
                                             <td

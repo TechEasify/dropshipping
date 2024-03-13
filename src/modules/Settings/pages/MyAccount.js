@@ -84,7 +84,7 @@ export function MyAccount() {
       <div className="container-fluid dashboard__container clearfix">
         <div>
           <div className="store-settings container__wrapper">
-            <h2 className="pf-h2 pf-my-40">Settings: My Account</h2>{' '}
+            <h2 className="pf-h2 pf-my-40">Settings: My Account</h2>
             <Security />
             {!clickedEmail && !clickedPassword && (
               <>
@@ -93,14 +93,14 @@ export function MyAccount() {
                   className="form-horizontal defaults-main-form"
                   onSubmit={handleSubmit}
                 >
-                  <h5 className="pf-my-0 page-title"> Personal Information</h5>{' '}
-                  <hr />{' '}
+                  <h5 className="pf-my-0 page-title"> Personal Information</h5>
+                  <hr />
                   <div className="row">
                     <div className="col-md-12 margin-bottom-50">
                       <div className="form-group">
                         <label className="col-sm-4 control-label">
                           Full name:
-                        </label>{' '}
+                        </label>
                         <div className="col-sm-5">
                           <input
                             id="username"
@@ -114,16 +114,14 @@ export function MyAccount() {
                             required
                             aria-required="true"
                             aria-invalid="false"
-                          />{' '}
-                          {/**/}
+                          />
                         </div>
-                      </div>{' '}
-                      {/*  */}
+                      </div>
                       <div className="col-md-12 margin-bottom-50">
                         <div className="form-group">
                           <label className="col-sm-4 control-label">
                             Gender:
-                          </label>{' '}
+                          </label>
                           <div className="col-sm-5">
                             <FormControl className={classes.formControl}>
                               <Select
@@ -150,9 +148,8 @@ export function MyAccount() {
                           </div>
                         </div>
                       </div>
-                      {/*  */}
                       <div className="form-group change-email-block">
-                        <label className="col-sm-4 control-label">Email:</label>{' '}
+                        <label className="col-sm-4 control-label">Email:</label>
                         <div className="col-sm-5">
                           <input
                             type="text"
@@ -162,9 +159,8 @@ export function MyAccount() {
                             className="disabled form-control inspectletIgnore"
                             aria-required="false"
                             aria-invalid="false"
-                          />{' '}
-                          {/**/}
-                        </div>{' '}
+                          />
+                        </div>
                         <div className="col-sm-1 pf-pt-8">
                           <a
                             href="#"
@@ -174,14 +170,13 @@ export function MyAccount() {
                           >
                             Change
                           </a>
-                        </div>{' '}
-                        {/**/}
-                      </div>{' '}
-                      <input type="number" name="blank" className="pf-d-none" />{' '}
+                        </div>
+                      </div>
+                      <input type="number" name="blank" className="pf-d-none" />
                       <div className="form-group field-customer-password_old">
                         <label className="col-sm-4 control-label">
                           Password:
-                        </label>{' '}
+                        </label>
                         <div className="col-sm-5">
                           <input
                             type="password"
@@ -189,9 +184,9 @@ export function MyAccount() {
                             disabled="disabled"
                             name="password"
                             className="form-control"
-                          />{' '}
+                          />
                           <div className="help-block" />
-                        </div>{' '}
+                        </div>
                         <div className="col-sm-1" style={{ paddingTop: 8 }}>
                           <a
                             href="#"
@@ -202,7 +197,7 @@ export function MyAccount() {
                             Change
                           </a>
                         </div>
-                      </div>{' '}
+                      </div>
                       <div className="form-group pf-mb-0">
                         <div
                           className={`col-md-8 offset-sm-4 margin-top-20 ${
@@ -219,8 +214,7 @@ export function MyAccount() {
                             type="submit"
                             className="pf-btn pf-btn-primary"
                             defaultValue="Save changes"
-                          />{' '}
-                          {/**/}
+                          />
                         </div>
                       </div>
                     </div>
@@ -232,7 +226,7 @@ export function MyAccount() {
             {clickedPassword && (
               <PasswordTab Cancel={() => setClickedPassword(false)} />
             )}
-          </div>{' '}
+          </div>
         </div>
       </div>
     </>

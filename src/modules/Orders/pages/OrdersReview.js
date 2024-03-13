@@ -563,7 +563,7 @@ export function OrdersReview() {
                 <div className="col-12">
                   <span className="dropshippy-order-number " title={123}>
                     #123
-                  </span>{' '}
+                  </span>
                 </div>
                 <div className="col-12 pf-mt-8">
                   <img
@@ -640,11 +640,11 @@ export function OrdersReview() {
                     <div className="col-12 hidden-xs">
                       <h4 className="pf-mt-0 pf-mb-16 pf-mr-8 inline">
                         Order items
-                      </h4>{' '}
+                      </h4>
                       <a href="/orders/update" className="pf-link">
                         Edit
                       </a>
-                    </div>{' '}
+                    </div>
                     <div className="col-md-12">
                       <div id="review-order-items">
                         <div>
@@ -652,18 +652,18 @@ export function OrdersReview() {
                             <thead>
                               <tr>
                                 <th className="pf-pb-12">
-                                  Product{' '}
+                                  Product
                                   <span className="glyphicon glyphicon-info-sign" />
                                 </th>
                                 <th className="pf-pb-12"> </th>
                                 <th className="pf-pb-12">Print file </th>
                                 <th className="pf-pb-12">Qty</th>
                                 <th className="pf-pb-12">
-                                  Price{' '}
+                                  Price
                                   <span className="glyphicon glyphicon-info-sign" />
                                 </th>
                                 <th className="pf-pb-12">
-                                  Retail{' '}
+                                  Retail
                                   <span className="glyphicon glyphicon-info-sign" />
                                 </th>
                                 <th className="pf-pb-12"> </th>
@@ -684,31 +684,29 @@ export function OrdersReview() {
               <div className="row">
                 <div className="col-md-12">
                   <h4 className="pf-h3 pf-mt-0 pf-mb-16">Shipping</h4>
-                </div>{' '}
+                </div>
                 <div className="col-md-4">
                   <h4 className="pf-h5 pf-mt-0">
                     Shipping from
-                    {/**/}
-                  </h4>{' '}
+                  </h4>
                   <div className="pf-mb-24 pf-mb-md-0">
                     <div className="shipped-from">
-                      {/**/}{' '}
                       <div className="shipped-from__branch margin-bottom-10">
                         <span className="pf-mr-4 pf-badge pf-badge-location pf-badge--eu">
                           VN
-                        </span>{' '}
+                        </span>
                         <span> Shop address</span> {/**/}
                       </div>
                     </div>
                   </div>
-                </div>{' '}
+                </div>
                 <div className="col-md-4">
                   <h4 className="pf-h5 pf-mt-0 pf-mb-16 pf-mr-8 inline">
                     Shipping to
-                  </h4>{' '}
+                  </h4>
                   <Link to="/orders/shipping" className="pf-link">
                     Edit
-                  </Link>{' '}
+                  </Link>
                   <p className="pf-mb-24 pf-mb-md-0 inspectlet-sensitive">
                     <span>Buyer Address</span>
                     <br />
@@ -720,17 +718,17 @@ export function OrdersReview() {
                     <br />
                     <span>+84364240255</span>
                   </p>
-                </div>{' '}
+                </div>
                 <div className="col-md-4">
                   <h4 className="pf-h5 pf-mt-0 pf-mb-16 pf-mr-0 inline">
                     Shipping method
-                  </h4>{' '}
+                  </h4>
                   <Link to="/orders/shipping" className="pf-link">
                     Edit
-                  </Link>{' '}
+                  </Link>
                   <p className="pf-mb-0">Buyer Shipping method</p>
                 </div>
-              </div>{' '}
+              </div>
             </div>
             <form id="orderCreate">
               <div
@@ -1517,7 +1515,7 @@ export function OrdersReview() {
                       <div className="col-12">
                         <h3 className="pf-h3 pf-mb-16">Order breakdown</h3>
                       </div>
-                    </div>{' '}
+                    </div>
                     <div className="row no-gutters">
                       <div className="row no-gutters">
                         <div className="col-12">
@@ -1530,18 +1528,16 @@ export function OrdersReview() {
                                   className="accordion__header"
                                 >
                                   <div className="row no-gutters pf-d-flex pf-justify-content-between pf-py-8 pf-pl-8 pf-pr-12">
-                                    {' '}
                                     <div className="col pf-d-flex pf-justify-content-between pf-align-items-center pf-ml-2">
-                                      <div className="pf-h5">Fulfillment</div>{' '}
+                                      <div className="pf-h5">Fulfillment</div>
                                       <div className="pf-d-flex pf-align-items-center">
-                                        {/**/}{' '}
                                         <div className="pf-ml-8 pf-h5">
                                           $12.27
                                         </div>
                                       </div>
                                     </div>
                                   </div>
-                                </div>{' '}
+                                </div>
                                 <div
                                   aria-hidden="true"
                                   className="collapse accordion__content"
@@ -1554,7 +1550,7 @@ export function OrdersReview() {
                                             <div className="row no-gutters">
                                               <div className="col-12 pf-h5 pf-pt-8 pf-pb-8 pf-pl-12 pf-pt-16 pf-pl-12">
                                                 Fulfilled in Europe
-                                              </div>{' '}
+                                              </div>
                                               <div className="col-12 pf-mb-12">
                                                 <div className="col-12 pf-d-flex pf-justify-content-between pf-ui-body text-muted  pf-pl-24 pf-pr-12">
                                                   <div className="pf-pr-8">
@@ -1577,24 +1573,21 @@ export function OrdersReview() {
                                 </div>
                               </div>
                             </div>
-                          </div>{' '}
-                          {/**/} {/**/}{' '}
+                          </div>
                           <div className="col-12 pf-d-flex pf-justify-content-between pf-ui-body pf-pb-16 pf-h5 pf-p-0">
-                            <div className="pf-pr-8">Shipping</div>{' '}
+                            <div className="pf-pr-8">Shipping</div>
                             <div className="text-nowrap">+$5.99</div>
-                          </div>{' '}
-                          {/**/} {/**/} {/**/}
+                          </div>
                         </div>
                       </div>
-                    </div>{' '}
+                    </div>
                     <div className="row no-gutters">
                       <div className="col-12 pf-border-top">
                         <div className="row">
                           <div className="col-12 pf-d-flex pf-justify-content-between">
-                            <h3 className="pf-h3 pf-mt-16 pf-mb-8">Total</h3>{' '}
+                            <h3 className="pf-h3 pf-mt-16 pf-mb-8">Total</h3>
                             <h3 className="pf-h3 pf-mt-16 pf-mb-8">$18.26</h3>
-                          </div>{' '}
-                          {/**/}
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -1612,7 +1605,7 @@ export function OrdersReview() {
                   </a>
                   <div className="pf-mt-24 pf-text-muted">
                     By completing this order,
-                    <br />I agree to dropshippy's{' '}
+                    <br />I agree to dropshippy's
                     <a
                       className="pf-link"
                       href="/policies/terms-of-service"
@@ -1620,7 +1613,7 @@ export function OrdersReview() {
                     >
                       Terms of Service
                     </a>
-                    .{' '}
+                    .
                   </div>
                 </div>
               </div>

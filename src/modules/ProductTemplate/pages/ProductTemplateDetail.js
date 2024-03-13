@@ -73,7 +73,7 @@ export default function ProductTemplateDetail() {
                     <div className="pf-pl-md-16">
                       <div className="product-template-detail-item product-template-detail-item--product pf-mb-24">
                         <div className="pf-h5">Product</div>
-                        <div className="pf-text-muted">Essential Oil 10Ml</div>{' '}
+                        <div className="pf-text-muted">Essential Oil 10Ml</div>
                         <a className="pf-link pf-pointer">See product info</a>
                       </div>
                       <div className="product-template-detail-item product-template-detail-item--price pf-mb-24">

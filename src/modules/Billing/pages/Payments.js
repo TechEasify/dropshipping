@@ -41,7 +41,7 @@ export function Payments() {
                 </div>
               </div>
             </div>
-          </div>{' '}
+          </div>
           <div className="col-sm-12">
             <div className="payments">
               <div>
@@ -59,9 +59,9 @@ export function Payments() {
                       <div className="modal-content">
                         <div className="modal-header">
                           <button type="button" className="close">
-                            <span aria-hidden="true">×</span>{' '}
+                            <span aria-hidden="true">×</span>
                             <span className="sr-only">Close</span>
-                          </button>{' '}
+                          </button>
                           <div>
                             <h4>Are you sure?</h4>
                           </div>

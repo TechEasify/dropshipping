@@ -36,13 +36,11 @@ export function Orders() {
         <div className="order-intro">
           <h2 className="pf-h2 pf-my-40">
             Orders
-            {' '}
             <a
               className="pf-btn pf-btn-primary float-none float-xs-right pf-d-block pf-d-xs-inline-block pf-d-sm-none pf-mt-12 pf-mt-xs-0"
               id="orders-new-order"
             >
               New order
-              {' '}
             </a>
           </h2>
           <div className="row margin-vertical-50">
@@ -80,7 +78,6 @@ export function Orders() {
                 id="dashboard-new-order"
               >
                 New order
-                {' '}
               </button>
               <Modal
                 open={open}

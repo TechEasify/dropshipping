@@ -22,7 +22,7 @@ export default () => (
           </ul>
         </div>
         <h1 className="pf-h2 pf-mt-24 pf-mb-32">
-          Connect to an ecommerce platform{' '}
+          Connect to an ecommerce platform
         </h1>
         <div className="row integrations">
           <div className="col-md-3 col-sm-4 col-xs-6 integrations__container pf-mb-32 pf-d-flex">
@@ -41,7 +41,7 @@ export default () => (
                 </span>
                 <span className="pf-pl-16 break-word">
                   <h4 className="pf-h4 pf-m-0">
-                    Shopify{' '}
+                    Shopify
                     <i
                       className="pf-text-gray pf-i pf-i-information"
                       title
@@ -55,7 +55,7 @@ export default () => (
                 </span>
               </div>
               <p className="text-muted pf-ui-body pf-mb-16">
-                Ecommerce platform with everything you need to sell online.{' '}
+                Ecommerce platform with everything you need to sell online.
               </p>
               <a
                 onClick="openUrl('shopify','https://www.dropshippy.com/dashboard/shopify/register', event, 2236557);"
@@ -63,7 +63,7 @@ export default () => (
                 title="Connect with Shopify"
                 style={{ marginTop: 'auto' }}
               >
-                Connect{' '}
+                Connect
               </a>
             </div>
           </div>
@@ -85,7 +85,7 @@ export default () => (
                     data-custom-redirect-url
                     role="button"
                   >
-                    Compare platforms{' '}
+                    Compare platforms
                     <i className="pf-i pf-i-chevron-right pf-i-24 pf-bold" />
                   </a>
                 </div>

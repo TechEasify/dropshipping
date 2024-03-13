@@ -73,13 +73,11 @@ export default function Login() {
                         <h1 className="pf-h2 pf-m-0 pf-pb-24">
                           Sign in to DropShippy
                         </h1>
-                        {' '}
                         {_error.message && (
-                        <div className="alert alert-danger">
-                          <strong>Error!</strong>
-                          {' '}
-                          {_error.message}
-                        </div>
+                          <div className="alert alert-danger">
+                            <strong>Error!</strong>
+                            {_error.message}
+                          </div>
                         )}
                         <form onSubmit={formik.handleSubmit}>
                           <div className="form-group">
@@ -89,7 +87,6 @@ export default function Login() {
                             >
                               Email:
                             </label>
-                            {' '}
                             <input
                               type="email"
                               id="login-email"
@@ -99,9 +96,7 @@ export default function Login() {
                               onChange={formik.handleChange}
                               value={formik.values.email}
                             />
-                            {' '}
                           </div>
-                          {' '}
                           <div className="login-box__password">
                             <div className="form-group">
                               <label
@@ -109,9 +104,7 @@ export default function Login() {
                                 className="control-label"
                               >
                                 Password:
-                              </label>
-                              {' '}
-                              <input
+                              </label>                              <input
                                 id="login-password"
                                 name="password"
                                 autoComplete="off"
@@ -127,9 +120,7 @@ export default function Login() {
                                   borderRadius: 0,
                                 }}
                               />
-                              {' '}
                             </div>
-                            {' '}
                             <div className="login-box__show-password pf-bg-lighter">
                               <input
                                 onChange={handleOnClickShowPassword}
@@ -137,25 +128,20 @@ export default function Login() {
                                 id="login-toggle-password"
                                 className="pf-m-0"
                               />
-                              {' '}
                               <label>
                                 Show
                               </label>
                             </div>
                           </div>
-                          {' '}
                           <div>
                             <input
                               type="submit"
                               className="pf-btn pf-mr-8 pf-mb-12 pf-btn-primary"
                               value="Sign in"
                             />
-                            {' '}
                           </div>
                         </form>
-                        {' '}
                         <div className="pf-d-flex pf-border-top pf-pt-8 pf-mt-4">
-                          {' '}
                           <a
                             href=""
                             onClick={() => history.push('/auth/register')}
@@ -166,7 +152,6 @@ export default function Login() {
                           <span className="pf-text-muted pf-bold pf-mx-8 pf-embed-hide">
                             ·
                           </span>
-                          {' '}
                           <a
                             href=""
                             onClick={() => history.push('/auth/forgot')}
@@ -230,10 +215,8 @@ export default function Login() {
                           </div>
                           <iframe title="2" style={{ display: 'none' }} />
                         </div>
-                        {' '}
                       </div>
                     </div>
-                    {' '}
                   </div>
                 </div>
               </div>

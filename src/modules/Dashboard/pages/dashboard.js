@@ -32,18 +32,17 @@ export default function Dashboard() {
             <div className="modal-content">
               <div className="modal-header">
                 <button type="button" className="close">
-                  <span aria-hidden="true">×</span>{' '}
+                  <span aria-hidden="true">×</span>
                   <span className="sr-only">Close</span>
-                </button>{' '}
+                </button>
                 <div>
                   <span className="pf-h3 pf-m-0">
                     Explore your dropshippy Dashboard
                   </span>
                 </div>
-              </div>{' '}
+              </div>
               <div className="modal-body ">
                 <div className="pf-d-flex pf-flex-column pf-flex-sm-row pf-align-items-center">
-                  {' '}
                   <p className="text-center text-sm-left pf-text-muted pf-ui-body pf-mb-0 pf-mt-24 pf-mt-sm-0 pf-ml-0 pf-ml-sm-24">
                     Your Dashboard might look a little different. That's because
                     it's been specially crafted to help you sell online. Check
@@ -51,7 +50,7 @@ export default function Dashboard() {
                     products!
                   </p>
                 </div>
-              </div>{' '}
+              </div>
               <div className="modal-footer">
                 <div className="text-left">
                   <button
@@ -64,7 +63,7 @@ export default function Dashboard() {
               </div>
             </div>
           </div>
-        </div>{' '}
+        </div>
         <div
           id="onboarding-disclaimer"
           tabIndex={-1}
@@ -77,15 +76,15 @@ export default function Dashboard() {
             <div className="modal-content">
               <div className="modal-header">
                 <button type="button" className="close">
-                  <span aria-hidden="true">×</span>{' '}
+                  <span aria-hidden="true">×</span>
                   <span className="sr-only">Close</span>
-                </button>{' '}
+                </button>
                 <div>
                   <span className="pf-h3 pf-m-0 pf-pl-4 pf-d-block">
                     Let’s skip the Welcome Guide
                   </span>
                 </div>
-              </div>{' '}
+              </div>
               <div className="modal-body ">
                 <div className="pf-d-flex pf-flex-column pf-flex-sm-row pf-align-items-center">
                   <p className="text-center text-sm-left pf-text-muted pf-ui-body pf-my-0 pf-mx-0">
@@ -94,7 +93,7 @@ export default function Dashboard() {
                     the newest and most relevant info for you.
                   </p>
                 </div>
-              </div>{' '}
+              </div>
               <div className="modal-footer">
                 <div className="text-left">
                   <button
@@ -107,13 +106,12 @@ export default function Dashboard() {
               </div>
             </div>
           </div>
-        </div>{' '}
-        {/**/}{' '}
+        </div>
         <h2 className="dashboard-home__welcome text-center pf-py-24 pf-pt-md-40 pf-pb-md-12 inspectlet-sensitive">
           Welcome to your DropShippy dashboard. Let’s get started!
-        </h2>{' '}
+        </h2>
         <div className="dashboard-home__essential-steps pf-mb-40">
-          <hr className="pf-border-top pf-my-24 pf-my-md-32" />{' '}
+          <hr className="pf-border-top pf-my-24 pf-my-md-32" />
           <div className="row">
             <div className="col-md-2 pf-d-flex pf-justify-content-center">
               {/* <img
@@ -122,7 +120,7 @@ export default function Dashboard() {
                 className="pf-d-none pf-d-md-block"
                 style={{ width: 165 }}
               /> */}
-            </div>{' '}
+            </div>
             <div className="col-md-8 pf-d-flex  pf-justify-content-center">
               <div className="splide__track splide__track--slide splide__track--ltr" id="onboarding-steps-splide-slider-track"
                 aria-live="polite" aria-atomic="true">
@@ -228,7 +226,7 @@ export default function Dashboard() {
                   </div>
                 </div>
               </div>
-            </div>{' '}
+            </div>
 
             <div className="col-md-2 pf-d-flex pf-justify-content-center">
               {/* <img
@@ -239,7 +237,7 @@ export default function Dashboard() {
               /> */}
             </div>
           </div>
-        </div>{' '}
+        </div>
 
         {/**/}
       </div>

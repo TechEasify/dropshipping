@@ -23,7 +23,6 @@ export default function Forgot() {
 
                   <p className="pf-ui-body pf-text-muted">
                     Enter your email, and we&apos;ll send you a password reset link. This may take a few minutes!
-                    {' '}
                   </p>
 
                   <form id="w0" href="#">
@@ -54,7 +53,6 @@ export default function Forgot() {
           </div>
         </div>
       </div>
-      {' '}
 
     </div>
   );

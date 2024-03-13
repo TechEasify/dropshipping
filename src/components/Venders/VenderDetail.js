@@ -731,7 +731,7 @@ function VenderDetail() {
                                 <div className="billing__legal-info">
                                     <p className="billing__description pf-mb-24 pf-mt-8">
                                         Here you can add or update your legal information. We will use
-                                        these details on all your invoices that you can find under{' '}
+                                        these details on all your invoices that you can find under
                                         <Link to="/billing/payments" className="pf-link">
                                             Billing → Payments.
                                         </Link>

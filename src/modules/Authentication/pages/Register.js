@@ -66,11 +66,9 @@ export default function Register() {
                           <h1 className="pf-h2 pf-m-0 pf-pb-24">
                             Sign up to dropshippy
                           </h1>
-                          {' '}
                           {_error.message && (
                           <div className="alert alert-danger">
                             <strong>Error!</strong>
-                            {' '}
                             {`${_error.message}: ${_error.fields}`}
                           </div>
                           )}
@@ -79,7 +77,6 @@ export default function Register() {
                               <label htmlFor="name" className="pf-mb-8 pf-ui-caption pf-bold">
                                 Full name:
                               </label>
-                              {' '}
                               <input
                                 type="text"
                                 name="name"
@@ -88,9 +85,7 @@ export default function Register() {
                                 value={formik.values.name}
                                 className="inspectletIgnore"
                               />
-                              {' '}
                             </div>
-                            {' '}
                             <div className="pf-mb-16">
                               <label
                                 htmlFor="email"
@@ -98,7 +93,6 @@ export default function Register() {
                               >
                                 Email:
                               </label>
-                              {' '}
                               <input
                                 type="email"
                                 name="email"
@@ -107,9 +101,7 @@ export default function Register() {
                                 onChange={formik.handleChange}
                                 value={formik.values.email}
                               />
-                              {' '}
                             </div>
-                            {' '}
                             <div className="pf-mb-16">
                               <label
                                 htmlFor="password"
@@ -117,7 +109,6 @@ export default function Register() {
                               >
                                 Password:
                               </label>
-                              {' '}
                               <div className="register-form__password">
                                 <input
                                   name="password"
@@ -126,14 +117,12 @@ export default function Register() {
                                   className="inspectletIgnore"
                                   onChange={formik.handleChange}
                                 />
-                                {' '}
                                 <div className="pf-h-100 pf-d-flex pf-d-md-none pf-align-items-center pf-border pf-border-left-0 pf-bg-lighter pf-px-8">
                                   <input
                                     type="checkbox"
                                     id="showPassword"
                                     className="pf-m-0"
                                   />
-                                  {' '}
                                   <label
                                     htmlFor="showPassword"
                                     className="pf-mb-0 pf-ml-8"
@@ -142,9 +131,7 @@ export default function Register() {
                                   </label>
                                 </div>
                               </div>
-                              {' '}
                             </div>
-                            {' '}
                             <label htmlFor="hasAcceptedTerms">
                               <input
                                 value={formik.values.agreeTerm}
@@ -156,10 +143,8 @@ export default function Register() {
                                 className="pull-left"
                                 aria-invalid="false"
                               />
-                              {' '}
                               <div className="pf-mb-16 pf-ml-24 pf-ui-caption pf-text-muted">
                                 I agree to DropShippy&apos;s
-                                {' '}
                                 <a
                                   className="pf-link"
                                   href="/policies/terms-of-service"
@@ -167,9 +152,7 @@ export default function Register() {
                                 >
                                   Terms of Service
                                 </a>
-                                {' '}
                                 and
-                                {' '}
                                 <a
                                   className="pf-link"
                                   href="/policies/privacy"
@@ -180,7 +163,6 @@ export default function Register() {
                                 .
                               </div>
                             </label>
-                            {' '}
                             <label htmlFor="subscribe">
                               <input
                                 type="checkbox"
@@ -190,24 +172,19 @@ export default function Register() {
                                 false-value="0"
                                 className="pull-left"
                               />
-                              {' '}
                               <div className="pf-mb-16 pf-ml-24 pf-ui-caption pf-text-muted">
                                 I&apos;d like to receive emails from DropShippy to be
                                 informed about the latest updates.
                                 <br />
-                                {' '}
                                 <i>You can unsubscribe at any time.</i>
                               </div>
                             </label>
-                            {' '}
                             <input
                               type="submit"
                               className="pf-btn pf-btn-primary pf-my-8 pf-mr-8 pf-w-100 pf-w-md-auto"
                               value="Sign up"
                             />
-                            {' '}
                           </form>
-                          {' '}
                           <p className="pf-mt-32 pf-mb-8 pf-ui-legal pf-text-muted">
                             DropShippy Address
                             {/* <a
@@ -217,9 +194,7 @@ export default function Register() {
                               support@dropshippy.com
                             </a> */}
                           </p>
-                          {' '}
                           <div className="pf-d-flex pf-border-top pf-pt-8 pf-mt-4">
-                            {' '}
                             <a
                               href=""
                               onClick={() => history.push('/auth/login')}
@@ -230,7 +205,6 @@ export default function Register() {
                             <span className="pf-text-muted pf-bold pf-mx-8 pf-embed-hide">
                               ·
                             </span>
-                            {' '}
                             <a
                               href=""
                               onClick={() => history.push('/auth/forgot')}
@@ -295,10 +269,8 @@ export default function Register() {
                           </div>
                           <iframe title="2" style={{ display: 'none' }} />
                         </div>
-                        {' '}
                       </div>
                     </div>
-                    {' '}
                   </div>
                 </div>
               </div>
@@ -321,13 +293,11 @@ export default function Register() {
                   <div className="pf-mb-32">
                     <h3 className="pf-h3 pf-m-0 pf-text-white">
                       Let&apos;s stay informed
-                      {' '}
                     </h3>
                     <div className="pf-text-white pf-mt-8">
                       <span className="wysiwyg pf-d-block">
                         <p>
                           Stay on top of
-                          {' '}
                           <a
                             href="#"
                             target="_blank"
@@ -337,7 +307,6 @@ export default function Register() {
                           </a>
                         </p>
                       </span>
-                      {' '}
                     </div>
                   </div>
                 </div>
@@ -352,13 +321,11 @@ export default function Register() {
                   <div className="pf-mb-32">
                     <h3 className="pf-h3 pf-m-0 pf-text-white">
                       Let&apos;s stay informed
-                      {' '}
                     </h3>
                     <div className="pf-text-white pf-mt-8">
                       <span className="wysiwyg pf-d-block">
                         <p>
                           Stay on top of
-                          {' '}
                           <a
                             href="#"
                             target="_blank"
@@ -368,7 +335,6 @@ export default function Register() {
                           </a>
                         </p>
                       </span>
-                      {' '}
                     </div>
                   </div>
                 </div>
@@ -383,7 +349,6 @@ export default function Register() {
                   <div className="pf-mb-32">
                     <h3 className="pf-h3 pf-m-0 pf-text-white">
                       Let&apos;s stay safe
-                      {' '}
                     </h3>
                     <div className="pf-text-white pf-mt-8">
                       <span className="wysiwyg pf-d-block">
@@ -391,7 +356,6 @@ export default function Register() {
                           We&apos;re following health guidelines from the CDC and WHO
                         </p>
                       </span>
-                      {' '}
                     </div>
                   </div>
                 </div>
@@ -406,7 +370,6 @@ export default function Register() {
                   <div className="pf-mb-32">
                     <h3 className="pf-h3 pf-m-0 pf-text-white">
                       Let&apos;s stay safe
-                      {' '}
                     </h3>
                     <div className="pf-text-white pf-mt-8">
                       <span className="wysiwyg pf-d-block">
@@ -414,7 +377,6 @@ export default function Register() {
                           We&apos;re following health guidelines from the CDC and WHO
                         </p>
                       </span>
-                      {' '}
                     </div>
                   </div>
                 </div>
@@ -429,7 +391,6 @@ export default function Register() {
                   <div className="pf-mb-32">
                     <h3 className="pf-h3 pf-m-0 pf-text-white">
                       Let&apos;s keep going
-                      {' '}
                     </h3>
                     <div className="pf-text-white pf-mt-8">
                       <span className="wysiwyg pf-d-block">
@@ -437,11 +398,9 @@ export default function Register() {
                           <span>
                             Thank you all for your patience in this difficult
                             time
-                            {' '}
                           </span>
                         </p>
                       </span>
-                      {' '}
                     </div>
                   </div>
                 </div>
@@ -456,7 +415,6 @@ export default function Register() {
                   <div className="pf-mb-32">
                     <h3 className="pf-h3 pf-m-0 pf-text-white">
                       Let&apos;s keep going
-                      {' '}
                     </h3>
                     <div className="pf-text-white pf-mt-8">
                       <span className="wysiwyg pf-d-block">
@@ -464,11 +422,9 @@ export default function Register() {
                           <span>
                             Thank you all for your patience in this difficult
                             time
-                            {' '}
                           </span>
                         </p>
                       </span>
-                      {' '}
                     </div>
                   </div>
                 </div>
