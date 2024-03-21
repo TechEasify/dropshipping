@@ -2582,7 +2582,7 @@ table.billing div.status-label.success {
 
 .dashboard__sidebar > ul {
   flex: 1 1 auto;
-  overflow-y: auto;
+  /* overflow-y: auto; */
 }
 .dashboard__sidebar > ul + hr {
   display: block;

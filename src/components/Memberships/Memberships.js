@@ -179,7 +179,7 @@ function Memberships() {
             <div className='sales'>
                 <div className='heading-tabs'>
                     <div className='heading-sales'>
-                        <h2>Your Sales</h2>
+                        <h2 className='category-heading'>Your Sales</h2>
                     </div>
                     <div className='switch-tab'>
                         <Box sx={{ width: '100%', typography: 'body1' }}>
@@ -196,7 +196,7 @@ function Memberships() {
                 </div>
                 <div className='chart'>
                     <div className='chart-detail'>
-                        <Card sx={{ Width: 600, padding: 5, height: 400 }}>
+                        <Card sx={{ Width: 600, padding: 5 }}>
                             <h2 className='chart-head'>Your last 12 months</h2>
                             <p>February 20, 2023 - February 19, 2024</p>
                             <hr />
@@ -209,7 +209,7 @@ function Memberships() {
                         </Card>
                     </div>
                     <div className='chart-rounded'>
-                        <Card sx={{ padding: 5, height: 400, width: 400 }}>
+                        <Card sx={{ padding: 5 }}>
                             <h2 className='chart-head'>Your goal</h2>
                             <p>Become a member <strong>now</strong> for <strong>$24.99</strong> a month</p>
                             <hr />
@@ -231,7 +231,7 @@ function Memberships() {
                     </div>
                 </div>
                 <div className='saving-member'>
-                    <h2>Membership savings calculator</h2>
+                    <h2 className='category-heading'>Membership savings calculator</h2>
                     <div className='membership-calculator'>
                         <div className='mem-slider'>
                             <Card sx={{ maxWidth: 400, padding: 3, height: 400 }}>

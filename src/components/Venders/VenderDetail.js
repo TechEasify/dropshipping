@@ -683,7 +683,7 @@ function VenderDetail() {
                     </ul>
                 </div> */}
                 <div className='venderdetail-head'>
-                    <h2>Vender Detail</h2>
+                    <h2 className='category-heading'>Vender Detail</h2>
                 </div>
                 <div className='vender-product'>
                     <div className='card-vender'>
@@ -717,9 +717,9 @@ function VenderDetail() {
                             <Box sx={{ width: '40%' }}>
                                 <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                                     <Tabs value={value} onChange={handleChanged} aria-label="basic tabs example">
-                                        <Tab style={{ fontSize: "12px", background: value === 0 ? "#ca9832" : "inherit", color: value === 0 ? "white" : "inherit" }} label="Profile" {...a11yProps(0)} />
-                                        <Tab style={{ fontSize: "12px", background: value === 1 ? "#ca9832" : "inherit", color: value === 1 ? "white" : "inherit" }} label="Products" {...a11yProps(1)} />
-                                        <Tab style={{ fontSize: "12px", background: value === 2 ? "#ca9832" : "inherit", color: value === 2 ? "white" : "inherit" }} label="Plan" {...a11yProps(2)} />
+                                        <Tab style={{ fontSize: "12px", background: value === 0 ? "#232323" : "inherit", color: value === 0 ? "white" : "inherit" }} label="Profile" {...a11yProps(0)} />
+                                        <Tab style={{ fontSize: "12px", background: value === 1 ? "#232323" : "inherit", color: value === 1 ? "white" : "inherit" }} label="Products" {...a11yProps(1)} />
+                                        <Tab style={{ fontSize: "12px", background: value === 2 ? "#232323" : "inherit", color: value === 2 ? "white" : "inherit" }} label="Plan" {...a11yProps(2)} />
                                     </Tabs>
                                 </Box>
                             </Box>
