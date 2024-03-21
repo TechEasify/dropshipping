@@ -9,7 +9,7 @@ function Venders() {
         <>
             <div className='vender-main'>
                 <div className='vender-head'>
-                    <h2>Venders</h2>
+                    <h2 className='vender-heading'>Venders</h2>
                     <div className="filter-search-vender">
                         <div style={{ minHeight: '39px' }}>
                             <input

@@ -55,7 +55,7 @@ export function Methods() {
                   </div>
                   <div className="billing__default-billing-method padding-25 margin-bottom-15">
                     Please
-                    <Link to="/billing/legal-info" className="link">
+                    <Link to="methods/add" className="link">
                       Add Billing Method
                     </Link>
                   </div>

@@ -20,6 +20,8 @@ import data from '../../modules/ProductTemplate/assets';
 
 import { ResetDesign } from '../../modules/ProductTemplate/action';
 import { useCanvas } from '../../modules/ProductTemplate/hooks';
+import Crop75Icon from '@mui/icons-material/Crop75';
+import BlurCircularIcon from '@mui/icons-material/BlurCircular';
 
 const labelName = {
     front: 'Main',
@@ -56,6 +58,60 @@ function Editdesign() {
     const [colors, setColors] = useState({ hexs: [], previews: [] });
     const [color, setColor] = useState('');
     const [template, setTemplate] = useState('front');
+    const [activeButton, setActiveButton] = useState('product');
+    const [clipType, setClipType] = useState('rectangle');
+    const [isImageUploaded, setIsImageUploaded] = useState(false);
+
+    // Function to handle button click
+    const handleButtonClick = (button) => {
+        setActiveButton(button);
+        if (button === 'uploads') {
+            document.getElementById('fileInput').click();
+        }
+    };
+
+    // Function to handle file selection
+    const handleFileSelect = (event) => {
+        const file = event.target.files[0];
+        console.log(file, "file")
+        const clipPath = _.find(canvas.getObjects(), (o) => o.name === 'clip');
+        console.log(clipPath, "clipPath");
+
+        const reader = new FileReader();
+
+        reader.onload = () => {
+            fabric.Image.fromURL(
+                reader.result,
+                (iomg) => {
+                    iomg.set({
+                        clipTo(ctx) {
+                            return _.bind(clipByName, iomg)(ctx, clipPath);
+                        },
+                    });
+                    iomg.scaleToWidth(clipPath.width);
+
+                    iomg.on('mousemove', () => {
+                        iomg.set({ isOld: true });
+                    });
+
+                    iomg.on('mouseup', () => {
+                        setIsCapture((preCapture) => !preCapture);
+                    });
+
+                    setObjects({ ...objects, [template]: [...objects[template], iomg] });
+                    setIsImageUploaded(true);
+                },
+                {
+                    name: shortId.generate(),
+                    top: clipPath.top,
+                    left: clipPath.left,
+                    crossOrigin: 'anonymous',
+                }
+            );
+        };
+
+        reader.readAsDataURL(file);
+    };
 
     const TEMPLATE_OPTIONS = ['front', 'back'];
 
@@ -67,98 +123,194 @@ function Editdesign() {
         }
     };
 
-    const radius = 300;
+    const handleChangeClipType = (type) => {
+        if (canvas) {
+            const clipPath = clipRectangle.current;
+            const dropImage = dropImageRef.current;
+
+            let clipShape;
+            let clipWidth;
+            let clipHeight;
+            let clipLeft;
+            let clipTop;
+
+            // Define initial position front side
+            clipWidth = 260;
+            clipHeight = 110;
+            clipLeft = 365;
+            clipTop = 525;
+
+            // Define initial position back side
+            if (template === 'back') {
+                clipWidth = 700;
+                clipHeight = 110;
+                clipLeft = 140;
+                clipTop = 526;
+            }
+
+            if (type === 'rectangle') {
+                clipShape = new fabric.Rect({
+                    width: clipWidth,
+                    height: clipHeight,
+                    top: clipTop,
+                    left: clipLeft,
+                    fill: 'green',
+                    selectable: true,
+                    centeredScaling: true,
+                    centerTransform: false,
+                    lockRotation: true,
+                    name: 'clip',
+                    strokeWidth: 4,
+                });
+            } else if (type === 'circle') {
+                const centerX = clipLeft + clipWidth / 2;
+                console.log(centerX, "centerX");
+                const centerY = clipTop + clipHeight / 2;
+                console.log(centerY, "centerY");
+                const radius = Math.sqrt(Math.pow(clipWidth / 2, 2) + Math.pow(clipHeight / 2, 2));
+                console.log(Math.pow(clipWidth / 2, 2), "Math.pow(clipWidth / 2, 2)");
+                console.log(Math.pow(clipHeight / 2, 2), "Math.pow(clipHeight / 2, 2)");
+                console.log(radius, "radius");
+                clipShape = new fabric.Circle({
+                    radius: radius,
+                    top: centerY - radius,
+                    left: centerX - radius,
+                    fill: 'green',
+                    centeredScaling: true,
+                    centerTransform: false,
+                    lockRotation: true,
+                    selectable: true,
+                    name: 'clip',
+                    strokeWidth: 4,
+                });
+            }
+
+            clipRectangle.current = clipShape;
+
+            // Update drop image position
+            // dropImage.set({
+            //     top: clipTop,
+            //     left: clipLeft,
+            //     width: clipWidth,
+            //     height: clipHeight,
+            //     angle: type === 'circle' ? -15 : 0,
+            //     clipPath: type === 'circle' ? new fabric.Circle({
+            //         radius: clipWidth / 2,
+            //         originX: 'center',
+            //         originY: 'center',
+            //         angle: -15,
+            //     }) : null,
+            // });
+
+            canvas.remove(clipPath);
+            canvas.add(clipRectangle.current);
+            // canvas.add(dropImage);
+
+            // if (dropImage) {
+            //     updateDropImage();
+            // }
+
+            canvas.renderAll();
+        }
+        setClipType(type);
+    };
+
+
     useEffect(() => {
         if (canvas) {
             const canvasWidth = canvas.width;
             const canvasHeight = canvas.height;
-    
+
             // Calculate dynamic position and size for clipRectangle
-            const clipWidth = Math.round(canvasWidth / 2);
-            const clipHeight = canvasHeight * 0.15;
-            const clipLeft = canvasWidth * 0.5 - clipWidth * 0.5;
-            const clipTop = canvasHeight * 0.5 - clipHeight * 0.5;
-    
+            let clipWidth = 260;
+            let clipHeight = 110;
+            let clipLeft = 365;
+            let clipTop = 525;
+
+            if (template === 'back') {
+                console.log(template === 'back', "template === 'back'");
+                clipWidth = 700;
+                clipHeight = 110;
+                clipLeft = 140;
+                clipTop = 526;
+            }
+
             clipRectangle.current = new fabric.Rect({
                 width: clipWidth,
                 height: clipHeight,
                 top: clipTop,
                 left: clipLeft,
-                fill: 'transparent',
-                strokeDashArray: [5, 5],
-                stroke: '#222',
-                selectable: false, // Make not selectable
+                lockRotation: true,
                 name: 'clip',
-                visible: true,
+                fill: 'green',
+                selectable: true,
+                centeredScaling: true,
+                centerTransform: false,
                 strokeWidth: 4,
             });
-    
+
+            const backgroundImageURL = template === 'front' ? templateImage : backTemplateImage;
+            console.log(backgroundImageURL, "backgroundImageURL");
+
+            fabric.Object.prototype.transparentCorners = false;
+            fabric.Object.prototype.cornerColor = 'blue';
+            fabric.Object.prototype.cornerStyle = 'circle';
+
             fabric.Image.fromURL(
-                template === 'front' ? templateImage : backTemplateImage,
-                (iomg) => {
+                backgroundImageURL,
+                (image) => {
                     canvas.setBackgroundImage(
-                        iomg,
+                        image,
                         canvas.renderAll.bind(canvas),
                         {
-                            scaleX: canvasWidth / iomg.width,
-                            scaleY: canvasHeight / iomg.height,
+                            scaleX: canvasWidth / image.width,
+                            scaleY: canvasHeight / image.height,
                         }
                     );
                 },
                 { selectable: false, name: 'bg', width: canvasWidth, crossOrigin: 'Anonymous' }
             );
-    
-            fabric.Image.fromURL(
-                data.drop,
-                (dropImage) => {
-                    switch (template) {
-                        case 'front':
-                            dropImage.set({
-                                strokeDashArray: [5, 5],
-                                stroke: '#222',
-                                top: clipTop,
-                                left: clipLeft,
-                                width: clipWidth,
-                                height: clipHeight,
-                                angle: -15,
-                                clipPath: new fabric.Rect({
-                                    radius: radius,
-                                    originX: 'center',
-                                    originY: 'center',
-                                    angle: -15,
-                                }),
-                                fill: 'yellow',
-                            });
-                            break;
-                        case 'back':
-                            // Adjust for back template if needed
-                            break;
-                        default:
-                    }
-    
-                    canvas.add(clipRectangle.current);
-                    canvas.add(dropImage);
-                    dropImageRef.current = dropImage;
-                    setIsReady(true);
-    
-                    // Adjust clipRectangle size and position according to dropImage
-                    clipRectangle.current.set({
-                        width: dropImage.width,
-                        height: dropImage.height,
-                        left: dropImage.left,
-                        top: dropImage.top,
-                    });
-                    canvas.renderAll();
-                },
-                {
-                    selectable: false,
-                    name: 'drop',
-                    crossOrigin: 'Anonymous',
-                    selectable: true,
-                },
-            );
+
+            canvas.add(clipRectangle.current);
+            canvas.renderAll();
+
+            // fabric.Image.fromURL(
+            //     data.drop,
+            //     (dropImage) => {
+            //         console.log(dropImage, "dropImage");
+            //         // Logic for handling drop image based on the template
+            //         switch (template) {
+            //             case 'front':
+            //                 // Add logic if needed
+            //                 break;
+            //             case 'back':
+            //                 // Add logic if needed
+            //                 break;
+            //             default:
+            //         }
+
+            //         canvas.add(clipRectangle.current);
+            //         canvas.add(dropImage);
+            //         dropImageRef.current = dropImage;
+            //         setIsReady(true);
+
+            //         clipRectangle.current.set({
+            //             width: clipWidth,
+            //             height: clipHeight,
+            //             top: clipTop,
+            //             left: clipLeft,
+            //         });
+            //         canvas.renderAll();
+            //     },
+            //     {
+            //         selectable: false,
+            //         name: 'drop',
+            //         crossOrigin: 'Anonymous',
+            //         selectable: true,
+            //     },
+            // );
         }
-    
+
         return () => {
             if (canvas) {
                 canvas.clear();
@@ -172,14 +324,20 @@ function Editdesign() {
                 }),
             }));
         };
-    }, [canvas, templateImage, template]);
+    }, [canvas, template]);
+
+
+
+
+    console.log(clipRectangle.current, "clipRectangle");
+
 
     const updateDropImage = () => {
         const modifiedObject = clipRectangle.current;
         if (modifiedObject && modifiedObject.name === "clip") {
             const { left, top, width, height } = modifiedObject;
+            console.log("left :- ", left, "top :- ", top, "width :- ", width, "height :- ", height,);
             const dropImage = dropImageRef.current;
-            console.log(dropImage, "dropImage");
             if (dropImage) {
                 dropImage.set({
                     left: Math.round(left),
@@ -251,10 +409,10 @@ function Editdesign() {
             const dropImage = _.find(canvas.getObjects(), (o) => o.name === 'drop');
             if (canvas.getObjects().length > 2) {
                 clipPath.set({ visible: true });
-                dropImage.set({ visible: false });
+                // dropImage.set({ visible: false });
             } else {
                 clipPath.set({ visible: false });
-                dropImage.set({ visible: true });
+                // dropImage.set({ visible: true });
             }
             canvas.renderAll();
         }
@@ -289,44 +447,6 @@ function Editdesign() {
                 })
                 : [],
         });
-    };
-
-    const onChooseImage = (file) => {
-        const clipPath = _.find(canvas.getObjects(), (o) => o.name === 'clip');
-
-        const reader = new FileReader();
-
-        reader.onload = () => {
-            fabric.Image.fromURL(
-                reader.result,
-                (iomg) => {
-                    iomg.set({
-                        clipTo(ctx) {
-                            return _.bind(clipByName, iomg)(ctx, clipPath);
-                        },
-                    });
-                    iomg.scaleToWidth(clipPath.width);
-
-                    iomg.on('mousemove', () => {
-                        iomg.set({ isOld: true });
-                    });
-
-                    iomg.on('mouseup', () => {
-                        setIsCapture((preCapture) => !preCapture);
-                    });
-
-                    setObjects({ ...objects, [template]: [...objects[template], iomg] });
-                },
-                {
-                    name: shortId.generate(),
-                    top: clipPath.top,
-                    left: clipPath.left,
-                    crossOrigin: 'anonymous',
-                }
-            );
-        };
-
-        reader.readAsDataURL(file);
     };
 
     const onSaveTextObject = (textId) => {
@@ -365,58 +485,95 @@ function Editdesign() {
         history.push('/manageable/editproduct');
     };
 
-    const onChooseColor = (chooseColors, currentColor) => {
-        // Define your logic for choosing colors here
-        console.log("Chosen colors:", chooseColors);
-        console.log("Current color:", currentColor);
-        // Update state or perform other actions as needed
-    };
     return (
         <>
             <div
-                className="product-push pf-mb-48  dropzone dropzone-1"
+                className="dropzone dropzone-1"
                 id="js--product-push-designer"
             >
                 <div className="row">
-                    <div className="col-12 col-md-4 pf-mt-md-8 pf-mb-md-48">
-                        <div>
-                            <ul
-                                className="pf-tabs primary top-icons tabs-justify pf-mb-md-24 pf-tabs-generator-mobile"
-                                style={{ top: 0 }}
+                    <div className="design-img col-12 pf-mt-md-8 pf-mb-md-48">
+                        <div class="designer-sidebar pf-w-100">
+                            {/* <aside
+                                aria-label="Design Maker sidebar"
+                                class="sidebar-navigation pf-d-flex pf-align-items-center pf-scrollbar-hide"
                             >
-                                <div className="tab-wrap">
-                                    <li
-                                        className={clsx('tab', tab === 'product' ? 'active' : '')}
-                                        onClick={() => setTab('product')}
+                                <nav data-v-0a2c8d53="">
+                                    <button
+                                        onClick={() => handleButtonClick('product')}
+                                        className={`item pf-text-center pf-py-8 pf-py-md-12 pf-px-2 pf-my-8 pf-my-md-4 pf-cursor-pointer pf-d-inline-block pf-d-md-block pf-btn-unstyled ${activeButton === 'product' ? 'active' : ''}`}
                                     >
-                                        <a href="#">
-                                            <span>
-                                                <i className="pf-i pf-i-variable pf-i-24" />
-                                            </span>
-                                            <span>Product</span>
-                                        </a>
-                                    </li>
-                                    <li
-                                        className={clsx('tab', tab === 'design' ? 'active' : '')}
-                                        onClick={() => setTab('design')}
+                                        <i className="sidebar-navigation-icon pf-i pf-i-24 pf-i-tshirt-crew-outline"></i>
+                                        <span className="title pf-ui-legal pf-d-block pf-mt-4">Product</span>
+                                    </button>
+                                    <button
+                                        onClick={() => handleButtonClick('layers')}
+                                        className={`item pf-text-center pf-py-8 pf-py-md-12 pf-px-2 pf-my-8 pf-my-md-4 pf-cursor-pointer pf-d-inline-block pf-d-md-block pf-btn-unstyled ${activeButton === 'layers' ? 'active' : ''}`}
                                     >
-                                        <a href="#">
-                                            <span>
-                                                <i className="pf-i pf-i-palette-outline pf-i-24" />
-                                            </span>
-                                            <span>Design</span>
-                                        </a>
-                                    </li>
-                                </div>
-                            </ul>
+                                        <i className="sidebar-navigation-icon pf-i pf-i-24 pf-i-layers-outline"></i>
+                                        <span className="title pf-ui-legal pf-d-block pf-mt-4">Layers</span>
+                                    </button>
+                                </nav>
+                                <hr data-v-0a2c8d53="" class="divider pf-my-4" />
+                            </aside> */}
+                            <aside
+                                aria-label="Design Maker sidebar"
+                                class="sidebar-navigation pf-d-flex pf-align-items-center pf-scrollbar-hide"
+                            >
+                                <nav data-v-0a2c8d53="">
+                                    {/* <input
+                                        type="file"
+                                        id="fileInput"
+                                        style={{ display: 'none' }}
+                                        onChange={handleFileSelect}
+                                    />
+                                    <button
+                                        onClick={() => handleButtonClick('uploads')}
+                                        className={`item pf-text-center pf-py-8 pf-py-md-12 pf-px-2 pf-my-8 pf-my-md-4 pf-cursor-pointer pf-d-inline-block pf-d-md-block pf-btn-unstyled ${activeButton === 'uploads' ? 'active' : ''}`}
+                                    >
+                                        <i data-v-f7d35098="" data-test="" aria-hidden="true" class="sidebar-navigation-icon pf-i pf-i-24 pf-i-upload"></i> <span data-v-f7d35098="" class="title pf-ui-legal pf-d-block pf-mt-4">Uploads</span>
+                                    </button>
+                                    <button
+                                        onClick={() => handleButtonClick('text')}
+                                        className={`item pf-text-center pf-py-8 pf-py-md-12 pf-px-2 pf-my-8 pf-my-md-4 pf-cursor-pointer pf-d-inline-block pf-d-md-block pf-btn-unstyled ${activeButton === 'text' ? 'active' : ''}`}
+                                    >
+                                        <i data-v-f7d35098="" data-test="" aria-hidden="true" class="sidebar-navigation-icon pf-i pf-i-24 pf-i-format-text"></i> <span data-v-f7d35098="" class="title pf-ui-legal pf-d-block pf-mt-4">Text</span>
+                                    </button> */}
+
+                                    <div className='btn-rectangle'>
+                                        <button
+                                            onClick={() => handleChangeClipType('rectangle')}
+                                            className={`item pf-text-center pf-py-8 pf-py-md-12 pf-px-2 pf-my-8 pf-my-md-4 pf-cursor-pointer pf-d-inline-block pf-d-md-block pf-btn-unstyled ${clipType === 'rectangle' ? 'active' : ''}`}
+                                            style={{ fontSize: 13 }}
+                                        >
+                                            <div>
+                                                <Crop75Icon className='sidebar-navigation-icon pf-i pf-i-24 pf-i-format-text' />
+                                            </div>
+                                            Rectangle
+                                        </button>
+                                    </div>
+                                    <div className='btn-rectangle'>
+                                        <button
+                                            onClick={() => handleChangeClipType('circle')}
+                                            className={`item pf-text-center pf-py-8 pf-py-md-12 pf-px-2 pf-my-8 pf-my-md-4 pf-cursor-pointer pf-d-inline-block pf-d-md-block pf-btn-unstyled ${clipType === 'circle' ? 'active' : ''}`}
+                                            style={{ fontSize: 13 }}
+                                        >
+                                            <div>
+                                                <BlurCircularIcon className='sidebar-navigation-icon pf-i pf-i-24 pf-i-format-text' />
+                                            </div>
+                                            Circle
+                                        </button>
+                                    </div>
+                                </nav>
+                            </aside>
                         </div>
-                        <TabProduct
+                        {/* <TabProduct
                             onChooseColor={onChooseColor}
                             visible={tab === 'product' ? 'block' : 'none'}
-                        />
+                        /> */}
                         <TabDesign
                             canvas={canvas}
-                            onChooseImage={onChooseImage}
+                            onChooseImage={handleFileSelect}
                             onSaveTextObject={onSaveTextObject}
                             visible={tab === 'design' ? 'block' : 'none'}
                         />
@@ -427,7 +584,7 @@ function Editdesign() {
                         ref={canvasSize}
                     >
                         <div className="text-center">
-                            <ul className="pf-tabs secondary " style={{ top: 0 }}>
+                            <ul className="pf-tabs secondary tabs-center " style={{ top: 0 }}>
                                 <div className="tab-wrap">
                                     {Object.keys(objects).map((key) => (
                                         <li
@@ -457,12 +614,12 @@ function Editdesign() {
             <DialogActions
                 style={{ position: 'sticky', bottom: 0, backgroundColor: 'white' }}
             >
-                <div className="dynamic-sticky-footer  pf-p-0 pf-py-md-16">
+                <div className="dynamic-sticky-footer  pf-p-0">
                     <div className="dynamic-sticky-footer__second-wrap">
                         <div className="dynamic-sticky-footer__second">
                             <div className="container">
                                 <div>
-                                    <div className="row no-gutters pf-px-12 pf-px-md-0 pf-pt-8 pf-pt-md-0">
+                                    <div className="row no-gutters pf-px-12 pf-px-md-0 pf-pt-8 pf-pt-md-0" style={{ justifyContent: "end" }}>
                                         <div className="col-12 col-md-auto order-2 order-md-1 pf-d-flex pf-align-items-stretch">
                                             <a
                                                 href="#"

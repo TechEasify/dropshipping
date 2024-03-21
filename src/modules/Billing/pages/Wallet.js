@@ -157,7 +157,7 @@ function Wallet() {
                     <div className='Wallet-main'>
                         <div className='wallet-top'>
                             <div className='wallet-head'>
-                                <h2>Billing: Dropship Wallet</h2>
+                                <h2 className='category-heading'>Billing: Dropship Wallet</h2>
                             </div>
                             <br />
                             <div className='wallet-detail'>
@@ -207,7 +207,7 @@ function Wallet() {
                         <br />
                         <br />
                         <div className='Other-wallet'>
-                            <h3>Other Wallets</h3>
+                            <h3 className='wallet-heading'>Other Wallets</h3>
                             <p>Wallets that are not used for more than 4 weeks will be automatically moved to Other Wallets.</p>
                             <div className='usd-wallet'>
                                 <Card sx={{ minWidth: 275 }}>

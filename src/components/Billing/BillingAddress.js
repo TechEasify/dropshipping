@@ -1,4 +1,5 @@
 import React from 'react';
+import MuiPhoneNumber from 'material-ui-phone-number';
 
 export default (props) => (
   <>
@@ -113,7 +114,7 @@ export default (props) => (
                       style={{ width: '100%' }}
                     >
                       <a className="chosen-single" tabIndex={-1}>
-                        <span>Vietnam</span>
+                        <span>United States ( USA )</span>
                         <div>
                           <b />
                         </div>
@@ -180,53 +181,7 @@ export default (props) => (
                       Phone (optional)
                     </label>
                     <div className="col-4 phone-container__code">
-                      <select
-                        name="dialCode"
-                        id="dialCode"
-                        data-placeholder=" "
-                        data--vv--as="dialCode"
-                        className="form-control inspectletIgnore"
-                        style={{ display: 'none' }}
-                      >
-                        <option
-                          data-selectvalue={1}
-                          data-prepend='{"tag":"span","className":"pf-mr-8 flag flag--sprite flag--sprite-us"}'
-                          value="US"
-                        >
-                          United States ( USA ) +1
-                        </option>
-                      </select>
-                      <div
-                        className="chosen-container chosen-container-single"
-                        id="dialCode_chosen"
-                        style={{ width: '100%' }}
-                      >
-                        <a className="chosen-single" tabIndex={-1}>
-                          <span>
-                            <span className="pf-mr-8 flag flag--sprite flag--sprite-vn" />
-                            +84
-                          </span>
-                          <div>
-                            <b />
-                          </div>
-                        </a>
-                        <div className="chosen-drop">
-                          <div className="chosen-search">
-                            <input type="text" autoComplete="off" />
-                          </div>
-                          <ul className="chosen-results" />
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col-8">
-                      <input
-                        type="text"
-                        id="phone"
-                        name="phone"
-                        value={props.phone}
-                        onChange={props.onChange}
-                        className="form-control inspectletIgnore"
-                      />
+                      <MuiPhoneNumber defaultCountry={'us'} name='phone' />
                     </div>
                   </div>
                 </div>

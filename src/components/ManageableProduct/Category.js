@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
-import { Button, TextField } from '@mui/material';
+import { TextField } from '@mui/material';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
@@ -11,6 +11,7 @@ import Skeleton from '@mui/material/Skeleton';
 import Chip from '@mui/material/Chip';
 import Autocomplete from '@mui/material/Autocomplete';
 import Avatar from '@mui/material/Avatar';
+import { Button } from '@shopify/polaris';
 
 function Tag(props) {
     const { label, onDelete, ...other } = props;
@@ -216,7 +217,7 @@ function Category() {
                     <>
                         <div className="new-category">
                             <div className="main-text">
-                                {categoryData.id !== null ? <h2>Edit Category</h2> : <h2>New Category</h2>}
+                                {categoryData.id !== null ? <h2 className='category-heading'>Edit Category</h2> : <h2 className='category-heading'>New Category</h2>}
                                 <Button className="category-btn" onClick={() => setNewCategory(false)}>close</Button>
                             </div>
                             <div className="category-name">
@@ -320,7 +321,7 @@ function Category() {
                     :
                     <>
                         <div className='category-head'>
-                            <h2>Category</h2>
+                            <h2 className='category-heading'>Category</h2>
                             <Button className='category-btn' onClick={() => setNewCategory(true)}>New Category</Button>
                         </div>
                         <div style={{ height: 400, width: '100%' }}>

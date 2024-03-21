@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
-import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import { Button } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { Select } from '@shopify/polaris';
 
 const exceptThisSymbols = ["e", "E", "+", "-", "."];
 
@@ -38,8 +38,7 @@ function ManageDigitalService() {
         localStorage.setItem('tableData', JSON.stringify(tableData));
     }, [tableData]);
 
-    const handleChangePlan = (e) => {
-        const { value } = e.target;
+    const handleChangePlan = (value) => {
         setManagePlan(value);
     };
 
@@ -76,7 +75,7 @@ function ManageDigitalService() {
             };
             setTableData((prevData) => [...prevData, newItem]);
         }
-        
+
         localStorage.setItem('tableData', JSON.stringify(tableData));
         // Reset form fields
         setDigitalService({
@@ -156,6 +155,13 @@ function ManageDigitalService() {
         });
     }
 
+    const options = [
+        { label: 'Logo Designing', value: 'logodesigning' },
+        { label: 'Label Designing', value: 'labeldesigning' },
+        { label: 'Image Designing', value: 'imagedesigning' },
+        { label: 'Packaging Designing', value: 'packagingdesigning' },
+    ];
+
     return (
         <>
             <div className='digital-services'>
@@ -165,7 +171,7 @@ function ManageDigitalService() {
                             <form onSubmit={handleSubmit}>
                                 <div className='manage-form'>
                                     <div className='digital-label'>
-                                        <h2>Manage Digital Service Form</h2>
+                                        <h2 className='category-heading'>Manage Digital Service Form</h2>
                                     </div>
                                     <div className='button-digital'>
                                         <Button className="digital-btn" onClick={handleClose}>
@@ -180,19 +186,14 @@ function ManageDigitalService() {
                                     <div className='manage-select'>
                                         <Box sx={{ minWidth: 120 }}>
                                             <FormControl fullWidth>
-                                                <InputLabel id="demo-simple-select-label">Service</InputLabel>
                                                 <Select
                                                     labelId="demo-simple-select-label"
                                                     id="demo-simple-select"
                                                     value={managePlan}
-                                                    label="Plan"
+                                                    placeholder="Plan"
+                                                    options={options}
                                                     onChange={handleChangePlan}
-                                                >
-                                                    <MenuItem value="logodesigning">Logo Designing</MenuItem>
-                                                    <MenuItem value='labeldesigning'>Label Designing</MenuItem>
-                                                    <MenuItem value='imagedesigning'>Image Designing</MenuItem>
-                                                    <MenuItem value='packagingdesigning'>Packaging Designing</MenuItem>
-                                                </Select>
+                                                />
                                             </FormControl>
                                         </Box>
                                     </div>
@@ -204,7 +205,7 @@ function ManageDigitalService() {
                                         managePlan === "packagingdesigning") &&
                                     <div className='digital-form'>
                                         <div className='designing-form'>
-                                            <h5>{managePlan === "logodesigning" ? "Logo Designing" :
+                                            <h5 className='designing-heading'>{managePlan === "logodesigning" ? "Logo Designing" :
                                                 managePlan === "labeldesigning" ? "Label Designing" :
                                                     managePlan === "imagedesigning" ? "Image Designing" :
                                                         "Packaging Designing"}</h5>
@@ -261,7 +262,7 @@ function ManageDigitalService() {
                         <div className='digital-table'>
                             <div className='digital-label'>
                                 <div className='digital-label'>
-                                    <h2>Manage Digital Service</h2>
+                                    <h2 className='category-heading'>Manage Digital Service</h2>
                                 </div>
                                 <div className='button-digital'>
                                     <Button className="digital-btn" onClick={() => setDigitalForm(true)}>Add Designing</Button>

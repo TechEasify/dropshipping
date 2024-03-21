@@ -183,7 +183,7 @@ export default function CreateStepOne() {
   return (
     <>
     <div className='stepone-main'>
-      <div className="row pf-mr-8">
+      {/* <div className="row pf-mr-8">
         <div className="col-md-9 pf-md-mb-0 pf-mb-16">
           <div className="col-12 text-left col-sm-6 col-md-9">
             <h3 className="pf-m-0 pf-h3">Choose product</h3>
@@ -244,10 +244,10 @@ export default function CreateStepOne() {
             </span>
           </div>
         </div>
-      </div>      
+      </div>       */}
     </div>
 
-      <div>
+      {/* <div>
         <div className="container-fluid">
           <div className="catalog__header" />
           <div>
@@ -255,7 +255,6 @@ export default function CreateStepOne() {
               <div className="col-xs-12 col-sm-4 col-md-3 col-lg-3 col-xl-3 hidden-xs catalog__sidebar-floating">
                 <div className="catalog__sidebar-content">
                   <ul className="catalog__sidebar-menu catalog__sidebar-menu--top-level hidden-xs">
-                    {/* {CategoryComponents} */}
                     <div className="catalog__sidebar-menu__current-item" />
                   </ul>
                 </div>
@@ -268,7 +267,7 @@ export default function CreateStepOne() {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </>
   );
 }

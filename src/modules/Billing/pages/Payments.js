@@ -237,7 +237,7 @@ export function Payments() {
 
                 <div className='payment-mathod'>
                   <div className='payment-head'>
-                    <h2>No payments made yet</h2>
+                    <h2 className='category-heading'>No payments made yet</h2>
                     <p style={{ fontSize: "12px" }}>You'll see all your transactions here once you make an order</p>
                     <Button variant="contained" className='order-now'>Order now</Button>
                   </div>

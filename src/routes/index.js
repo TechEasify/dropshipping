@@ -6,6 +6,7 @@ import {
   AppBar,
   Toolbar,
   CssBaseline,
+  Box,
 
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
@@ -60,6 +61,15 @@ import SettingDigitalService from '../components/ViewDegitalService/SettingDigit
 import TestOrder from '../modules/Orders/pages/TestOrder';
 import TestMultiShipping from '../modules/Orders/pages/TestMultiShipping';
 
+
+import Divider from '@mui/material/Divider';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
+import { TextField } from '@shopify/polaris';
+import {
+  SearchIcon
+} from '@shopify/polaris-icons';
+
 const drawerWidth = 230;
 
 const nav = [
@@ -91,13 +101,13 @@ const nav = [
     treeItem: [],
     link: '/template',
   },
-  {
-    text: 'Warehouse',
-    icon: 'pf-i pf-i-24 pf-mb-2 pf-mr-8 pf-i-package-variant-closed pf-text-gray-400',
-    isTree: false,
-    treeItem: [],
-    link: '/warehouse',
-  },
+  // {
+  //   text: 'Warehouse',
+  //   icon: 'pf-i pf-i-24 pf-mb-2 pf-mr-8 pf-i-package-variant-closed pf-text-gray-400',
+  //   isTree: false,
+  //   treeItem: [],
+  //   link: '/warehouse',
+  // },
   {
     text: 'Venders',
     icon: 'pf-i pf-i-24 pf-mb-2 pf-mr-8 pf-i-package-variant-closed pf-text-gray-400',
@@ -142,34 +152,34 @@ const nav = [
     treeItem: [],
     link: '/memberships',
   },
-  {
-    text: 'Manage Memberships',
-    icon: 'pf-i pf-i-24 pf-mb-2 pf-mr-8 pf-i-cards pf-text-red-700',
-    isTree: false,
-    treeItem: [],
-    link: '/managememberships',
-  },
-  {
-    text: 'Manage Tiers',
-    icon: 'pf-i pf-i-24 pf-mb-2 pf-mr-8 pf-i-cards pf-text-red-700',
-    isTree: false,
-    treeItem: [],
-    link: '/managetiers',
-  },
-  {
-    text: 'Manage Digital Service',
-    icon: 'pf-i pf-i-24 pf-mb-2 pf-mr-8 pf-i-cards pf-text-red-700',
-    isTree: false,
-    treeItem: [],
-    link: '/managedigitalservice',
-  },
-  {
-    text: 'Admin Digital Service',
-    icon: 'pf-i pf-i-24 pf-mb-2 pf-mr-8 pf-i-cards pf-text-red-700',
-    isTree: false,
-    treeItem: [],
-    link: '/admindigitalservice',
-  },
+  // {
+  //   text: 'Manage Memberships',
+  //   icon: 'pf-i pf-i-24 pf-mb-2 pf-mr-8 pf-i-cards pf-text-red-700',
+  //   isTree: false,
+  //   treeItem: [],
+  //   link: '/managememberships',
+  // },
+  // {
+  //   text: 'Manage Tiers',
+  //   icon: 'pf-i pf-i-24 pf-mb-2 pf-mr-8 pf-i-cards pf-text-red-700',
+  //   isTree: false,
+  //   treeItem: [],
+  //   link: '/managetiers',
+  // },
+  // {
+  //   text: 'Manage Digital Service',
+  //   icon: 'pf-i pf-i-24 pf-mb-2 pf-mr-8 pf-i-cards pf-text-red-700',
+  //   isTree: false,
+  //   treeItem: [],
+  //   link: '/managedigitalservice',
+  // },
+  // {
+  //   text: 'Admin Digital Service',
+  //   icon: 'pf-i pf-i-24 pf-mb-2 pf-mr-8 pf-i-cards pf-text-red-700',
+  //   isTree: false,
+  //   treeItem: [],
+  //   link: '/admindigitalservice',
+  // },
   {
     text: 'View Digital Service',
     icon: 'pf-i pf-i-24 pf-mb-2 pf-mr-8 pf-i-cards pf-text-red-700',
@@ -230,8 +240,7 @@ const useStyle = makeStyles((theme) => ({
   root: {
     display: 'flex',
     '& .MuiPaper-elevation4': {
-      boxShadow: 'none',
-      borderBottom: '1px solid rgba(0, 0, 0, 0.12)',
+      boxShadow: '2px 3px 5px 1px #e5e5e5',
     },
     '& .MuiDrawer-paper': {
       boxShadow:
@@ -263,11 +272,11 @@ const useStyle = makeStyles((theme) => ({
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
     },
-    backgroundColor: 'white',
+    backgroundColor: "rgba(241, 241, 241, 1)",
   },
 }));
 
-const Layout = ({ children }) => {
+const Layout = ({ children, window }) => {
   const classes = useStyle();
   const location = useLocation();
   const prefix = location.pathname.split('/')[1];
@@ -276,277 +285,329 @@ const Layout = ({ children }) => {
   const [expandSetting, setExpandSetting] = useState(false);
   const [expandproduct, setExpandProduct] = useState(false);
 
+  const [state, setState] = useState({
+    left: false,
+  });
+  const [value, setValue] = useState('');
+
+  const handleChange = () => {
+    setValue(newValue)
+  }
+
+  const toggleDrawer = (anchor, open) => (event) => {
+    if (
+      event.type === 'keydown' &&
+      (event.key === 'Tab' || event.key === 'Shift')
+    ) {
+      return;
+    }
+  
+    const isKeepOpenItem =
+      event.target.innerText === 'Manage Products' ||
+      event.target.innerText === 'Settings' ||
+      event.target.innerText === 'Billing';
+
+    console.log(isKeepOpenItem, "isKeepOpenItem")
+  
+    if (!isKeepOpenItem) {
+      setState({ ...state, [anchor]: open });
+    }
+  };
+
+  const list = (anchor) => (
+    <Box
+      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
+      role="presentation"
+      onClick={toggleDrawer(anchor, false)}
+      onKeyDown={toggleDrawer(anchor, false)}
+    >
+      <div
+        id="dashboard-sidebar"
+        className="dashboard__sidebar"
+      >
+        <ul
+          className="pf-m-0 pf-px-0 pf-py-8"
+          id="sidebar-ul"
+        >
+          {nav.map((item) => (
+            <div key={item.text}>
+              {item.text !== 'Billing' && item.text !== 'Manage Products' && item.text !== 'Settings' && (
+                <li className="panel" key={item.text}>
+                  <Link
+                    className={clsx(
+                      'pf-link-block pf-px-24 pf-py-8',
+                      item.link === `/${prefix}` ? 'active' : ''
+                    )}
+                    style={{ cursor: 'pointer' }}
+                    to={item.link}
+                  >
+                    <span className={item.icon}/>
+                    <span className="pf-ml-8">{item.text}</span>
+                  </Link>
+                </li>
+              )}
+
+              {item.text === 'Billing' && (
+                <>
+                  <li className="panel" key={item.text}>
+                    <a
+                      className={clsx(
+                        'pf-link-block pf-px-24 pf-py-8',
+                        item.link === `/${prefix}` ? 'active' : ''
+                      )}
+                      style={{ cursor: 'pointer' }}
+                      onClick={() => setExpandBill(!expandBill)}
+                    >
+                      <span className={item.icon} />
+                      <span className="pf-ml-8">{item.text}</span>
+                      <div>
+                        {!expandBill ? (
+                          <span
+                            className="float-right pf-px-24 pf-py-8 collapsed"
+                            role="button"
+                            data-toggle="collapse"
+                            data-parent="#sidebar-ul"
+                            data-target="#sidebar-ul-5"
+                            aria-expanded="false"
+                          >
+                            <i className="pf-i pf-i-18 pf-i-chevron-up" />
+                          </span>
+                        ) : (
+                          <span
+                            className="float-right pf-px-24 pf-py-8"
+                            role="button"
+                            data-toggle="collapse"
+                            data-parent="#sidebar-ul"
+                            data-target="#sidebar-ul-5"
+                            aria-expanded="true"
+                          >
+                            <i className="pf-i pf-i-18 pf-i-chevron-up" />
+                          </span>
+                        )}
+                      </div>
+                    </a>
+                  </li>
+                  <ul
+                    className={`pf-pl-24 pf-bg-white collapse ${expandBill && 'in'
+                      }`}
+                    id="sidebar-ul-9"
+                  >
+                    {item.treeItem.map((treeItem) => (
+                      <li key={treeItem.text}>
+                        <Link
+                          className={`pf-link-block pf-px-24 pf-py-8 ${treeItem.link === `/${prefix}/${path}` ? 'active' : ''
+                            }`}
+                          to={treeItem.link}
+                          style={{ cursor: 'pointer' }}
+                        >
+                          <span>{treeItem.text}</span>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              )}
+              {item.text === 'Manage Products' && (
+                <>
+                  <li className="panel" key={item.text}>
+                    <a
+                      className={clsx(
+                        'pf-link-block pf-px-24 pf-py-8',
+                        item.link === `/${prefix}` ? 'active' : ''
+                      )}
+                      style={{ cursor: 'pointer' }}
+                      onClick={() => setExpandProduct(!expandproduct)}
+                    >
+                      <span className={item.icon}/>
+                      <span className="pf-ml-8">{item.text}</span>
+                      <div>
+                        {!expandproduct ? (
+                          <span
+                            className="float-right pf-px-24 pf-py-8 collapsed"
+                            role="button"
+                            data-toggle="collapse"
+                            data-parent="#sidebar-ul"
+                            data-target="#sidebar-ul-5"
+                            aria-expanded="false"
+                          >
+                            <i className="pf-i pf-i-18 pf-i-chevron-up" />
+                          </span>
+                        ) : (
+                          <span
+                            className="float-right pf-px-24 pf-py-8"
+                            role="button"
+                            data-toggle="collapse"
+                            data-parent="#sidebar-ul"
+                            data-target="#sidebar-ul-5"
+                            aria-expanded="true"
+                          >
+                            <i className="pf-i pf-i-18 pf-i-chevron-up" />
+                          </span>
+                        )}
+                      </div>
+                    </a>
+                  </li>
+                  <ul
+                    className={`pf-pl-24 pf-bg-white collapse ${expandproduct && 'in'
+                      }`}
+                    id="sidebar-ul-9"
+                  >
+                    {item.treeItem.map((treeItem) => (
+                      <li key={treeItem.text}>
+                        <Link
+                          className={`pf-link-block pf-px-24 pf-py-8 ${treeItem.link === `/${prefix}/${path}` ? 'active' : ''
+                            }`}
+                          to={treeItem.link}
+                          style={{ cursor: 'pointer' }}
+                        >
+                          <span>{treeItem.text}</span>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              )}
+              {item.text === 'Settings' && (
+                <>
+                  <li className="panel" key={item.text}>
+                    <a
+                      className={clsx(
+                        'pf-link-block pf-px-24 pf-py-8',
+                        item.link === `/${prefix}` ? 'active' : ''
+                      )}
+                      style={{ cursor: 'pointer' }}
+                      onClick={() => setExpandSetting(!expandSetting)}
+                    >
+                      <span className={item.icon} style={{ paddingRight: 5 }} />
+                      <span className="pf-ml-8">{item.text}</span>
+                      <div>
+                        {!expandSetting ? (
+                          <span
+                            className="float-right pf-px-24 pf-py-8 collapsed"
+                            role="button"
+                            data-toggle="collapse"
+                            data-parent="#sidebar-ul"
+                            data-target="#sidebar-ul-5"
+                            aria-expanded="false"
+                          >
+                            <i className="pf-i pf-i-18 pf-i-chevron-up" />
+                          </span>
+                        ) : (
+                          <span
+                            className="float-right pf-px-24 pf-py-8"
+                            role="button"
+                            data-toggle="collapse"
+                            data-parent="#sidebar-ul"
+                            data-target="#sidebar-ul-5"
+                            aria-expanded="true"
+                          >
+                            <i className="pf-i pf-i-18 pf-i-chevron-up" />
+                          </span>
+                        )}
+                      </div>
+                    </a>
+                  </li>
+                  <ul
+                    className={`pf-pl-24 pf-bg-white collapse ${expandSetting && 'in'
+                      }`}
+                    id="sidebar-ul-9"
+                  >
+                    {item.treeItem.map((treeItem) => (
+                      <li key={treeItem.text}>
+                        <Link
+                          className={`pf-link-block pf-px-24 pf-py-8 ${treeItem.link === `/${prefix}/${path}` ? 'active' : ''
+                            }`}
+                          to={treeItem.link}
+                          style={{ cursor: 'pointer' }}
+                        >
+                          <span>{treeItem.text}</span>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              )}
+            </div>
+          ))}
+        </ul>
+      </div>
+      <Divider />
+    </Box>
+  );
+
   useEffect(() => {
     setExpandBill(prefix === 'billing');
     setExpandSetting(prefix === 'settings');
     setExpandProduct(prefix === 'manageable')
   }, [prefix]);
-  const drawer = (
-    <div
-      id="dashboard-sidebar"
-      className="dashboard__sidebar pf-bg-white pf-ui-body"
-      style={{ maxWidth: 230 }}
-    >
-      <ul
-        className="pf-m-0 pf-px-0 pf-py-8"
-        id="sidebar-ul"
-      // style={{ maxHeight: 430 }}
-      >
-        {nav.map((item) => (
-          <div key={item.text}>
-            {item.text !== 'Billing' && item.text !== 'Manage Products' && item.text !== 'Settings' && (
-              <li className="panel" key={item.text}>
-                <Link
-                  className={clsx(
-                    'pf-link-block pf-px-24 pf-py-8',
-                    item.link === `/${prefix}` ? 'active' : ''
-                  )}
-                  style={{ cursor: 'pointer' }}
-                  to={item.link}
-                >
-                  <span className={item.icon} style={{ paddingRight: 5 }} />
-                  <span className="pf-ml-8">{item.text}</span>
-                </Link>
-              </li>
-            )}
-
-            {item.text === 'Billing' && (
-              <>
-                <li className="panel" key={item.text}>
-                  <a
-                    className={clsx(
-                      'pf-link-block pf-px-24 pf-py-8',
-                      item.link === `/${prefix}` ? 'active' : ''
-                    )}
-                    style={{ cursor: 'pointer' }}
-                    onClick={() => setExpandBill(!expandBill)}
-                  >
-                    <span className={item.icon} style={{ paddingRight: 5 }} />
-                    <span className="pf-ml-8">{item.text}</span>
-                    <div>
-                      {!expandBill ? (
-                        <span
-                          className="float-right pf-px-24 pf-py-8 collapsed"
-                          role="button"
-                          data-toggle="collapse"
-                          data-parent="#sidebar-ul"
-                          data-target="#sidebar-ul-5"
-                          aria-expanded="false"
-                        >
-                          <i className="pf-i pf-i-18 pf-i-chevron-up" />
-                        </span>
-                      ) : (
-                        <span
-                          className="float-right pf-px-24 pf-py-8"
-                          role="button"
-                          data-toggle="collapse"
-                          data-parent="#sidebar-ul"
-                          data-target="#sidebar-ul-5"
-                          aria-expanded="true"
-                        >
-                          <i className="pf-i pf-i-18 pf-i-chevron-up" />
-                        </span>
-                      )}
-                    </div>
-                  </a>
-                </li>
-                <ul
-                  className={`pf-pl-24 pf-bg-white collapse ${expandBill && 'in'
-                    }`}
-                  id="sidebar-ul-9"
-                >
-                  {item.treeItem.map((treeItem) => (
-                    <li key={treeItem.text}>
-                      <Link
-                        className={`pf-link-block pf-px-24 pf-py-8 ${treeItem.link === `/${prefix}/${path}` ? 'active' : ''
-                          }`}
-                        to={treeItem.link}
-                        style={{ cursor: 'pointer' }}
-                      >
-                        <span>{treeItem.text}</span>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </>
-            )}
-            {item.text === 'Manage Products' && (
-              <>
-                <li className="panel" key={item.text}>
-                  <a
-                    className={clsx(
-                      'pf-link-block pf-px-24 pf-py-8',
-                      item.link === `/${prefix}` ? 'active' : ''
-                    )}
-                    style={{ cursor: 'pointer' }}
-                    onClick={() => setExpandProduct(!expandproduct)}
-                  >
-                    <span className={item.icon} style={{ paddingRight: 5 }} />
-                    <span className="pf-ml-8">{item.text}</span>
-                    <div>
-                      {!expandproduct ? (
-                        <span
-                          className="float-right pf-px-24 pf-py-8 collapsed"
-                          role="button"
-                          data-toggle="collapse"
-                          data-parent="#sidebar-ul"
-                          data-target="#sidebar-ul-5"
-                          aria-expanded="false"
-                        >
-                          <i className="pf-i pf-i-18 pf-i-chevron-up" />
-                        </span>
-                      ) : (
-                        <span
-                          className="float-right pf-px-24 pf-py-8"
-                          role="button"
-                          data-toggle="collapse"
-                          data-parent="#sidebar-ul"
-                          data-target="#sidebar-ul-5"
-                          aria-expanded="true"
-                        >
-                          <i className="pf-i pf-i-18 pf-i-chevron-up" />
-                        </span>
-                      )}
-
-                      {/*  */}
-                    </div>
-                  </a>
-                </li>
-                <ul
-                  className={`pf-pl-24 pf-bg-white collapse ${expandproduct && 'in'
-                    }`}
-                  id="sidebar-ul-9"
-                >
-                  {item.treeItem.map((treeItem) => (
-                    <li key={treeItem.text}>
-                      <Link
-                        className={`pf-link-block pf-px-24 pf-py-8 ${treeItem.link === `/${prefix}/${path}` ? 'active' : ''
-                          }`}
-                        to={treeItem.link}
-                        style={{ cursor: 'pointer' }}
-                      >
-                        <span>{treeItem.text}</span>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </>
-            )}
-            {item.text === 'Settings' && (
-              <>
-                <li className="panel" key={item.text}>
-                  <a
-                    className={clsx(
-                      'pf-link-block pf-px-24 pf-py-8',
-                      item.link === `/${prefix}` ? 'active' : ''
-                    )}
-                    style={{ cursor: 'pointer' }}
-                    onClick={() => setExpandSetting(!expandSetting)}
-                  >
-                    <span className={item.icon} style={{ paddingRight: 5 }} />
-                    <span className="pf-ml-8">{item.text}</span>
-                    <div>
-                      {!expandSetting ? (
-                        <span
-                          className="float-right pf-px-24 pf-py-8 collapsed"
-                          role="button"
-                          data-toggle="collapse"
-                          data-parent="#sidebar-ul"
-                          data-target="#sidebar-ul-5"
-                          aria-expanded="false"
-                        >
-                          <i className="pf-i pf-i-18 pf-i-chevron-up" />
-                        </span>
-                      ) : (
-                        <span
-                          className="float-right pf-px-24 pf-py-8"
-                          role="button"
-                          data-toggle="collapse"
-                          data-parent="#sidebar-ul"
-                          data-target="#sidebar-ul-5"
-                          aria-expanded="true"
-                        >
-                          <i className="pf-i pf-i-18 pf-i-chevron-up" />
-                        </span>
-                      )}
-
-                      {/*  */}
-                    </div>
-                  </a>
-                </li>
-                <ul
-                  className={`pf-pl-24 pf-bg-white collapse ${expandSetting && 'in'
-                    }`}
-                  id="sidebar-ul-9"
-                >
-                  {item.treeItem.map((treeItem) => (
-                    <li key={treeItem.text}>
-                      <Link
-                        className={`pf-link-block pf-px-24 pf-py-8 ${treeItem.link === `/${prefix}/${path}` ? 'active' : ''
-                          }`}
-                        to={treeItem.link}
-                        style={{ cursor: 'pointer' }}
-                      >
-                        <span>{treeItem.text}</span>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </>
-            )}
-          </div>
-        ))}
-      </ul>
-      {/* <ul className="pf-m-0 pf-px-0 pf-py-8">
-        <li className="panel">
-          <a
-            className="pf-link-block pf-px-24 pf-py-8  dashed-separator start-selling"
-            href="/store"
-            id=""
-          >
-            <span className="pf-i pf-i-24 pf-i-store" />
-            <span className="pf-ml-8">Start selling</span>
-          </a>
-        </li>
-      </ul>
-      <br />
-      <br />
-      <hr className="pf-d-none" /> */}
-      {/* <ul className="pf-m-0 pf-px-0 pf-py-8 pf-border-top">
-        <li>
-          <a
-            className="pf-link-block pf-text-muted pf-px-24 pf-py-8"
-            href="#"
-          >
-            <span className="pf-i pf-i-24 pf-i-home" />
-            <span className="pf-ml-8">Home page</span>
-          </a>
-        </li>
-        <li>
-          <a className="pf-link-block pf-text-muted pf-px-24 pf-py-8" href="#">
-            <span className="pf-i pf-i-24 pf-i-tshirt-crew" />
-            <span className="pf-ml-8">Product catalog</span>
-          </a>
-        </li>
-      </ul> */}
-    </div>
-  );
 
   return (
     <>
       <div className={classes.root}>
         <CssBaseline />
-        <AppBar position="fixed" className={classes.appBar}>
+        <AppBar className={classes.appBar}>
           <Toolbar>
             <div
               id="dashboard-header"
               className="dashboard__header pf-bg-white pf-ui-body"
             >
               <div className="dashboard__menu">
-                <div className="container-fluid">
-                  <div className="row pf-position-relative">
-                    <div className="col" style={{ position: 'unset' }}>
-                      <div
+                  <div className="row">
+                    <div className='headerbar'>
+                      <div className='drawer-icon'>
+                        {['left'].map((anchor) => (
+                          <React.Fragment key={anchor}>
+                            <IconButton
+                              color="black"
+                              aria-label="open drawer"
+                              edge="start"
+                              onClick={toggleDrawer(anchor, true)}
+                            >
+                              <MenuIcon>
+                                {anchor}
+                              </MenuIcon>
+                            </IconButton>
+                            <Drawer
+                              anchor={anchor}
+                              open={state[anchor]}
+                              onClose={toggleDrawer(anchor, false)}
+                            >
+                              {list(anchor)}
+                            </Drawer>
+                          </React.Fragment>
+                        ))}
+                      </div>
+                      <div className='search-bar'>
+                        <TextField
+                          value={value}
+                          onChange={handleChange}
+                          autoComplete="off"
+                          placeholder="Search"
+                        />
+                      </div>
+                      <div className="other-icon">
+                        <ul
+                          id="userbar"
+                          className="pf-p-0 pf-m-0 pf-d-inline-block"
+                        >
+                          <Language />
+                          <Currency />
+                          <Notification />
+                          <User />
+
+                          {/* <li className="pf-d-inline-block">
+                          <Link
+                            className="pf-btn pf-btn-primary pf-ml-24 pf-mr-8 pf-mt-12"
+                            id="dashboard-new-order"
+                            to="/orders"
+                          >
+                            New order{' '}
+                          </Link>
+                        </li> */}
+                        </ul>
+                      </div>
+                    </div>
+                    {/* <div
                         id="sitewide-search-225d772b"
                         className="sitewide-search__user-bar pf-mt-12"
                       >
@@ -575,47 +636,12 @@ const Layout = ({ children }) => {
                             <div className="pf-i pf-i-24 pf-i-close pf-position-absolute pf-px-12 pf-py-8" />
                           </div>
                         </div>
-                      </div>
-                    </div>
-
-                    <div className="col-auto text-right">
-                      <ul
-                        id="userbar"
-                        className="pf-p-0 pf-m-0 pf-d-inline-block"
-                      >
-                        <Language />
-                        <Currency />
-                        <Notification />
-                        <User />
-
-                        <li className="pf-d-inline-block">
-                          <Link
-                            className="pf-btn pf-btn-primary pf-ml-24 pf-mr-8 pf-mt-12"
-                            id="dashboard-new-order"
-                            to="/orders"
-                          >
-                            New order{' '}
-                          </Link>
-                        </li>
-                      </ul>
-                    </div>
+                      </div> */}
                   </div>
                 </div>
               </div>
-            </div>
           </Toolbar>
         </AppBar>
-        <nav className={classes.drawer}>
-          <Drawer
-            variant="permanent"
-            anchor="left"
-            open
-            classes={{ paper: classes.drawerPaper }}
-          >
-            {drawer}
-          </Drawer>
-        </nav>
-
         <main className={classes.content}>
           <div className={classes.toolbar} />
           {children}
@@ -788,28 +814,28 @@ const ROUTES = [
       },
     ],
   },
-  {
-    path: '/warehouse',
-    key: 'WAREHOUSE',
-    component: RenderRoutes,
-    routes: [
-      {
-        path: '/warehouse',
-        key: 'WAREHOUSE_ROOT',
-        exact: true,
-        component: () => {
-          const userLogInSuccess = isLoggedIn();
-          return userLogInSuccess ? (
-            <Layout>
-              <Warehouse />
-            </Layout>
-          ) : (
-            <Login />
-          );
-        },
-      },
-    ],
-  },
+  // {
+  //   path: '/warehouse',
+  //   key: 'WAREHOUSE',
+  //   component: RenderRoutes,
+  //   routes: [
+  //     {
+  //       path: '/warehouse',
+  //       key: 'WAREHOUSE_ROOT',
+  //       exact: true,
+  //       component: () => {
+  //         const userLogInSuccess = isLoggedIn();
+  //         return userLogInSuccess ? (
+  //           <Layout>
+  //             <Warehouse />
+  //           </Layout>
+  //         ) : (
+  //           <Login />
+  //         );
+  //       },
+  //     },
+  //   ],
+  // },
   {
     path: '/venders',
     key: 'VENDERS',
@@ -1022,7 +1048,7 @@ const ROUTES = [
         key: 'MANAGEABLE_EDIT',
         exact: true,
         component: () => (
-            <Editproduct />
+          <Editproduct />
         ),
       },
       {
@@ -1030,7 +1056,7 @@ const ROUTES = [
         key: 'MANAGEABLE_EDIT',
         exact: true,
         component: () => (
-            <Editdesign />
+          <Editdesign />
         ),
       },
     ],
@@ -1121,86 +1147,86 @@ const ROUTES = [
       }
     ],
   },
-  {
-    path: '/managememberships',
-    key: 'MANAGEMEMBERSHIPS',
-    component: (props) => {
-      const isUserLogin = isLoggedIn();
-      return isUserLogin ? <RenderRoutes {...props} /> : <Redirect to="/" />;
-    },
-    routes: [
-      {
-        path: '/managememberships',
-        key: 'MANAGEMEMBERSHIPS_ROOT',
-        exact: true,
-        component: () => (
-          <Layout>
-            <ManageMembership />
-          </Layout>
-        ),
-      }
-    ],
-  },
-  {
-    path: '/managetiers',
-    key: 'MANAGETIERS',
-    component: (props) => {
-      const isUserLogin = isLoggedIn();
-      return isUserLogin ? <RenderRoutes {...props} /> : <Redirect to="/" />;
-    },
-    routes: [
-      {
-        path: '/managetiers',
-        key: 'MANAGETIERS_ROOT',
-        exact: true,
-        component: () => (
-          <Layout>
-            <ManageTiers />
-          </Layout>
-        ),
-      }
-    ],
-  },
-  {
-    path: '/managedigitalservice',
-    key: 'MANAGEDIGITALSERVICE',
-    component: (props) => {
-      const isUserLogin = isLoggedIn();
-      return isUserLogin ? <RenderRoutes {...props} /> : <Redirect to="/" />;
-    },
-    routes: [
-      {
-        path: '/managedigitalservice',
-        key: 'MANAGEDIGITALSERVICE_ROOT',
-        exact: true,
-        component: () => (
-          <Layout>
-            <ManageDigitalService />
-          </Layout>
-        ),
-      },
-    ],
-  },
-  {
-    path: '/admindigitalservice',
-    key: 'ADMINDIGITALSERVICE',
-    component: (props) => {
-      const isUserLogin = isLoggedIn();
-      return isUserLogin ? <RenderRoutes {...props} /> : <Redirect to="/" />;
-    },
-    routes: [
-      {
-        path: '/admindigitalservice',
-        key: 'ADMINDIGITALSERVICE_ROOT',
-        exact: true,
-        component: () => (
-          <Layout>
-            <AdminDegitalService />
-          </Layout>
-        ),
-      }
-    ],
-  },
+  // {
+  //   path: '/managememberships',
+  //   key: 'MANAGEMEMBERSHIPS',
+  //   component: (props) => {
+  //     const isUserLogin = isLoggedIn();
+  //     return isUserLogin ? <RenderRoutes {...props} /> : <Redirect to="/" />;
+  //   },
+  //   routes: [
+  //     {
+  //       path: '/managememberships',
+  //       key: 'MANAGEMEMBERSHIPS_ROOT',
+  //       exact: true,
+  //       component: () => (
+  //         <Layout>
+  //           <ManageMembership />
+  //         </Layout>
+  //       ),
+  //     }
+  //   ],
+  // },
+  // {
+  //   path: '/managetiers',
+  //   key: 'MANAGETIERS',
+  //   component: (props) => {
+  //     const isUserLogin = isLoggedIn();
+  //     return isUserLogin ? <RenderRoutes {...props} /> : <Redirect to="/" />;
+  //   },
+  //   routes: [
+  //     {
+  //       path: '/managetiers',
+  //       key: 'MANAGETIERS_ROOT',
+  //       exact: true,
+  //       component: () => (
+  //         <Layout>
+  //           <ManageTiers />
+  //         </Layout>
+  //       ),
+  //     }
+  //   ],
+  // },
+  // {
+  //   path: '/managedigitalservice',
+  //   key: 'MANAGEDIGITALSERVICE',
+  //   component: (props) => {
+  //     const isUserLogin = isLoggedIn();
+  //     return isUserLogin ? <RenderRoutes {...props} /> : <Redirect to="/" />;
+  //   },
+  //   routes: [
+  //     {
+  //       path: '/managedigitalservice',
+  //       key: 'MANAGEDIGITALSERVICE_ROOT',
+  //       exact: true,
+  //       component: () => (
+  //         <Layout>
+  //           <ManageDigitalService />
+  //         </Layout>
+  //       ),
+  //     },
+  //   ],
+  // },
+  // {
+  //   path: '/admindigitalservice',
+  //   key: 'ADMINDIGITALSERVICE',
+  //   component: (props) => {
+  //     const isUserLogin = isLoggedIn();
+  //     return isUserLogin ? <RenderRoutes {...props} /> : <Redirect to="/" />;
+  //   },
+  //   routes: [
+  //     {
+  //       path: '/admindigitalservice',
+  //       key: 'ADMINDIGITALSERVICE_ROOT',
+  //       exact: true,
+  //       component: () => (
+  //         <Layout>
+  //           <AdminDegitalService />
+  //         </Layout>
+  //       ),
+  //     }
+  //   ],
+  // },
   {
     path: '/viewdigitalservice',
     key: 'VIEWDIGITALSERVICE',

@@ -441,6 +441,7 @@ export function Legal() {
     postal_code: '',
     address1: '',
     country: 'US',
+    states: '',
     city: '',
     phone: '',
     address2: '',
@@ -451,6 +452,7 @@ export function Legal() {
     companyname: '',
     Reginumber: '',
     status: '',
+    states: '',
     postal_code: '',
     address1: '',
     city: '',
@@ -524,6 +526,14 @@ export function Legal() {
       newError.country = '';
     }
 
+    // Validate states
+    if (state.states.trim() === '') {
+      newError.states = 'States cannot be blank.';
+      hasError = true;
+    } else {
+      newError.states = '';
+    }
+
     // Validate postalcode
     if (state.postal_code.trim() === '') {
       newError.postal_code = 'Postal/Zip code cannot be blank.';
@@ -538,6 +548,14 @@ export function Legal() {
       hasError = true;
     } else {
       newError.city = '';
+    }
+
+    // Validate Phone
+    if (state.phone.trim() === '') {
+      newError.phone = 'Phone cannot be blank.';
+      hasError = true;
+    } else {
+      newError.phone = '';
     }
 
     // If there's any error, update the error state and prevent form submission
@@ -637,6 +655,7 @@ export function Legal() {
                             <div className="form-group pf-mb-24">
                               <label className="control-label pf-h5">Status</label>
                               <div className="pf-ui-body">
+
                                 <div className="pf-d-inline-block">
                                   <input
                                     onChange={handleChange}
@@ -645,11 +664,13 @@ export function Legal() {
                                     name="status"
                                     defaultValue="business"
                                     className="pf-mr-4"
+                                    defaultChecked={active && state.status}
                                   />
                                   <span className="pf-mr-24">
                                     Registered business
                                   </span>
                                 </div>
+
                                 <div className="pf-d-inline-block">
                                   <input
                                     disabled={!active}
@@ -807,6 +828,27 @@ export function Legal() {
                           </div>
                         </div>
                       </div>
+                      <div className="order-8 no-gutters col-sm-3 col-xs-12">
+                        <div className="row">
+                          <div className="col-sm-12 col-xs-12">
+                            <div className="form-group pf-mb-24">
+                              <label htmlFor="city" className="control-label pf-h5">
+                                States (required)
+                              </label>
+                              <input
+                                onChange={handleChange}
+                                type="text"
+                                id="states"
+                                name="states"
+                                disabled={!active}
+                                maxLength={32}
+                                className="form-control inspectletIgnore"
+                              />
+                              {error.states && <div className="error-message">{error.states}</div>}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                       <div className="order-7 no-gutters col-sm-3 col-xs-12">
                         <div className="row">
                           <div className="col-sm-12 col-xs-12">
@@ -854,7 +896,7 @@ export function Legal() {
                           <div className="col-sm-12 col-xs-12">
                             <div className="form-group pf-mb-24">
                               <label htmlFor="city" className="control-label pf-h5">
-                                Phone (optional)
+                                Phone (required)
                               </label>
                               <MuiPhoneNumber disabled={!active} defaultCountry={'us'} name='phone' value={state.phone} onChange={handlephone} />
                               {error.phone && <div className="error-message">{error.phone}</div>}
@@ -1031,11 +1073,32 @@ export function Legal() {
                                     label="Choose a country"
                                     inputProps={{
                                       ...params.inputProps,
-                                      autoComplete: 'new-password', // disable autocomplete and autofill
+                                      autoComplete: 'new-password',
                                     }}
                                   />
                                 )}
                               />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="order-8 no-gutters col-sm-3 col-xs-12">
+                        <div className="row">
+                          <div className="col-sm-12 col-xs-12">
+                            <div className="form-group pf-mb-24">
+                              <label htmlFor="city" className="control-label pf-h5">
+                                States (required)
+                              </label>
+                              <input
+                                onChange={handleChange}
+                                type="text"
+                                id="states"
+                                name="states"
+                                disabled={!active}
+                                maxLength={32}
+                                className="form-control inspectletIgnore"
+                              />
+                              {error.states && <div className="error-message">{error.states}</div>}
                             </div>
                           </div>
                         </div>
@@ -1087,9 +1150,10 @@ export function Legal() {
                           <div className="col-sm-12 col-xs-12">
                             <div className="form-group pf-mb-24">
                               <label htmlFor="city" className="control-label pf-h5">
-                                Phone (optional)
+                                Phone (required)
                               </label>
                               <MuiPhoneNumber disabled={!active} defaultCountry={'us'} name='phone' value={state.phone} onChange={handlephone} />
+                              {error.phone && <div className="error-message">{error.phone}</div>}
                             </div>
                           </div>
                         </div>
@@ -1106,6 +1170,10 @@ export function Legal() {
                         type="button"
                         onClick={() => {
                           setActive(true);
+                          setState(prevState => ({
+                            ...prevState,
+                            status: "business"
+                          }));
                           console.log(active);
                         }}
                         defaultValue="Edit"
@@ -1135,298 +1203,6 @@ export function Legal() {
                   </div>
                 )}
               </div>
-              {/* <div className="billing-history__toggle pf-py-24 pf-mt-32">
-                <a
-                  data-toggle="collapse"
-                  data-target="#legal-history"
-                  role="button"
-                  aria-expanded="true"
-                  className="pf-p-0"
-                >
-                  <span className="arrow" />
-                  <h4 className="pf-h4 pf-my-0 pf-d-inline-block">
-                    Legal info changes
-                  </h4>
-                </a>
-              </div> */}
-              {/* <div
-                id="legal-history"
-                className="collapse in"
-                aria-expanded="true"
-                style={{}}
-              >
-                <div className="billing-history pf-mb-24" style={{}}>
-                  <div className="row">
-                    <div className="col-xs-12 table-container">
-                      <div id="js--history-table-container" className="history">
-                        <div
-                          id="DataTables_Table_5_wrapper"
-                          className="dataTables_wrapper no-footer"
-                        >
-                          <div
-                            className="DTFC_ScrollWrapper"
-                            style={{
-                              position: 'relative',
-                              clear: 'both',
-                              height: 165,
-                            }}
-                          >
-                            <div
-                              className="DTFC_LeftWrapper"
-                              style={{ position: 'absolute', top: 0, left: 0 }}
-                              aria-hidden="true"
-                            >
-                              <div
-                                className="DTFC_LeftHeadWrapper"
-                                style={{
-                                  position: 'relative',
-                                  top: 0,
-                                  left: 0,
-                                  overflow: 'hidden',
-                                }}
-                              />
-                              <div
-                                className="DTFC_LeftBodyWrapper"
-                                style={{
-                                  position: 'relative',
-                                  top: 0,
-                                  left: 0,
-                                  overflow: 'hidden',
-                                }}
-                              >
-                                <div
-                                  className="DTFC_LeftBodyLiner"
-                                  style={{
-                                    position: 'relative',
-                                    top: 0,
-                                    left: 0,
-                                    overflowY: 'scroll',
-                                  }}
-                                />
-                              </div>
-                              <div
-                                className="DTFC_LeftFootWrapper"
-                                style={{
-                                  position: 'relative',
-                                  top: 0,
-                                  left: 0,
-                                  overflow: 'hidden',
-                                }}
-                              />
-                            </div>
-                            <div
-                              className="DTFC_RightWrapper"
-                              style={{ position: 'absolute', top: 0, right: 0 }}
-                              aria-hidden="true"
-                            >
-                              <div
-                                className="DTFC_RightHeadWrapper"
-                                style={{ position: 'relative', top: 0, left: 0 }}
-                              >
-                                <div
-                                  className="DTFC_RightHeadBlocker DTFC_Blocker"
-                                  style={{
-                                    position: 'absolute',
-                                    top: 0,
-                                    bottom: 0,
-                                  }}
-                                />
-                              </div>
-                              <div
-                                className="DTFC_RightBodyWrapper"
-                                style={{
-                                  position: 'relative',
-                                  top: 0,
-                                  left: 0,
-                                  overflow: 'hidden',
-                                }}
-                              >
-                                <div
-                                  className="DTFC_RightBodyLiner"
-                                  style={{
-                                    position: 'relative',
-                                    top: 0,
-                                    left: 0,
-                                    overflowY: 'scroll',
-                                  }}
-                                />
-                              </div>
-                              <div
-                                className="DTFC_RightFootWrapper"
-                                style={{ position: 'relative', top: 0, left: 0 }}
-                              >
-                                <div
-                                  className="DTFC_RightFootBlocker DTFC_Blocker"
-                                  style={{
-                                    position: 'absolute',
-                                    top: 0,
-                                    bottom: 0,
-                                  }}
-                                />
-                              </div>
-                            </div>
-                            <div className="dataTables_scroll">
-                              <div
-                                className="dataTables_scrollHead"
-                                style={{
-                                  overflow: 'hidden',
-                                  position: 'relative',
-                                  border: 0,
-                                  width: '100%',
-                                }}
-                              >
-                                <div
-                                  className="dataTables_scrollHeadInner"
-                                  style={{
-                                    boxSizing: 'content-box',
-                                    width: 1118,
-                                    paddingRight: 0,
-                                  }}
-                                >
-                                  <table
-                                    className="row-border nowrap no-footer dataTable"
-                                    style={{ width: 1118, marginLeft: 0 }}
-                                    role="grid"
-                                  >
-                                    <thead>
-                                      <tr role="row">
-                                        <th
-                                          className="sorting_disabled"
-                                          rowSpan={1}
-                                          colSpan={1}
-                                          style={{ width: 478 }}
-                                        >
-                                          Applied legal info
-                                        </th>
-                                        <th
-                                          className="sorting_disabled"
-                                          rowSpan={1}
-                                          colSpan={1}
-                                          style={{ width: 356 }}
-                                        >
-                                          Changed by
-                                        </th>
-                                        <th
-                                          className="sorting_disabled"
-                                          rowSpan={1}
-                                          colSpan={1}
-                                          style={{ width: 188 }}
-                                        >
-                                          Date
-                                        </th>
-                                      </tr>
-                                    </thead>
-                                  </table>
-                                </div>
-                              </div>
-                              <div
-                                className="dataTables_scrollBody"
-                                style={{
-                                  position: 'relative',
-                                  overflow: 'auto',
-                                  width: '100%',
-                                }}
-                              >
-                                <table
-                                  className="row-border nowrap no-footer dataTable"
-                                  style={{ width: '100%' }}
-                                  id="DataTables_Table_5"
-                                  role="grid"
-                                >
-                                  <thead>
-                                    <tr role="row" style={{ height: 0 }}>
-                                      <th
-                                        className="sorting_disabled"
-                                        rowSpan={1}
-                                        colSpan={1}
-                                        style={{
-                                          width: 478,
-                                          paddingTop: 0,
-                                          paddingBottom: 0,
-                                          borderTopWidth: 0,
-                                          borderBottomWidth: 0,
-                                          height: 0,
-                                        }}
-                                      >
-                                        <div
-                                          className="dataTables_sizing"
-                                          style={{
-                                            height: 0,
-                                            overflow: 'hidden',
-                                          }}
-                                        >
-                                          Applied legal info
-                                        </div>
-                                      </th>
-                                      <th
-                                        className="sorting_disabled"
-                                        rowSpan={1}
-                                        colSpan={1}
-                                        style={{
-                                          width: 356,
-                                          paddingTop: 0,
-                                          paddingBottom: 0,
-                                          borderTopWidth: 0,
-                                          borderBottomWidth: 0,
-                                          height: 0,
-                                        }}
-                                      >
-                                        <div
-                                          className="dataTables_sizing"
-                                          style={{
-                                            height: 0,
-                                            overflow: 'hidden',
-                                          }}
-                                        >
-                                          Changed by
-                                        </div>
-                                      </th>
-                                      <th
-                                        className="sorting_disabled"
-                                        rowSpan={1}
-                                        colSpan={1}
-                                        style={{
-                                          width: 188,
-                                          paddingTop: 0,
-                                          paddingBottom: 0,
-                                          borderTopWidth: 0,
-                                          borderBottomWidth: 0,
-                                          height: 0,
-                                        }}
-                                      >
-                                        <div
-                                          className="dataTables_sizing"
-                                          style={{
-                                            height: 0,
-                                            overflow: 'hidden',
-                                          }}
-                                        >
-                                          Date
-                                        </div>
-                                      </th>
-                                    </tr>
-                                  </thead>
-                                  <tbody>
-                                    <tr className="odd">
-                                      <td
-                                        valign="top"
-                                        colSpan={3}
-                                        className="dataTables_empty"
-                                      >
-                                        No legal info changes yet
-                                      </td>
-                                    </tr>
-                                  </tbody>
-                                </table>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div> */}
               <div className="pf-border-bottom pf-mb-64" />
             </div>
           </div>

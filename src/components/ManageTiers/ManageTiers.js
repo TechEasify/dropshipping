@@ -3,9 +3,9 @@ import { DataGrid } from '@mui/x-data-grid';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
-import { Button } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { Button } from '@shopify/polaris';
 
 function ManageTiers() {
     const initialRows = [
@@ -144,7 +144,7 @@ function ManageTiers() {
                 {addTiers ? (
                     <>
                         <div className="main-text">
-                            <h2>{editMode ? 'Edit Tier' : 'Add Tiers'}</h2>
+                            <h2 className='category-heading'>{editMode ? 'Edit Tier' : 'Add Tiers'}</h2>
                             <Button className="category-btn" onClick={() => setAddTiers(false)}>
                                 close
                             </Button>
@@ -217,15 +217,15 @@ function ManageTiers() {
                 ) : (
                     <>
                         <div className='tiers-table'>
-                            <div className="category-head">
+                            <div className="tiers-head">
                                 <div className="tiers-text">
-                                    <h2>Manage Tiers</h2>
+                                    <h2 className='category-heading'>Manage Tiers</h2>
                                 </div>
                                 <Button className="category-btn" onClick={() => setAddTiers(true)}>
                                     Add Tiers
                                 </Button>
                             </div>
-                            <div style={{ height: 400, width: '100%' }}>
+                            <div style={{ height: 400 }}>
                                 <DataGrid
                                     rows={rows.map(row => ({
                                         ...row,

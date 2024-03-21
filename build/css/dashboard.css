@@ -388,6 +388,9 @@
   overflow: hidden;
   white-space: nowrap;
   color: #232323;
+  font-size: 40px;
+  font-weight: 600;
+  margin-top: 10px;
 }
 @media (max-width: 991.98px) {
   .dashboard-home__welcome {
@@ -2490,12 +2493,32 @@ table.billing div.status-label.success {
   height: 28px;
 }
 .dashboard__menu {
-  position: absolute;
+  /* position: absolute;
   top: 0;
   left: 0;
-  padding-left: 232px;
+  padding-left: 232px; */
   width: 100%;
+  height: 100%;
+  margin-left: 20px;
+  margin-right: 20px;
 }
+
+.headerbar {
+  display: flex;
+}
+
+.drawer-icon {
+  margin-top: 10px;
+  margin-left: 20px;
+  margin-right: 10px;
+}
+
+.search-bar {
+  margin-top: 15px;
+  width: 70%;
+}
+
+
 .dashboard__menu .shipping-bar {
   height: 64px;
   line-height: 1;
@@ -2505,6 +2528,7 @@ table.billing div.status-label.success {
 }
 .dashboard__menu #userbar a {
   text-decoration: none;
+  font-weight: 300;
 }
 .dashboard__menu #userbar > li {
   vertical-align: top;
@@ -2540,17 +2564,22 @@ table.billing div.status-label.success {
   display: none;
 }
 .dashboard__sidebar {
-  position: fixed;
+  /* position: fixed;
   width: 232px;
   top: 64px;
   bottom: 0;
   left: 0;
-  z-index: 100;
-  border-right: 1px solid #e5e5e5;
-  box-shadow: 8px 0 10px -2px rgba(0, 0, 0, 0.05);
+  z-index: 100; */
+  /* border-right: 1px solid #e5e5e5; */
+  /* box-shadow: 8px 0 10px -2px rgba(0, 0, 0, 0.05); */
   display: flex;
   flex-direction: column;
 }
+
+.MuiPaper-root.MuiPaper-elevation.MuiPaper-elevation16.MuiDrawer-paper.MuiDrawer-paperAnchorLeft.css-4t3x6l-MuiPaper-root-MuiDrawer-paper {
+  scrollbar-width: thin;
+}
+
 .dashboard__sidebar > ul {
   flex: 1 1 auto;
   overflow-y: auto;
@@ -2613,29 +2642,46 @@ table.billing div.status-label.success {
   position: relative;
   white-space: nowrap;
   color: #232323;
+  font-size: 14px;
+  font-weight: 500;
 }
+
+li.dropdown.notification-li {
+  font-size: 14px;
+}
+
+a.pf-mr-16.pf-d-none.pf-d-md-flex.pf-mt-8.pf-py-12.pf-mx-8.user-settings.js-user-settings-toggle.pf-flex-column.pf-flex-md-row.pf-align-items-center {
+  font-size: 13px;
+}
+
 .dashboard__sidebar ul li a:hover {
-  color: #ca9832;
+  color: #232323;
+  background-color: rgb(241, 241, 241, 1);
 }
 .dashboard__sidebar ul li a:hover > .pf-i:first-of-type {
-  color: #ca9832;
+  background-color: rgba(250, 250, 250, 1);
 }
+
+a.pf-link-block.pf-px-24.pf-py-8:hover {
+  background-color: rgba(250, 250, 250, 1);
+}
+
 .dashboard__sidebar ul li a:hover [data-toggle='collapse'] {
   color: #b1b1b1;
 }
 .dashboard__sidebar ul li a.active {
-  background: #ca9832;
+  background: rgba(250, 250, 250, 1);
   font-weight: 700;
   letter-spacing: -0.25px;
-  color: white;
-  margin-right: 10px;
-  margin-left: 10px;
+  /* color: white; */
+  /* margin-right: 10px;
+  margin-left: 10px; */
   border-radius: 5px;
-  margin-bottom: 5px;
+  /* margin-bottom: 5px; */
 }
-.dashboard__sidebar ul li a.active > .pf-i:first-of-type {
+/* .dashboard__sidebar ul li a.active > .pf-i:first-of-type {
   color: white;
-}
+} */
 .dashboard__sidebar ul li a > .pf-i:first-of-type {
   color: #232323;
 }
@@ -2651,9 +2697,9 @@ table.billing div.status-label.success {
 }
 .dashboard__sidebar ul li a [data-toggle='collapse'] {
   position: absolute;
-  right: 0;
+  right: -4%;
   top: 0;
-  color: white;
+  /* color: white; */
 }
 .dashboard__sidebar ul li a [data-toggle='collapse']:hover {
   color: #555;
@@ -2695,14 +2741,15 @@ table.billing div.status-label.success {
 }
 .dashboard__sidebar ul ul li a {
   margin-left: 10.5px;
+  margin-top: 5px;
   border-left: 3px solid transparent;
 }
-.dashboard__sidebar ul ul li a:hover {
+/* .dashboard__sidebar ul ul li a:hover {
   border-left: 3px solid #ca9832;
-}
-.dashboard__sidebar ul ul li a.active {
+} */
+/* .dashboard__sidebar ul ul li a.active {
   border-left: 3px solid #ca9832;
-}
+} */
 .dashboard__sidebar ul router-link {
   margin-left: 10.5px;
   border-left: 3px solid transparent;
@@ -5756,7 +5803,7 @@ body.pf-lang--de .product-push-add .add-block .info-arrow {
 .layer-picker__item {
   position: relative;
   cursor: pointer;
-  background: #fff;
+  /* background: #fff; */
   user-select: none;
 }
 .layer-picker__item a {
@@ -5919,11 +5966,10 @@ body.pf-lang--de .product-push-add .add-block .info-arrow {
 .layer-picker__item__tag:hover {
   background-color: rgba(61, 55, 51, 0.8);
 }
-.layer-picker__item__delete,
-.layer-picker__item__reset {
+.layer-picker__item__delete, .layer-picker__item__reset {
   display: none;
   position: absolute;
-  right: 8px;
+  right: -42px;
   line-height: 1;
   color: #b1b1b1;
   cursor: pointer;

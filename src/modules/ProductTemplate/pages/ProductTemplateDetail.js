@@ -65,7 +65,7 @@ export default function ProductTemplateDetail() {
                     <div className="product-templates-view-image__actions pf-mt-16">
                       <a className="pf-link-block pf-pointer pf-justify-items-center pf-mr-12" onClick={() => history.push('/template/create')}>
                         <i className="pf-i pf-i-pencil pf-i-24 pf-text-gray" />
-                        <span className="pf-link">Edit product template</span>
+                        <span className="pf-link">Custommise your product</span>
                       </a>
                     </div>
                   </div>
@@ -111,10 +111,10 @@ export default function ProductTemplateDetail() {
                           data-original-title=""
                           title=""
                         >
-                          Add to store
+                          Push to shopify store
                         </a>
                         <a className="pf-btn pf-btn-secondary pf-d-block pf-d-sm-inline-block">
-                          Make an order
+                          Get your label design
                         </a>
                       </div>
                     </div>

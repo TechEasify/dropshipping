@@ -4,6 +4,11 @@
 
 .manage-select {
     width: 100%;
+    margin-top: 10px;
+}
+
+h5.membership-heading {
+    font-size: 30px;
 }
 
 .manage-membership {
@@ -96,7 +101,7 @@ button.free-btn {
 }
 
 button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.increment.css-1e6y48t-MuiButtonBase-root-MuiButton-root {
-    background: #ca9832;
+    background: #232323;
     color: white;
     font-size: 14px;
 }
@@ -114,10 +119,12 @@ button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.Mu
 
 .manage-tiers {
     margin-top: 50px;
+    margin-bottom: 10px;
 }
 
 .tiers-month {
     display: flex;
+    align-items: center;
 }
 
 .tiers-text {
@@ -142,7 +149,7 @@ button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.Mu
 }
 
 .tiers-table {
-    width: 75%;
+    width: 100%;
 }
 
 
@@ -156,12 +163,23 @@ button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.Mu
 .digital-menu {
     display: flex;
     margin-bottom: 10px;
+    align-items: center;
 }
 
 .designing-filed {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
+}
+
+h5.designing-heading {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.designing-form {
+    margin-bottom: 10px;
+    text-align: center;
 }
 
 .designing-text {
@@ -181,6 +199,7 @@ button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.Mu
     display: flex;
     width: 100%;
     align-items: center;
+    margin-bottom: 10px;
 }
 
 .button-digital {
@@ -189,7 +208,7 @@ button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.Mu
 
 button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.digital-btn.css-1e6y48t-MuiButtonBase-root-MuiButton-root {
     font-size: 12px;
-    background: #ca9832;
+    background: #232323;
     color: white;
 }
 

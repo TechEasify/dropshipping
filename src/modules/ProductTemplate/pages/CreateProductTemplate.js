@@ -21,12 +21,12 @@ import {
 import {
   ResetDesign,
 } from '../action';
+import Design from '../containers/Design';
 
 const useStyle = makeStyles({
   root: {
     '& .MuiPaper-elevation4': {
-      boxShadow: 'none',
-      borderBottom: '1px solid rgba(0, 0, 0, 0.12)',
+      boxShadow: '2px 3px 5px 1px #e5e5e5',
     },
   },
 
@@ -37,9 +37,8 @@ const useStyle = makeStyles({
 });
 
 const steps = [
-  { step: 1, title: 'Product' },
-  { step: 2, title: 'Design' },
-  { step: 3, title: 'Review' },
+  { step: 1, title: 'Design' },
+  { step: 2, title: 'Review' },
 ];
 
 const useQuery = () => new URLSearchParams(useLocation().search);
@@ -65,7 +64,7 @@ export default function CreateProductTemplate() {
       isStepDone = 3;
       break;
     default:
-      StepComponent = <CreateStepOne />;
+      StepComponent = <Design />;
   }
 
   const StepBreadcrumbComponents = steps.map((step) => {

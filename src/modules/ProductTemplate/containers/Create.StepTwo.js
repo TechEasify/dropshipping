@@ -20,6 +20,7 @@ const useQuery = () => new URLSearchParams(useLocation().search);
 
 export default function CreateStepTwo() {
   const query = useQuery();
+  console.log(query, "query");
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -35,8 +36,8 @@ export default function CreateStepTwo() {
     clipPath.set({ visible: false });
     const imagePreview = cloneCanvas.toDataURL();
     console.log(imagePreview);
-    // const [bg] = cObjects.filter((object) => object.name === 'bg');
-    // bg.set({ visible: false });
+    const [bg] = cObjects.filter((object) => object.name === 'bg');
+    bg.set({ visible: false });
     const designImage = cloneCanvas.toDataURL();
     console.log(designImage, "designImage");
     

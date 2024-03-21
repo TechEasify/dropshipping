@@ -8,6 +8,7 @@ export default function ListLayer({
   onModifyObjects,
   canvas,
 }) {
+
   const cloneObjects = _.cloneDeep(objects);
 
   const moveCard = useCallback(

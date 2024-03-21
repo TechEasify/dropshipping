@@ -17,7 +17,7 @@ function SettingDigitalService() {
         <>
             <div className='setting-service'>
                 <div className='setting-label'>
-                    <h2>Setting: Digital Service</h2>
+                    <h2 className='category-heading'>Setting: Digital Service</h2>
                     <p style={{ fontSize: 16, fontWeight: "bold" }}>Packing Slip</p>
                 </div>
                 <hr />

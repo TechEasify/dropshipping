@@ -1989,8 +1989,6 @@ input[type='search'],
 input[type='tel'],
 input[type='text'],
 textarea {
-  background-color: #fff;
-  border: 1px solid #e5e5e5 !important;
   width: 100%;
   margin: 0;
   padding: 5px 10px;
@@ -2021,23 +2019,23 @@ input[type='number'],
 input[type='password'],
 input[type='search'],
 input[type='tel'],
-input[type='text'] {
+/* input[type='text'] {
   height: 39px;
   font-weight: 400;
   font-size: 15px;
-}
-textarea {
+} */
+/* textarea {
   height: 187px;
   font-weight: 400;
   font-size: 15px;
-}
+} */
 select {
   background: transparent !important;
   border: none !important;
-  width: 110% !important;
+  /* width: 110% !important; */
   margin: 0;
   height: 37px !important;
-  padding: 7px 0 5px 10px !important;
+  /* padding: 7px 0 5px 10px !important; */
   font-weight: 400 !important;
   font-family: ProximaNova, sans-serif !important;
   font-size: 15px !important;
@@ -2148,7 +2146,7 @@ textarea::-webkit-placeholder {
   color: #222 !important;
 }
 label {
-  font-weight: 700;
+  font-weight: 500;
   font-size: 14px;
   color: #232323;
   line-height: 25px;

@@ -22,8 +22,7 @@ import Editdesign from './Editdesign';
 const useStyle = makeStyles({
     root: {
         '& .MuiPaper-elevation4': {
-            boxShadow: 'none',
-            borderBottom: '1px solid rgba(0, 0, 0, 0.12)',
+            boxShadow: '2px 3px 5px 1px #e5e5e5',
         },
     },
 

@@ -32,7 +32,7 @@ const TestComponent = ({ type }) => {
                             </span>
                         </div>
                     </div>
-                    <div className="pf-p-12">
+                    {/* <div className="pf-p-12">
                         <div className="product-item__detail pf-mb-12 pf-ui-body">
                             Essential Oil 10ml
                         </div>
@@ -95,7 +95,7 @@ const TestComponent = ({ type }) => {
                         >
                             <i className="pf-i pf-i-tag pf-i-18" />
                         </span>
-                    </div>
+                    </div> */}
                 </a>
             </div>
         </>

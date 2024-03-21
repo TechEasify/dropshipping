@@ -2067,6 +2067,15 @@ body.embedded .pf-embed-hide {
 .header__link__icon {
   color: #b1b1b1;
 }
+i.header__link__icon.pf-i.pf-i-bell.pf-i-24.pf-mr-auto.pf-mr-sm-4 {
+  font-size: 25px;
+}
+i.header__link__icon.pf-i.pf-i-24.pf-i-currency-usd {
+  font-size: 25px;
+}
+i.header__link__icon.pf-i.pf-i-account.pf-i-24.pf-mr-auto.pf-mr-sm-4 {
+  font-size: 25px;
+}
 .header__link__text {
   display: inline-block;
   vertical-align: middle;
@@ -6521,6 +6530,11 @@ hr {
 #userbar .nav > li a {
   color: #555;
 }
+
+li.MuiButtonBase-root.MuiMenuItem-root.MuiMenuItem-gutters.MuiMenuItem-root.MuiMenuItem-gutters.css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root {
+  font-size: 13px !important;
+}
+
 #userbar .nav > li a.active,
 #userbar .nav > li a:hover {
   color: #ca9832;

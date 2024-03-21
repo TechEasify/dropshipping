@@ -1,9 +1,6 @@
 import React, { useState } from 'react'
 import Box from '@mui/material/Box';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
 import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
@@ -12,8 +9,9 @@ import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 import Autocomplete from '@mui/material/Autocomplete';
-import { Button, TextField } from '@mui/material';
+import { TextField } from '@mui/material';
 import Chip from '@mui/material/Chip';
+import { Button, Select } from '@shopify/polaris';
 
 function ManageMembership() {
     const [managePlan, setManagePlan] = useState('');
@@ -325,15 +323,20 @@ function ManageMembership() {
         }))
     }
 
-    const handleChangePlan = (e) => {
-        const { name, value } = e.target;
+    const handleChangePlan = (value) => {
         setManagePlan(value)
     }
+
+    const options = [
+        { label: 'Free', value: 'free' },
+        { label: 'Starter', value: 'starter' },
+        { label: 'Growth', value: 'growth' },
+    ];
 
     return (
         <>
             <div className='ManageMembership'>
-                <h2>Manage Membership</h2>
+                <h2 className='category-heading'>Manage Membership</h2>
                 <div className='manage-membership'>
                     <div className='manage-head'>
                         <h6>Plan</h6>
@@ -341,28 +344,24 @@ function ManageMembership() {
                     <div className='manage-select'>
                         <Box sx={{ minWidth: 120 }}>
                             <FormControl fullWidth>
-                                <InputLabel id="demo-simple-select-label">Plan</InputLabel>
                                 <Select
                                     labelId="demo-simple-select-label"
                                     id="demo-simple-select"
                                     value={managePlan}
-                                    label="Plan"
                                     onChange={handleChangePlan}
-                                >
-                                    <MenuItem value="Free">Free</MenuItem>
-                                    <MenuItem value='Starter'>Starter</MenuItem>
-                                    <MenuItem value='Growth'>Growth</MenuItem>
-                                </Select>
+                                    options={options}
+                                    placeholder='Please Select Plan'
+                                />
                             </FormControl>
                         </Box>
                     </div>
                 </div>
 
                 {
-                    managePlan === "Free" &&
+                    managePlan === "free" &&
                     <div className='membership-free'>
                         <div className='free-head'>
-                            <h5>Free Plan</h5>
+                            <h5 className='membership-heading'>Free Plan</h5>
                         </div>
                         <Box sx={{ width: '100%', typography: 'body1' }}>
                             <TabContext value={tabValue}>
@@ -561,7 +560,7 @@ function ManageMembership() {
                                                 </div>
                                             </div>
                                             <div className='submit'>
-                                                <button className="free-btn" onClick={handleSubmit}>Submit</button>
+                                                <Button className="free-btn" onClick={handleSubmit}>Submit</Button>
                                             </div>
                                         </>
                                     )}
@@ -753,7 +752,7 @@ function ManageMembership() {
                                                 </div>
                                             </div>
                                             <div className='submit'>
-                                                <button className="free-btn" onClick={handleAnnualSubmit}>Submit</button>
+                                                <Button className="free-btn" onClick={handleAnnualSubmit}>Submit</Button>
                                             </div>
                                         </>
                                     )}
@@ -765,10 +764,10 @@ function ManageMembership() {
 
 
                 {
-                    managePlan === "Starter" &&
+                    managePlan === "starter" &&
                     <div className='membership-free'>
                         <div className='free-head'>
-                            <h5>Starter Plan</h5>
+                            <h5 className='membership-heading'>Starter Plan</h5>
                         </div>
                         <Box sx={{ width: '100%', typography: 'body1' }}>
                             <TabContext value={tabValue}>
@@ -966,7 +965,7 @@ function ManageMembership() {
                                                 </div>
                                             </div>
                                             <div className='submit'>
-                                                <button className="free-btn" onClick={handleSubmit}>Submit</button>
+                                                <Button className="free-btn" onClick={handleSubmit}>Submit</Button>
                                             </div>
                                         </>
                                     )}
@@ -1158,7 +1157,7 @@ function ManageMembership() {
                                                 </div>
                                             </div>
                                             <div className='submit'>
-                                                <button className="free-btn" onClick={handleAnnualSubmit}>Submit</button>
+                                                <Button className="free-btn" onClick={handleAnnualSubmit}>Submit</Button>
                                             </div>
                                         </>
                                     )}
@@ -1169,10 +1168,10 @@ function ManageMembership() {
                 }
 
                 {
-                    managePlan === "Growth" &&
+                    managePlan === "growth" &&
                     <div className='membership-free'>
                         <div className='free-head'>
-                            <h5>Growth Plan</h5>
+                            <h5 className='membership-heading'>Growth Plan</h5>
                         </div>
                         <Box sx={{ width: '100%', typography: 'body1' }}>
                             <TabContext value={tabValue}>
@@ -1562,7 +1561,7 @@ function ManageMembership() {
                                                 </div>
                                             </div>
                                             <div className='submit'>
-                                                <button className="free-btn" onClick={handleAnnualSubmit}>Submit</button>
+                                                <Button className="free-btn" onClick={handleAnnualSubmit}>Submit</Button>
                                             </div>
                                         </>
                                     )}

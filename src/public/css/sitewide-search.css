@@ -4,7 +4,7 @@
 }
 .sitewide-search__menu-bar .pf-i,
 .sitewide-search__user-bar .pf-i {
-  color: #e5e5e5;
+  color: #232323 !important;
   z-index: 20;
 }
 .sitewide-search__menu-bar .pf-i.pf-i-close,
