@@ -365,7 +365,7 @@ function ManageMembership() {
                         </div>
                         <Box sx={{ width: '100%', typography: 'body1' }}>
                             <TabContext value={tabValue}>
-                                <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                                <Box sx={{ borderBottom: 1, borderColor: 'divider'}}>
                                     <TabList onChange={handleTabChange} aria-label="lab API tabs example">
                                         <Tab label="Monthly" value="1" />
                                         <Tab label="Annually" value="2" />

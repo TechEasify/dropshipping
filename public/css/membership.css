@@ -12,6 +12,12 @@
     padding: 10px;
 }
 
+.css-1h9z7r5-MuiButtonBase-root-MuiTab-root.Mui-selected {
+    color: #fff !important;
+    background: #232323 !important;
+    border-radius: 5px;
+}
+
 .MuiPaper-root.MuiPaper-outlined.MuiPaper-rounded.MuiCard-root.card-Business.css-1v5z4dq-MuiPaper-root-MuiCard-root {
     background: #ae27ff !important;
     color: white;

@@ -29,10 +29,10 @@ Tag.propTypes = {
 };
 
 const initialRows = [
-    { id: 1, image: 'Snow', name: 'Jon', status: 'Deactive' },
-    { id: 2, image: 'Lannister', name: 'Cersei', status: 'Active' },
-    { id: 3, image: 'Lannister', name: 'Jaime', status: 'Deactive' },
-    { id: 4, image: 'Stark', name: 'Arya', status: 'Active' },
+    { id: 1, image: 'Snow', name: 'Jon', status: 'Deactive', tags: ["agasga, agasgag, rhreh"] },
+    { id: 2, image: 'Lannister', name: 'Cersei', status: 'Active', tags: ["aga, eguweh, rhreh"] },
+    { id: 3, image: 'Lannister', name: 'Jaime', status: 'Deactive', tags: ["agasgag, rhreh"] },
+    { id: 4, image: 'Stark', name: 'Arya', status: 'Active', tags: ["agasga, agasgag"] },
 ];
 
 const top100Films = [

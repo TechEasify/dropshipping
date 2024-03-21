@@ -1696,11 +1696,11 @@ ul.pf-breadcrumbs.pf-p-0.vender-breadcrumbs {
 }
 
 .MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation1.MuiCard-root.plan-card.css-1ri6ub7-MuiPaper-root-MuiCard-root {
-  background: #ca9832;
+  background: #232323;
   color: white;
   width: 30%;
   padding: 10px;
-  font-size: 11px;
+  font-size: 13px;
 }
 
 h6.text-mem {
@@ -1724,7 +1724,7 @@ p.plan-text {
 }
 
 button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.purchase-free.css-1e6y48t-MuiButtonBase-root-MuiButton-root {
-  color: #ca9832;
+  color: #232323;
   font-weight: 600;
 }
 
@@ -2130,9 +2130,9 @@ img.product-img-select {
   margin-bottom: 10px;
 }
 
-.Polaris-Button.Polaris-Button svg {
+/* .Polaris-Button.Polaris-Button svg {
   fill: #fff !important;
-}
+} */
 
 .Polaris-Icon--toneBase svg {
   color: #fff !important;

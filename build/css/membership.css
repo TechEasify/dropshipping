@@ -9,6 +9,13 @@
     background: #a9d800 !important;
     color: black;
     font-size: 12px;
+    padding: 10px;
+}
+
+.css-1h9z7r5-MuiButtonBase-root-MuiTab-root.Mui-selected {
+    color: #fff !important;
+    background: #232323 !important;
+    border-radius: 5px;
 }
 
 .MuiPaper-root.MuiPaper-outlined.MuiPaper-rounded.MuiCard-root.card-Business.css-1v5z4dq-MuiPaper-root-MuiCard-root {
@@ -32,6 +39,7 @@
 
 button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.free-btn.css-sghohy-MuiButtonBase-root-MuiButton-root {
     background: black;
+    font-size: 13px;
 }
 
 .year-text {

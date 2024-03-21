@@ -4,7 +4,6 @@ import { Route, Switch } from 'react-router-dom';
 import { localStorageConstant } from '../constant';
 
 const RouteWithSubRoutes = (route) => {
-  console.log(route, "route");
 return (
   <Route
     path={route.path}
@@ -14,8 +13,6 @@ return (
 )};
 
 const RouteWithAdminSubRoutes = (route) => {
-  // if(!route) return;
-  console.log(route, "route");
 return (
   <Route
     path={route.path}
@@ -25,7 +22,6 @@ return (
 )};
 
 export const RenderRoutes = ({ routes }) => (
-  console.log(routes, "routes"),
   <Switch>
     {routes.map((route) => (
       <RouteWithSubRoutes key={route.key} {...route} />
@@ -35,9 +31,6 @@ export const RenderRoutes = ({ routes }) => (
 );
 
 export const RenderAdminRoutes = ({ routes }) => {
-  console.log(routes, "adminroutes");
-  // if(!adminroutes)return;
-
   return (
     <Switch>
     {routes.map((route) => (
