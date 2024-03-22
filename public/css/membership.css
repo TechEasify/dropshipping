@@ -18,6 +18,10 @@
     border-radius: 5px;
 }
 
+span.MuiCircularProgress-root.MuiCircularProgress-determinate.MuiCircularProgress-colorPrimary.css-1rn30mb-MuiCircularProgress-root{
+    color: #232323 !important
+}
+
 .MuiPaper-root.MuiPaper-outlined.MuiPaper-rounded.MuiCard-root.card-Business.css-1v5z4dq-MuiPaper-root-MuiCard-root {
     background: #ae27ff !important;
     color: white;
@@ -139,7 +143,7 @@ span.MuiCircularProgress-root.MuiCircularProgress-determinate.MuiCircularProgres
 }
 
 .meet-member {
-    padding: 20px;
+    padding: 10px;
     width: 70%;
 }
 

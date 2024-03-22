@@ -186,8 +186,8 @@ function Memberships() {
                             <TabContext value={value}>
                                 <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                                     <TabList onChange={handleChange} aria-label="lab API tabs example">
-                                        <Tab style={{ paddingTop: "26px", fontSize: "10px" }} className='tab-one' label="Growth" value="1" />
-                                        <Tab style={{ paddingTop: "26px", fontSize: "10px" }} className='tab-two' label="Business" value="2" />
+                                        <Tab style={{ fontSize: "10px" }} className='tab-one' label="Growth" value="1" />
+                                        <Tab style={{ fontSize: "10px" }} className='tab-two' label="Business" value="2" />
                                     </TabList>
                                 </Box>
                             </TabContext>

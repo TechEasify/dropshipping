@@ -356,7 +356,6 @@ function ManageMembership() {
                         </Box>
                     </div>
                 </div>
-
                 {
                     managePlan === "free" &&
                     <div className='membership-free'>
@@ -566,7 +565,6 @@ function ManageMembership() {
                                     )}
                                 </TabPanel>
                                 <TabPanel value="2">
-                                    {/* Display manage-catalogue only if Annually tab is selected */}
                                     {tabValue === '2' && (
                                         <>
                                             <div className='price-manage'>
