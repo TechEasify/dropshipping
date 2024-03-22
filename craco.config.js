@@ -15,6 +15,13 @@ module.exports = {
       '@routes': path.resolve(__dirname, './src/routes'),
     },
   },
+  postcss: {
+    plugins: [
+      require('postcss-pxtorem')({
+        replace: false,
+      }),
+    ],
+  },
   devServer: {
     historyApiFallback: true,
   },
