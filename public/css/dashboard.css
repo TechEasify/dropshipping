@@ -390,7 +390,7 @@
   color: #232323;
   font-size: 40px;
   font-weight: 600;
-  margin-top: 10px;
+  margin-top: 30px;
 }
 @media (max-width: 991.98px) {
   .dashboard-home__welcome {
@@ -7387,8 +7387,6 @@ body.pf-lang--de .product-push-add .add-block .info-arrow {
 
 .dashboard-detail {
   margin-bottom: 20px;
-  margin-left: 50px;
-  margin-right: 50px;
   margin-top: 20px;
 }
 
@@ -7396,13 +7394,19 @@ body.pf-lang--de .product-push-add .add-block .info-arrow {
   fill: rgb(241, 241, 241, 1) !important;
 }
 
+.name-value {
+  display: flex;
+  align-items: center;
+}
+
 .dash-cardtext {
-  font-size: 16px;
+  font-size: 13px;
+  margin-left: 5px;
 }
 
 .dashcard-detail {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   flex-direction: row;
   flex-wrap: wrap;
   cursor: pointer;
@@ -7448,3 +7452,38 @@ h4.tranding-text {
 .label-perpage {
   margin-right: 10px;
 }
+
+
+/* Card  */
+
+._Container_3iemw_4 {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin: var(--p-space-200) 0;
+  scroll-snap-align: start;
+  flex: 1 0 10rem;
+  min-width: -webkit-fit-content;
+  min-width: fit-content;
+  min-width: -moz-fit-content;
+  max-width: 16.25rem;
+}
+
+._Container_3iemw_4:not(:last-of-type) {
+  border-right: var(--p-border-width-025) solid var(--p-color-border-secondary);
+}
+
+.dashboard-card {
+  display: flex;
+  justify-content: space-between;
+}
+
+.dashoard-step {
+  margin-right: 10px;
+  width: 23%;
+}
+
+img.img-responsive.pf-m-auto {
+  border-radius: inherit;
+}
+

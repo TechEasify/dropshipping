@@ -9,6 +9,7 @@ import {
   ClipboardCheckFilledIcon,
   LabelPrinterIcon,
   OrderDraftFilledIcon,
+  OrderFilledIcon,
   OrderIcon,
 } from '@shopify/polaris-icons';
 import {
@@ -425,7 +426,6 @@ export default function Dashboard() {
     },
   ];
 
-
   const handleSelectChange = (value) => {
     setSelected(value);
     const newPageLimit = parseInt(value);
@@ -439,7 +439,10 @@ export default function Dashboard() {
     setServiceSelected(value);
     const newPageLimit = parseInt(value);
     const newStartIndex = (currentServicePage - 1) * newPageLimit;
-    const newEndIndex = Math.min(newStartIndex + newPageLimit, DServices.length);
+    const newEndIndex = Math.min(
+      newStartIndex + newPageLimit,
+      DServices.length
+    );
     setCurrentServices(DServices.slice(newStartIndex, newEndIndex));
     setCurrentServicePage(1);
   };
@@ -448,11 +451,14 @@ export default function Dashboard() {
     setTransaction(value);
     const newPageLimit = parseInt(value);
     const newStartIndex = (currentTransactionPage - 1) * newPageLimit;
-    const newEndIndex = Math.min(newStartIndex + newPageLimit, Transaction.length);
+    const newEndIndex = Math.min(
+      newStartIndex + newPageLimit,
+      Transaction.length
+    );
     setCurrentTransaction(Transaction.slice(newStartIndex, newEndIndex));
     setCurrentTransactionPage(1);
   };
-  
+
   const pageLimit = 10;
   const startIndex = (currentPage - 1) * pageLimit;
   const startServiceIndex = (currentServicePage - 1) * pageLimit;
@@ -702,37 +708,17 @@ export default function Dashboard() {
           {location.pathname === '/admin' ? (
             ''
           ) : (
-            <div className="row">
-              <div className="col-md-2 pf-d-flex pf-justify-content-center">
-                {/* <img
-                src="https://www.dropshippy.com/static/images/dashboard/onboarding-left.svg"
-                alt="Onboarding Illustration"
-                className="pf-d-none pf-d-md-block"
-                style={{ width: 165 }}
-              /> */}
-              </div>
-              <div className="col-md-8 pf-d-flex  pf-justify-content-center">
-                <div
-                  className="splide__track splide__track--slide splide__track--ltr"
-                  id="onboarding-steps-splide-slider-track"
-                  aria-live="polite"
-                  aria-atomic="true"
-                >
-                  <div
-                    className="splide__list"
-                    id="onboarding-steps-splide-slider-list pf-d-flex pf-justify-content-center"
-                    role="presentation"
-                  >
-                    {/* Slide 1 */}
-                    <div
-                      data-splide-interval=""
-                      className="splide__slide is-active is-visible"
-                      id="onboarding-steps-splide-slider-slide01"
-                      role="tabpanel"
-                      aria-roledescription="slide"
-                      aria-label="1 of 4"
-                      style={{ marginRight: '16px', width: 'calc(25% - 12px)' }}
-                    >
+            <div className="pf-d-flex  pf-justify-content-center">
+              <div
+                className="splide__track splide__track--slide splide__track--ltr"
+                id="onboarding-steps-splide-slider-track"
+                aria-live="polite"
+                aria-atomic="true"
+              >
+                <div className="dashboard-card">
+                  {/* Slide 1 */}
+                  <div className="dashoard-step">
+                    <Card>
                       <div className="pf-d-flex pf-flex-column pf-rounded--large pf-p-16 pf-h-100 pf-border pf-bg-white">
                         <img
                           alt="Design your first product"
@@ -761,17 +747,12 @@ export default function Dashboard() {
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </Card>
+                  </div>
 
-                    {/* Slide 2 */}
-                    <div
-                      className="splide__slide is-visible is-next"
-                      id="onboarding-steps-splide-slider-slide02"
-                      role="tabpanel"
-                      aria-roledescription="slide"
-                      aria-label="2 of 4"
-                      style={{ marginRight: '16px', width: 'calc(25% - 12px)' }}
-                    >
+                  {/* Slide 2 */}
+                  <div className="dashoard-step">
+                    <Card>
                       <div className="pf-d-flex pf-flex-column pf-rounded--large pf-p-16 pf-h-100 pf-border pf-bg-white">
                         <img
                           alt="Connect your store"
@@ -800,18 +781,12 @@ export default function Dashboard() {
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </Card>
+                  </div>
 
-                    {/* Slide 3 */}
-                    <div
-                      data-splide-interval=""
-                      className="splide__slide is-visible"
-                      id="onboarding-steps-splide-slider-slide03"
-                      role="tabpanel"
-                      aria-roledescription="slide"
-                      aria-label="3 of 4"
-                      style={{ marginRight: '16px', width: 'calc(25% - 12px)' }}
-                    >
+                  {/* Slide 3 */}
+                  <div className="dashoard-step">
+                    <Card>
                       <div className="pf-d-flex pf-flex-column pf-rounded--large pf-p-16 pf-h-100 pf-border pf-bg-white">
                         <img
                           alt="Add products to store"
@@ -845,18 +820,12 @@ export default function Dashboard() {
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </Card>
+                  </div>
 
-                    {/* Slide 4 */}
-                    <div
-                      data-splide-interval=""
-                      className="splide__slide is-visible"
-                      id="onboarding-steps-splide-slider-slide04"
-                      role="tabpanel"
-                      aria-roledescription="slide"
-                      aria-label="4 of 4"
-                      style={{ marginRight: '16px', width: 'calc(25% - 12px)' }}
-                    >
+                  {/* Slide 4 */}
+                  <div className="dashoard-step">
+                    <Card>
                       <div className="pf-d-flex pf-flex-column pf-rounded--large pf-p-16 pf-h-100 pf-border pf-bg-white">
                         <img
                           alt="Set up billing"
@@ -885,18 +854,9 @@ export default function Dashboard() {
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </Card>
                   </div>
                 </div>
-              </div>
-
-              <div className="col-md-2 pf-d-flex pf-justify-content-center">
-                {/* <img
-                src="https://www.dropshippy.com/static/images/dashboard/onboarding-right.svg"
-                alt="Onboarding Illustration"
-                className="pf-d-none pf-d-md-block"
-                style={{ width: 165 }}
-              /> */}
               </div>
             </div>
           )}
@@ -906,73 +866,105 @@ export default function Dashboard() {
       <div className="dashboard-detail">
         <Card roundedAbove="md" background="bg-surface-secondary">
           <div className="dashcard-detail">
-            <Card roundedAbove="md">
-              <Icon source={OrderIcon} tone="base" />
-              <p className="oders-value">1</p>
-              <div className="dash-cardtext">
-                <h4>Today Orders</h4>
-              </div>
-            </Card>
+            <div className="today-orders">
+              <Card roundedAbove="md">
+                <div className="name-value">
+                  <Icon source={OrderFilledIcon} tone="base" />
+                  <div className="dash-cardtext">
+                    <h4>Today Orders</h4>
+                  </div>
+                </div>
+                <p className="oders-value">1</p>
+              </Card>
+            </div>
 
-            <Card roundedAbove="md">
-              <Icon source={OrderDraftFilledIcon} tone="base" />
-              <p className="oders-value">1</p>
-              <div className="dash-cardtext">
-                <h4>Pendding Orders</h4>
-              </div>
-            </Card>
+            <div className="today-orders">
+              <Card roundedAbove="md">
+                <div className="name-value">
+                  <Icon source={OrderDraftFilledIcon} tone="base" />
+                  <div className="dash-cardtext">
+                    <h4>Pendding Orders</h4>
+                  </div>
+                </div>
+                <p className="oders-value">1</p>
+              </Card>
+            </div>
 
-            <Card roundedAbove="md">
-              <Icon source={ClipboardCheckFilledIcon} tone="base" />
-              <p className="oders-value">1</p>
-              <div className="dash-cardtext">
-                <h4>Completed Orders</h4>
-              </div>
-            </Card>
+            <div className="today-orders">
+              <Card roundedAbove="md">
+                <div className="name-value">
+                  <Icon source={ClipboardCheckFilledIcon} tone="base" />
+                  <div className="dash-cardtext">
+                    <h4>Completed Orders</h4>
+                  </div>
+                </div>
+                <p className="oders-value">1</p>
+              </Card>
+            </div>
 
-            <Card roundedAbove="md">
-              <Icon source={CartFilledIcon} tone="base" />
-              <p className="oders-value">1</p>
-              <div className="dash-cardtext">
-                <h4>Total Orders</h4>
-              </div>
-            </Card>
+            <div className="today-orders">
+              <Card roundedAbove="md">
+                <div className="name-value">
+                  <Icon source={CartFilledIcon} tone="base" />
+                  <div className="dash-cardtext">
+                    <h4>Total Orders</h4>
+                  </div>
+                </div>
+                <p className="oders-value">1</p>
+              </Card>
+            </div>
 
-            <Card roundedAbove="md">
-              <Icon source={CartSaleIcon} tone="base" />
-              <p className="oders-value">1</p>
-              <div className="dash-cardtext">
-                <h4>Monthly Sale</h4>
-              </div>
-            </Card>
+            <div className="today-orders">
+              <Card roundedAbove="md">
+                <div className="name-value">
+                  <Icon source={CartFilledIcon} tone="base" />
+                  <div className="dash-cardtext">
+                    <h4>Monthly Sale</h4>
+                  </div>
+                </div>
+                <p className="oders-value">1</p>
+              </Card>
+            </div>
 
-            <Card roundedAbove="md">
-              <Icon source={CartAbandonedFilledIcon} tone="base" />
-              <p className="oders-value">1</p>
-              <div className="dash-cardtext">
-                <h4>Annual Sale</h4>
-              </div>
-            </Card>
+            <div className="today-orders">
+              <Card roundedAbove="md">
+                <div className="name-value">
+                  <Icon source={CartAbandonedFilledIcon} tone="base" />
+                  <div className="dash-cardtext">
+                    <h4>Annual Sale</h4>
+                  </div>
+                </div>
+                <p className="oders-value">1</p>
+              </Card>
+            </div>
 
-            <Card roundedAbove="md">
-              <Icon source={OrderDraftFilledIcon} tone="base" />
-              <p className="oders-value">1</p>
-              <div className="dash-cardtext">
-                <h4>Monthly Order</h4>
-              </div>
-            </Card>
+            <div className="today-orders">
+              <Card roundedAbove="md">
+                <div className="name-value">
+                  <Icon source={OrderDraftFilledIcon} tone="base" />
+                  <div className="dash-cardtext">
+                    <h4>Monthly Order</h4>
+                  </div>
+                </div>
+                <p className="oders-value">1</p>
+              </Card>
+            </div>
 
-            <Card roundedAbove="md">
-              <Icon source={LabelPrinterIcon} tone="base" />
-              <div className="dashcard-tiers">
-                <p className="oders-value">
-                  Broze + <span>300$</span>
-                </p>
-              </div>
-              <div className="dash-cardtext">
-                <h4>Current Tiers</h4>
-              </div>
-            </Card>
+            <div className="today-orders">
+              <Card roundedAbove="md">
+                <div className="name-value">
+                  <Icon source={LabelPrinterIcon} tone="base" />
+                  <div className="dash-cardtext">
+                    <h4>Current Tiers</h4>
+                  </div>
+                </div>
+                <div className="dashcard-tiers">
+                  <p className="oders-value">
+                    Broze + <span>300$</span>
+                  </p>
+                </div>
+              </Card>
+            </div>
           </div>
         </Card>
       </div>
