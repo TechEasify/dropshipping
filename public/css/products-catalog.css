@@ -48,7 +48,7 @@ img.card-img-top.card-image {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-evenly;
 }
 
 .MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation1.MuiCard-root.card-detail.css-1xxr2lr-MuiPaper-root-MuiCard-root {
@@ -305,19 +305,34 @@ button.AddtoProducts.btn.btn-primary {
 
 img.MuiCardMedia-root.MuiCardMedia-media.MuiCardMedia-img.cardimg-mui.css-o69gx8-MuiCardMedia-root {
   height: 200px;
+  border-radius: inherit;
 }
 
+/* .cardmedia {
+  padding: 10px;
+  border: 1px solid transparent;
+  box-shadow: inset 0px -2px 14px 7px #bdbdbd;
+} */
 
+.cardmedia {
+  padding: 10px;
+  border: 1px solid transparent;
+  background: url(/cdn/shop/files/basic-background.png?v=1675320894) repeat #efede8;
+}
 
+.ck.ck-editor__top.ck-reset_all {
+  position: sticky;
+  top: 0;
+}
 
+.card-inner {
+  margin-top: 10px;
+}
 
-
-
-
-
-
-
-
+img.MuiCardMedia-root.MuiCardMedia-media.MuiCardMedia-img.cardimg-mui.css-rhsghg {
+  height: 200px;
+  border-radius: inherit;
+}
 
 
 .shipping-banner {
@@ -1646,6 +1661,47 @@ img.MuiCardMedia-root.MuiCardMedia-media.MuiCardMedia-img.cardimg-mui.css-o69gx8
 
 .filter-search-vender {
   width: 30%;
+  margin-top: 10px;
+}
+
+.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation1.MuiCard-root.css-pwngrv-MuiPaper-root-MuiCard-root {
+  width: 0%;
+  padding: 5px;
+}
+
+.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation1.MuiCard-root.css-mx8tbv{
+  width: 0%;
+  padding: 5px;
+}
+
+.usd-wallet {
+  margin-bottom: 10px;
+}
+
+.accordian-detail {
+  display: flex !important;
+}
+
+.Wallet-main {
+  margin-top: 50px;
+}
+
+.inner-wallet {
+  margin-top: 50px;
+}
+
+.wallet-card {
+  display: flex;
+  align-items: center;
+}
+
+.wall-usd {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.wallet-price {
+  margin-left: 10px;
 }
 
 ul.pf-breadcrumbs.pf-p-0.vender-breadcrumbs {
@@ -1703,6 +1759,14 @@ ul.pf-breadcrumbs.pf-p-0.vender-breadcrumbs {
   font-size: 13px;
 }
 
+.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation1.MuiCard-root.plan-card.css-w88nxk {
+  background: #232323;
+  color: white;
+  width: 30%;
+  padding: 10px;
+  font-size: 13px;
+}
+
 h6.text-mem {
   color: white;
 }
@@ -1728,6 +1792,11 @@ button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.Mu
   font-weight: 600;
 }
 
+button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButton-colorPrimary.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButton-colorPrimary.purchase-free.css-1ujsas3 {
+  color: #232323;
+  font-weight: 600;
+}
+
 ul.plan-li {
   list-style: none;
 }
@@ -1737,6 +1806,19 @@ ul.plan-li {
   align-items: center;
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+.write-icon {
+  margin-right: 20px;
+}
+
+svg.Polaris-Icon__Svg {
+  filter: brightness(0.5);
+}
+
+span.Polaris-Icon.Polaris-Icon--toneBase {
+  width: 25px;
+  height: 25px;
 }
 
 img.mark-img {
@@ -1775,6 +1857,12 @@ p.inner-pro {
   height: 280px;
 }
 
+.MuiCardMedia-root.card-venderImg.css-7xowk2 {
+  width: 100%;
+  margin: auto;
+  height: 280px;
+}
+
 .card-vender {
   height: auto;
   flex-basis: 20%;
@@ -1797,6 +1885,23 @@ img.selling-img {
 
 button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.download-btn.css-sghohy-MuiButtonBase-root-MuiButton-root {
   background: #232323;
+}
+
+button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-colorPrimary.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-colorPrimary.download-btn.css-sghohy-MuiButtonBase-root-MuiButton-root:hover {
+  background: rgb(241, 241, 241, 1);
+  color: #232323 !important;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-colorPrimary.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-colorPrimary.download-btn.css-1hw9j7s {
+  background: #232323 !important;
+  color: rgb(241, 241, 241, 1) !important;
+}
+
+button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-colorPrimary.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-colorPrimary.download-btn.css-1hw9j7s:hover {
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
+  color: #232323 !important;
+  background: rgb(241, 241, 241, 1) !important;
 }
 
 .MuiDataGrid-columnHeaderTitle.css-t89xny-MuiDataGrid-columnHeaderTitle {
@@ -1846,6 +1951,11 @@ button.Polaris-Button.Polaris-Button--pressable.Polaris-Button--variantSecondary
   /* width: 15%; */
   height: 40px;
   color: white;
+}
+
+button.Polaris-Button.Polaris-Button--pressable.Polaris-Button--variantSecondary.Polaris-Button--sizeMedium.Polaris-Button--textAlignCenter:hover {
+  background: rgb(241, 241, 241, 1);
+  color: #232323;
 }
 
 .tiers-head {
@@ -2071,6 +2181,10 @@ button.Polaris-Button.Polaris-Button--pressable.Polaris-Button--variantSecondary
   background-color: rgba(241, 241, 241, 1) !important;
 }
 
+main.jss13 {
+  background: rgb(241, 241, 241, 1) !important;
+}
+
 ul#sidebar-ul-9 {
   background: rgba(241, 241, 241, 1) !important;
 }
@@ -2109,6 +2223,16 @@ img.product-img-select {
   margin-right: 30px;
 }
 
+
+.select-img {
+  margin: 10px;
+  border: 1px solid #e5e5e5;
+}
+
+.select-heading {
+  margin-bottom: 10px;
+}
+
 .description-product {
   max-height: 200px;
   overflow-y: auto;
@@ -2128,6 +2252,7 @@ img.product-img-select {
 
 .main-card {
   margin-bottom: 10px;
+  margin-top: 10px;
 }
 
 /* .Polaris-Button.Polaris-Button svg {
@@ -2135,6 +2260,5 @@ img.product-img-select {
 } */
 
 .Polaris-Icon--toneBase svg {
-  color: #fff !important;
   color: #fff !important;
 }

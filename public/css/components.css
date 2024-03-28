@@ -9927,12 +9927,16 @@ button.pf-bg-blue:hover {
 }
 
 .order-3.text-right.basis-md-auto.basis-20 {
-  background-color: #fff;
+  /* background-color: #fff; */
   border-radius: 50px;
   height: 20px;
   width: 20px;
   padding-left: 1px;
   padding-right: 1px;
+}
+
+.MuiToolbar-root.MuiToolbar-gutters.MuiToolbar-regular.pf-d-flex.pf-flex-wrap.pf-justify-content-between.pf-align-items-center.css-i6s8oy {
+  background: rgb(241, 241, 241, 1) !important;
 }
 
 span.pf-i.pf-i-32.pf-i-close.pf-modal__close-icon {
@@ -32616,6 +32620,22 @@ button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-contained
   background: #232323;
 }
 
+button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.order-now.css-sghohy-MuiButtonBase-root-MuiButton-root:hover {
+  background: rgb(241, 241, 241, 1);
+  color: #232323;
+}
+
+button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-colorPrimary.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-colorPrimary.order-now.css-1hw9j7s{
+  margin-top: 30px;
+  font-size: 12px;
+  background: #232323;
+}
+
+button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-colorPrimary.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-colorPrimary.order-now.css-1hw9j7s:hover {
+  background: rgb(241, 241, 241, 1);
+  color: #232323;
+}
+
 img.payment {
   width: 100%;
   height: auto;
@@ -33025,6 +33045,12 @@ main.modal-body.mt-4 {
 .MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation8.MuiPopover-paper.css-3bmhjh-MuiPaper-root-MuiPopover-paper {
   top: 256px !important;
   left: 140px !important;
+}
+
+.jss4 {
+  padding: 24px;
+  flex-grow: 1;
+  background: rgb(241, 241, 241, 1) !important;
 }
 
 /* .design-imges {

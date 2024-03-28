@@ -14,7 +14,7 @@ import Chip from '@mui/material/Chip';
 import { Button, Select } from '@shopify/polaris';
 
 function ManageMembership() {
-    const [managePlan, setManagePlan] = useState('');
+    const [managePlan, setManagePlan] = useState('free');
     const [tabValue, setTabValue] = useState('1');
     const [formData, setFormData] = useState({
         freeMonthly: {
@@ -356,6 +356,7 @@ function ManageMembership() {
                         </Box>
                     </div>
                 </div>
+
                 {
                     managePlan === "free" &&
                     <div className='membership-free'>
@@ -565,6 +566,7 @@ function ManageMembership() {
                                     )}
                                 </TabPanel>
                                 <TabPanel value="2">
+                                    {/* Display manage-catalogue only if Annually tab is selected */}
                                     {tabValue === '2' && (
                                         <>
                                             <div className='price-manage'>

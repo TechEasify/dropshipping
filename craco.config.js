@@ -1,4 +1,6 @@
 const path = require('path');
+const postcssPresetEnv = require('postcss-preset-env');
+const postcssFlexbugsFixes = require('postcss-flexbugs-fixes');
 
 module.exports = {
   script: {
@@ -7,6 +9,19 @@ module.exports = {
       overrideCracoConfig: true
     }
   },
+  style: {
+    postcss: {
+      plugins: [
+        postcssFlexbugsFixes,
+        postcssPresetEnv({
+          autoprefixer: {
+            flexbox: 'no-2009',
+          },
+          stage: 3,
+        }),
+      ],
+    },
+  },
   webpack: {
     alias: {
       '@components': path.resolve(__dirname, './src/components'),
@@ -14,13 +29,6 @@ module.exports = {
       '@modules': path.resolve(__dirname, './src/modules'),
       '@routes': path.resolve(__dirname, './src/routes'),
     },
-  },
-  postcss: {
-    plugins: [
-      require('postcss-pxtorem')({
-        replace: false,
-      }),
-    ],
   },
   devServer: {
     historyApiFallback: true,
