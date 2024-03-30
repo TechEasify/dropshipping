@@ -7390,9 +7390,9 @@ body.pf-lang--de .product-push-add .add-block .info-arrow {
   margin-top: 20px;
 }
 
-.Polaris-Button.Polaris-Button svg {
+/* .Polaris-Button.Polaris-Button svg {
   fill: rgb(241, 241, 241, 1) !important;
-}
+} */
 
 .name-value {
   display: flex;
@@ -7400,23 +7400,31 @@ body.pf-lang--de .product-push-add .add-block .info-arrow {
 }
 
 .dash-cardtext {
-  font-size: 13px;
-  margin-left: 5px;
+  font-size: 15px;
+  width: 70%;
 }
 
 .dashcard-detail {
   display: flex;
-  justify-content: space-between;
-  flex-direction: row;
-  flex-wrap: wrap;
   cursor: pointer;
+  justify-content: center;
+  width: 100%;
+}
+
+.today-orders {
+  margin-right: 10px;
+  width: 100%;
+}
+
+.dashcard-tiers {
+  width: 50%;
 }
 
 p.oders-value {
   text-align: center;
-  margin-top: 5px;
+  margin-top: -10px;
   font-weight: 600;
-  margin-bottom: 5px;
+  margin-bottom: -10px;
 }
 
 .tranding-product {
@@ -7453,26 +7461,6 @@ h4.tranding-text {
   margin-right: 10px;
 }
 
-
-/* Card  */
-
-._Container_3iemw_4 {
-  position: relative;
-  display: flex;
-  align-items: center;
-  margin: var(--p-space-200) 0;
-  scroll-snap-align: start;
-  flex: 1 0 10rem;
-  min-width: -webkit-fit-content;
-  min-width: fit-content;
-  min-width: -moz-fit-content;
-  max-width: 16.25rem;
-}
-
-._Container_3iemw_4:not(:last-of-type) {
-  border-right: var(--p-border-width-025) solid var(--p-color-border-secondary);
-}
-
 .dashboard-card {
   display: flex;
   justify-content: space-between;
@@ -7480,7 +7468,7 @@ h4.tranding-text {
 
 .dashoard-step {
   margin-right: 10px;
-  width: 22%;
+  width: 23%;
 }
 
 img.img-responsive.pf-m-auto {

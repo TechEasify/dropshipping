@@ -11,6 +11,7 @@ import {
   OrderDraftFilledIcon,
   OrderFilledIcon,
   OrderIcon,
+  PointOfSaleIcon,
 } from '@shopify/polaris-icons';
 import {
   IndexTable,
@@ -19,7 +20,7 @@ import {
   Text,
   Badge,
 } from '@shopify/polaris';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 
 const defaultAllSteps = [
   { text: 'Sign up for DropShippy', status: true },
@@ -32,6 +33,7 @@ const defaultAllSteps = [
 export default function Dashboard() {
   const [user, setUser] = useState([]);
   const location = useLocation();
+  const history = useHistory();
   const [currentPage, setCurrentPage] = useState(1);
   const [currentServicePage, setCurrentServicePage] = useState(1);
   const [currentTransactionPage, setCurrentTransactionPage] = useState(1);
@@ -737,10 +739,12 @@ export default function Dashboard() {
                           <div className="pf-d-flex pf-align-items-end pf-h-100">
                             <a
                               id="create_product_template-action"
-                              href="/dashboard/product-templates"
                               className="pf-w-100"
                             >
-                              <button className="pf-w-100 pf-btn pf-mt-12 pf-btn-primary">
+                              <button
+                                className="pf-w-100 pf-btn pf-mt-12 pf-btn-primary"
+                                onClick={() => history.push('/catalog')}
+                              >
                                 Start
                               </button>
                             </a>
@@ -769,12 +773,11 @@ export default function Dashboard() {
                           </div>
                           <div className="pf-ui-body">~ 10 minutes</div>
                           <div className="pf-d-flex pf-align-items-end pf-h-100">
-                            <a
-                              id="create_store-action"
-                              href="/dashboard/store"
-                              className="pf-w-100"
-                            >
-                              <button className="pf-w-100 pf-btn pf-mt-12 pf-btn-secondary">
+                            <a id="create_store-action" className="pf-w-100">
+                              <button
+                                className="pf-w-100 pf-btn pf-mt-12 pf-btn-secondary"
+                                onClick={() => history.push('/store')}
+                              >
                                 Start
                               </button>
                             </a>
@@ -805,14 +808,10 @@ export default function Dashboard() {
                           </div>
                           <div className="pf-ui-body">~ 15 minutes</div>
                           <div className="pf-d-flex pf-align-items-end pf-h-100">
-                            <a
-                              id="design_products-action"
-                              href="/dashboard/store?offerSync=1"
-                              className="pf-w-100"
-                            >
+                            <a id="design_products-action" className="pf-w-100">
                               <button
-                                disabled="disabled"
                                 className="pf-w-100 pf-btn pf-mt-12 pf-btn-secondary"
+                                onClick={() => history.push('/library')}
                               >
                                 Start
                               </button>
@@ -844,10 +843,9 @@ export default function Dashboard() {
                           <div className="pf-d-flex pf-align-items-end pf-h-100">
                             <a
                               id="add_billing-action"
-                              href="/dashboard/billing/billing-methods/add"
                               className="pf-w-100"
                             >
-                              <button className="pf-w-100 pf-btn pf-mt-12 pf-btn-secondary">
+                              <button className="pf-w-100 pf-btn pf-mt-12 pf-btn-secondary" onClick={() => history.push("/billing/methods")}>
                                 Start
                               </button>
                             </a>
@@ -873,8 +871,8 @@ export default function Dashboard() {
                   <div className="dash-cardtext">
                     <h4>Today Orders</h4>
                   </div>
+                  <p className="oders-value">1</p>
                 </div>
-                <p className="oders-value">1</p>
               </Card>
             </div>
 
@@ -885,8 +883,8 @@ export default function Dashboard() {
                   <div className="dash-cardtext">
                     <h4>Pendding Orders</h4>
                   </div>
+                  <p className="oders-value">1</p>
                 </div>
-                <p className="oders-value">1</p>
               </Card>
             </div>
 
@@ -897,8 +895,8 @@ export default function Dashboard() {
                   <div className="dash-cardtext">
                     <h4>Completed Orders</h4>
                   </div>
+                  <p className="oders-value">1</p>
                 </div>
-                <p className="oders-value">1</p>
               </Card>
             </div>
 
@@ -909,11 +907,17 @@ export default function Dashboard() {
                   <div className="dash-cardtext">
                     <h4>Total Orders</h4>
                   </div>
+                  <p className="oders-value">1</p>
                 </div>
-                <p className="oders-value">1</p>
               </Card>
             </div>
+          </div>
+        </Card>
+      </div>
 
+      <div className="dashboard-detail">
+        <Card roundedAbove="md" background="bg-surface-secondary">
+          <div className="dashcard-detail">
             <div className="today-orders">
               <Card roundedAbove="md">
                 <div className="name-value">
@@ -921,8 +925,8 @@ export default function Dashboard() {
                   <div className="dash-cardtext">
                     <h4>Monthly Sale</h4>
                   </div>
+                  <p className="oders-value">1</p>
                 </div>
-                <p className="oders-value">1</p>
               </Card>
             </div>
 
@@ -933,8 +937,8 @@ export default function Dashboard() {
                   <div className="dash-cardtext">
                     <h4>Annual Sale</h4>
                   </div>
+                  <p className="oders-value">1</p>
                 </div>
-                <p className="oders-value">1</p>
               </Card>
             </div>
 
@@ -945,23 +949,23 @@ export default function Dashboard() {
                   <div className="dash-cardtext">
                     <h4>Monthly Order</h4>
                   </div>
+                  <p className="oders-value">1</p>
                 </div>
-                <p className="oders-value">1</p>
               </Card>
             </div>
 
             <div className="today-orders">
               <Card roundedAbove="md">
                 <div className="name-value">
-                  <Icon source={LabelPrinterIcon} tone="base" />
-                  <div className="dash-cardtext">
+                  <Icon source={PointOfSaleIcon} tone="base" />
+                  <div className="tiers-cardtext">
                     <h4>Current Tiers</h4>
                   </div>
-                </div>
-                <div className="dashcard-tiers">
-                  <p className="oders-value">
-                    Broze + <span>300$</span>
-                  </p>
+                  <div className="dashcard-tiers">
+                    <p className="oders-value">
+                      Broze + <span>300$</span>
+                    </p>
+                  </div>
                 </div>
               </Card>
             </div>
